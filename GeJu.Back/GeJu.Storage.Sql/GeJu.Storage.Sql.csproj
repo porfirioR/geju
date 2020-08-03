@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200803024444_initial.cs" />
+    <Compile Remove="Migrations\20200803024444_initial.Designer.cs" />
+    <Compile Remove="Migrations\20200803025459_CreateTableUsers.cs" />
+    <Compile Remove="Migrations\20200803025459_CreateTableUsers.Designer.cs" />
+    <Compile Remove="Migrations\20200803042353_updateTableUserUpdateColumnGenderAndCountry.cs" />
+    <Compile Remove="Migrations\20200803042353_updateTableUserUpdateColumnGenderAndCountry.Designer.cs" />
+    <Compile Remove="Migrations\20200803043242_updateTableUserUpdateColumnGenderAndCountry.cs" />
+    <Compile Remove="Migrations\20200803043242_updateTableUserUpdateColumnGenderAndCountry.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configurations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.6" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+  </ItemGroup>
+
+</Project>
