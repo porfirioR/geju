@@ -31,7 +31,7 @@ namespace GeJu.Services.Admin.Implementations
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             
         }

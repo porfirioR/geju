@@ -21,17 +21,9 @@ namespace GeJu.Api.Main.Workflow
 
         public Task<bool> CreateAsync(CreateUserDTO userDTO)
         {
-            try
-            {
-                var userCommand = _mapper.Map<CreateUserCommand>(userDTO);
-                _usersServices.CreateAsync(userCommand).Wait();
-                return Task.FromResult(true);
-            }
-            catch (System.Exception ex)
-            {
-                throw;
-            }
-            
+            var userCommand = _mapper.Map<CreateUserCommand>(userDTO);
+            _usersServices.CreateAsync(userCommand).Wait();
+            return Task.FromResult(true);
         }
 
         public void Delete(string id)

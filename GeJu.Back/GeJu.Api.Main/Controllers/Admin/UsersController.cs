@@ -41,5 +41,11 @@ namespace GeJu.Api.Main.Controllers.Admin
             var response = _usersWorkflow.UpdateAsync(userDTO);
             return Ok(response);
         }
+        [HttpPatch]
+        public IActionResult ActiveUser([FromBody] UpdateUserDTO userDTO)
+        {
+            var response = _usersWorkflow.UpdateAsync(userDTO);
+            return Ok(response);
+        }
     }
 }
