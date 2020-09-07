@@ -7,8 +7,8 @@ namespace GeJu.Services.Admin.Interfaces
 {
     public interface IUsersServices
     {
-        User GetUserById(string id);
-        IQueryable<User> GetAll();
+        Usuario GetUserById(string id);
+        IQueryable<Usuario> GetAll();
         Task CreateAsync(CreateUserCommand command);
         Task UpdateAsync(UpdateUserCommand command);
         void Delete(string id);

@@ -23,7 +23,7 @@ namespace GeJu.Services.Admin.Implementations
         {
             try
             {
-                var user = _mapper.Map<User>(command);
+                var user = _mapper.Map<Usuario>(command);
                 user.Id = Guid.NewGuid().ToString();
                 await _context.AddAsync(user);
                 await _context.SaveChangesAsync();
@@ -38,20 +38,20 @@ namespace GeJu.Services.Admin.Implementations
 
         public void Delete(string id)
         {
-            var userToDelete = _context.Set<User>().SingleOrDefault(x => x.Id == id);
+            var userToDelete = _context.Set<Usuario>().SingleOrDefault(x => x.Id == id);
             userToDelete.Active = false;
             _context.Update(userToDelete);
             _context.SaveChangesAsync();
         }
 
-        public IQueryable<User> GetAll()
+        public IQueryable<Usuario> GetAll()
         {
-            return _context.Set<User>().AsQueryable();
+            return _context.Set<Usuario>().AsQueryable();
         }
 
-        public User GetUserById(string id)
+        public Usuario GetUserById(string id)
         {
-            return _context.Set<User>().SingleOrDefault(x => x.Id == id);
+            return _context.Set<Usuario>().SingleOrDefault(x => x.Id == id);
         }
 
         public async Task UpdateAsync(UpdateUserCommand command)

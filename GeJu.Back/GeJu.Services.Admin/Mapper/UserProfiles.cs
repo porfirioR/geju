@@ -8,8 +8,8 @@ namespace GeJu.Services.Admin.Mapper
     {
         public UserProfiles()
         {
-            CreateMap<CreateUserCommand, User>();
-            CreateMap<User, UpdateUserCommand>().ReverseMap();
+            CreateMap<CreateUserCommand, Usuario>();
+            CreateMap<Usuario, UpdateUserCommand>().ReverseMap();
         }
     }
 }

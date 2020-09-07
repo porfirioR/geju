@@ -9,6 +9,6 @@ namespace GeJu.Storage.Sql
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Usuario> Users { get; set; }
     }
 }
