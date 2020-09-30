@@ -1,22 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
-using GeJu.Api.Main.Mapper;
 using GeJu.Api.Main.Workflow;
 using GeJu.Api.Main.Workflow.Interfaces;
 using GeJu.Services.Admin;
-using GeJu.Services.Admin.Mapper;
 using GeJu.Storage.Sql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
 namespace GeJu.Api.Main
 {
     public class Startup
@@ -42,9 +34,8 @@ namespace GeJu.Api.Main
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
-
-            services.AddDbContext<DataContext>(opt =>
-            opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DataContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

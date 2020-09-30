@@ -12,7 +12,7 @@ namespace GeJu.Storage.Sql.Entities
         public DateTime FechaNaciento { get; set; }
         public DateTime FechaCreado { get; set; }
         public bool Deuda { get; set; }
-        public ICollection<UsuarioRol> UsuariosRoles { get; set; }
+        //public ICollection<UsuarioRol> UsuariosRoles { get; set; }
 
     }
 }

@@ -39,7 +39,7 @@ namespace GeJu.Services.Admin.Implementations
         public void Delete(string id)
         {
             var userToDelete = _context.Set<Usuario>().SingleOrDefault(x => x.Id == id);
-            userToDelete.Active = false;
+            userToDelete.Activo = false;
             _context.Update(userToDelete);
             _context.SaveChangesAsync();
         }
