@@ -7,7 +7,7 @@ export const CoreRoutes: Routes = [
     component: MainLayoutComponent,
     children: [
       {
-        path: 'admin',
+        path: 'administracion',
         loadChildren: () => import('./../admin/admin.module').then(m => m.AdminModule)
       },
       // { path: 'dms', loadChildren: () => import('./../documents/documents.module').then(m => m.DocumentsModule) },
