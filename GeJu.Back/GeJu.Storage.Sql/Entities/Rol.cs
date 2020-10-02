@@ -5,6 +5,6 @@ namespace GeJu.Storage.Sql.Entities
     public class Rol: BaseEntity
     {
         public string Descripcion { get; set; }
-        public ICollection<UsuarioRol> UsuariosRoles { get; set; }
+        virtual public ICollection<UsuarioRol> UsuariosRoles { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Commands.Users;
+using Intermedio.Users;
 using GeJu.Services.Admin.Interfaces;
 using GeJu.Storage.Sql;
 using GeJu.Storage.Sql.Entities;
@@ -19,18 +19,17 @@ namespace GeJu.Services.Admin.Implementations
             _context = context;
         }
 
-        public async Task CreateAsync(CreateUserCommand command)
+        public async Task CreateAsync(CrearUsuario command)
         {
             try
             {
                 var user = _mapper.Map<Usuario>(command);
                 user.Id = Guid.NewGuid().ToString();
                 await _context.AddAsync(user);
-                await _context.SaveChangesAsync();
+                _context.SaveChangesAsync().Wait();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             
@@ -54,11 +53,11 @@ namespace GeJu.Services.Admin.Implementations
             return _context.Set<Usuario>().SingleOrDefault(x => x.Id == id);
         }
 
-        public async Task UpdateAsync(UpdateUserCommand command)
+        public async Task UpdateAsync(ActualizarUsuario command)
         {
-            var user = _mapper.Map<UpdateUserCommand>(command);
+            var user = _mapper.Map<ActualizarUsuario>(command);
             _context.Update(user);
-            await _context.SaveChangesAsync();
+            _context.SaveChangesAsync().Wait();
         }
     }
 }

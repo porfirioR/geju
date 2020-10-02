@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Commands.Users;
+using Intermedio.Users;
 using GeJu.Api.Main.DTO.Users;
 
 namespace GeJu.Api.Main.Mapper
@@ -8,8 +8,8 @@ namespace GeJu.Api.Main.Mapper
     {
         public UserProfiles()
         {
-            CreateMap<UpdateUserCommand, UpdateUserDTO>().ReverseMap();
-            CreateMap<CreateUserCommand, CreateUserDTO>().ReverseMap();
+            CreateMap<ActualizarUsuario, ActualizarUsuarioDTO>().ReverseMap();
+            CreateMap<CrearUsuario, CrearUsuarioDTO>().ReverseMap();
         }
     }
 }

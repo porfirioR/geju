@@ -6,16 +6,17 @@ namespace GeJu.Api.Main.Test.Admin
 {
     internal static class Mother
     {
-        public static CreateUserDTO NewUserObject => new CreateUserDTO
+        public static CrearUsuarioDTO NewUserObject => new CrearUsuarioDTO
         {
-            Country = Country.Paraguay,
-            Gender = Gender.Masculino,
-            Created = DateTime.Now,
-            DateOfBirth = DateTime.Now,
-            Email = "prueba@prueba.com",
+            Pais = Country.Paraguay,
+            Genero = Gender.Masculino,
+            FechaCreado = DateTime.Now,
+            FechaNaciento = DateTime.Now,
+            Correo = "prueba@prueba.com",
             LastActive = DateTime.Now,
-            LastName = "Prueba",
-            Name = "Prueba"
+            Apellido = "Prueba",
+            Nombre = "Prueba",
+            Activo = true
         };
 
     }

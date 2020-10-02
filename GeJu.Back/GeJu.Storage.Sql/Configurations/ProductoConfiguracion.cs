@@ -15,13 +15,13 @@ namespace GeJu.Storage.Sql.Configurations
     {
         public void Configure(EntityTypeBuilder<ProductoGrupo> builder)
         {
+            builder.HasKey(pg => new { pg.ProductoId, pg.GrupoId });
             builder.HasOne(pg => pg.Producto)
                 .WithMany(p => p.ProductoGrupos)
                 .HasForeignKey(pg => pg.ProductoId);
             builder.HasOne(pg => pg.Grupo)
                 .WithMany(g => g.ProductoGrupos)
                 .HasForeignKey(pg => pg.GrupoId);
-            builder.HasKey(pg => new { pg.ProductoId, pg.GrupoId });
         }
     }
     public class ProductoSeccionConfiguracion : IEntityTypeConfiguration<ProductoSeccion>

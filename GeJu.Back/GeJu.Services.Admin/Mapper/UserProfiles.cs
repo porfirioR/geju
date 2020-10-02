@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Commands.Users;
+using Intermedio.Users;
 using GeJu.Storage.Sql.Entities;
 
 namespace GeJu.Services.Admin.Mapper
@@ -8,8 +8,8 @@ namespace GeJu.Services.Admin.Mapper
     {
         public UserProfiles()
         {
-            CreateMap<CreateUserCommand, Usuario>();
-            CreateMap<Usuario, UpdateUserCommand>().ReverseMap();
+            CreateMap<CrearUsuario, Usuario>();
+            CreateMap<Usuario, ActualizarUsuario>().ReverseMap();
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GeJu.Storage.Sql.Entities
+﻿namespace GeJu.Storage.Sql.Entities
 {
     public class ProductoColor
     {

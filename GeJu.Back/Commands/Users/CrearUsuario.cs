@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GeJu.Common;
+using System;
 
-namespace GeJu.Storage.Sql.Entities
+namespace Intermedio.Users
 {
-    public class Usuario : BaseEntity
+    public class CrearUsuario
     {
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Correo { get; set; }
         public bool Activo { get; set; }
+        public Gender Genero { get; set; }
         public DateTime FechaNaciento { get; set; }
         public DateTime FechaCreado { get; set; }
-        public bool Deuda { get; set; }
-        virtual public ICollection<UsuarioRol> UsuariosRoles { get; set; }
-
+        public DateTime LastActive { get; set; }
+        public Country Pais { get; set; }
     }
 }

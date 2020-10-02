@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Commands.Users;
+using Intermedio.Users;
 using GeJu.Api.Main.DTO.Users;
 using GeJu.Api.Main.Workflow.Interfaces;
 using GeJu.Services.Admin.Interfaces;
@@ -19,11 +19,11 @@ namespace GeJu.Api.Main.Workflow
             _mapper = mapper;
         }
 
-        public Task<bool> CreateAsync(CreateUserDTO userDTO)
+        public async Task<bool> CreateAsync(CrearUsuarioDTO userDTO)
         {
-            var userCommand = _mapper.Map<CreateUserCommand>(userDTO);
-            _usersServices.CreateAsync(userCommand).Wait();
-            return Task.FromResult(true);
+            var userCommand = _mapper.Map<CrearUsuario>(userDTO);
+            await _usersServices.CreateAsync(userCommand);
+            return await Task.FromResult(true);
         }
 
         public void Delete(string id)
@@ -31,27 +31,27 @@ namespace GeJu.Api.Main.Workflow
             _usersServices.Delete(id);
         }
 
-        public IEnumerable<UpdateUserDTO> GetAll()
+        public IEnumerable<ActualizarUsuarioDTO> GetAll()
         {
             var users = _usersServices.GetAll();
-            var usersCommands = users.ProjectTo<UpdateUserCommand>(_mapper.ConfigurationProvider);
-            var usersDto = _mapper.Map<IEnumerable<UpdateUserDTO>>(usersCommands);
+            var usersCommands = users.ProjectTo<ActualizarUsuario>(_mapper.ConfigurationProvider);
+            var usersDto = _mapper.Map<IEnumerable<ActualizarUsuarioDTO>>(usersCommands);
             return usersDto;
         }
 
-        public UpdateUserDTO GetById(string id)
+        public ActualizarUsuarioDTO GetById(string id)
         {
             var user = _usersServices.GetUserById(id);
-            var userCommand = _mapper.Map<UpdateUserCommand>(user);
-            var userDto = _mapper.Map<UpdateUserDTO>(userCommand);
+            var userCommand = _mapper.Map<ActualizarUsuario>(user);
+            var userDto = _mapper.Map<ActualizarUsuarioDTO>(userCommand);
             return userDto;
         }
 
-        public Task<bool> UpdateAsync(UpdateUserDTO userDTO)
+        public async Task<bool> UpdateAsync(ActualizarUsuarioDTO userDTO)
         {
-            var userUpdate = _mapper.Map<UpdateUserCommand>(userDTO);
-            _usersServices.UpdateAsync(userUpdate);
-            return Task.FromResult(true);
+            var userUpdate = _mapper.Map<ActualizarUsuario>(userDTO);
+            await _usersServices.UpdateAsync(userUpdate);
+            return await Task.FromResult(true);
         }
     }
 }

@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Commands\GeJu.Commands.csproj" />
+    <ProjectReference Include="..\Commands\GeJu.Intermedio.csproj" />
     <ProjectReference Include="..\GeJu.Common\GeJu.Common.csproj" />
     <ProjectReference Include="..\GeJu.Services.Admin\GeJu.Services.Admin.csproj" />
     <ProjectReference Include="..\GeJu.Storage.Sql\GeJu.Storage.Sql.csproj" />

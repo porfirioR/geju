@@ -16,7 +16,7 @@ namespace GeJu.Api.Main.Test.Admin
         [SetUp]
         public void SetUp()
         {
-            _userId = "008b000c-210c-429c-a453-9653849ce0d7";
+            _userId = "c0d7d4c6-6089-41d4-be5d-d479516bd7e9";
         }
         [Test]
         public async Task GetAllShouldReturnOk()
@@ -34,8 +34,8 @@ namespace GeJu.Api.Main.Test.Admin
         [Test]
         public async Task UpdateUserGroupShouldReturnOk()
         {
-            var jsonObject = new JsonPatchDocument<UserPatchDTO>();
-            jsonObject.Replace(jo => jo.Action, true);
+            var jsonObject = new JsonPatchDocument<PatchUsuarioDTO>();
+            jsonObject.Replace(jo => jo.Activo, true);
             var request = new HttpRequestMessage(HttpMethod.Patch, $"{_uri}/{_userId}")
             {
                 Content = new StringContent(JsonConvert.SerializeObject(jsonObject), System.Text.Encoding.Unicode, "application/json")
