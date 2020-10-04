@@ -1,7 +1,6 @@
 ﻿using GeJu.Services.Admin.Implementations;
 using GeJu.Services.Admin.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace GeJu.Services.Admin
 {

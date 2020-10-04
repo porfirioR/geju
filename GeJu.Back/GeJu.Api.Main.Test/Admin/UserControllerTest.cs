@@ -18,6 +18,7 @@ namespace GeJu.Api.Main.Test.Admin
         {
             _userId = "c0d7d4c6-6089-41d4-be5d-d479516bd7e9";
         }
+
         [Test]
         public async Task GetAllShouldReturnOk()
         {
