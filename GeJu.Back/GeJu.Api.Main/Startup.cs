@@ -20,12 +20,18 @@ namespace GeJu.Api.Main
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllers();
             ServiceInjection.ConfigureServices(services);
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "MyAllowSpecificOrigins",
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
+                                  });
+            });
             services.AddScoped<IUsersWorkflow, UsersWorkflow>();
             var mappingConfig = new MapperConfiguration(mc =>
             {
@@ -55,7 +61,7 @@ namespace GeJu.Api.Main
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseCors("MyAllowSpecificOrigins");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

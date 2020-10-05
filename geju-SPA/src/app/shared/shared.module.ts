@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedComponent } from './shared.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    AgGridModule.withComponents([]),
   ],
-  declarations: [SharedComponent]
+  declarations: [SharedComponent],
+  exports: [
+    AgGridModule
+  ]
 })
 export class SharedModule { }
