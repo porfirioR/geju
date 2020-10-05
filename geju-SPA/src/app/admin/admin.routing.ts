@@ -8,7 +8,8 @@ export const AdminRoutes: Routes = [
     component: MainLayoutComponent,
 
     children: [
-      { path: '/users', component: UsersComponent }
+      { path: 'users', component: UsersComponent },
+      { path: 'products', component: UsersComponent }
     ]
   },
 ];

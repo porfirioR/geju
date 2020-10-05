@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-taps',
@@ -7,10 +6,12 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./taps.component.css']
 })
 export class TapsComponent implements OnInit {
-  list = [
-    'Tamaños', 'Marcas', 'Color', 'Grupos', 'Productos', 'Sección', 'Inventario' , 'Compras', 'Roles', 'Ventas', 'Usuarios'
+  navLinks = [
+    {label: 'Tamaños', path: 'tamanio'}, {label: 'Marcas', path: 'tamanio'}, {label: 'Color', path: 'tamanio'},
+    {label: 'Grupos', path: 'tamanio'}, {label: 'Productos', path: 'products'}, {label: 'Sección', path: 'tamanio'},
+    {label: 'Inventario', path: 'tamanio'}, {label: 'Compras', path: 'tamanio'}, {label: 'Roles', path: 'tamanio'},
+    {label: 'Ventas', path: 'sell'}, {label: 'Usuarios', path: 'users'}
   ];
-  selected = new FormControl(0);
   constructor() { }
 
   ngOnInit(): void { }
