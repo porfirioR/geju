@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot(AppRoutingModule),
     HttpClientModule,
     BrowserAnimationsModule,
+    AgGridModule.withComponents([])
   ],
   exports: [],
   providers: [],

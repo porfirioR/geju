@@ -3,5 +3,9 @@
     align-content: center;
     margin-left: 5%;
     margin-right: 5%;
-    height: 90%;
+    margin-top: 1%;
+    padding: 0%;
+}
+.mat-card-actions {
+    padding: 0%;
 }

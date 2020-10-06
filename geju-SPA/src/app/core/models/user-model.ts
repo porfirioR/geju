@@ -10,4 +10,5 @@ export class UserModel {
     fechaCreado: Date;
     LastActive: Date;
     pais: Country;
+    deuda: boolean;
 }

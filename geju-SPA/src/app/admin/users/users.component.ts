@@ -28,6 +28,7 @@ export class UsersComponent implements OnInit {
     }
   };
   columnDefs = [
+    { headerName: 'Id', field: 'id', sortable: true, filter: true, resizable: true, hidden: true },
     { headerName: 'Nombre', field: 'nombre', sortable: true, filter: true, resizable: true },
     { headerName: 'Apellido', field: 'apellido', sortable: true, resizable: true, filter: true },
     { headerName: 'Correo', field: 'correo', sortable: true, resizable: true, filter: true },
