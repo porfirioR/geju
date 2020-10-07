@@ -1,20 +1,38 @@
-<form>
-  <mat-form-field class="example-full-width">
-    <mat-label>Nombre</mat-label>
-    <input matInput #name maxlength="256" placeholder="Nombre">
-    <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
-    <mat-hint align="end">{{name.value.length}} / 256</mat-hint>
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Apellido</mat-label>
-    <input matInput #lastname maxlength="256" placeholder="Apellido">
-    <mat-hint align="start"><strong>Apellido</strong> </mat-hint>
-    <mat-hint align="end">{{lastname.value.length}} / 256</mat-hint>
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Correo</mat-label>
-    <input matInput #email maxlength="256" placeholder="xxx@xxx.com">
-    <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
-    <mat-hint align="end">{{email.value.length}} / 256</mat-hint>
-  </mat-form-field>
-</form>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Usuarios</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <form>
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput #name maxlength="256" placeholder="Nombre">
+          <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+          <mat-hint align="end">{{name.value.length}} / 256</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Apellido</mat-label>
+          <input matInput #lastname maxlength="256" placeholder="Apellido">
+          <mat-hint align="start"><strong>Apellido</strong> </mat-hint>
+          <mat-hint align="end">{{lastname.value.length}} / 256</mat-hint>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <mat-label>Correo</mat-label>
+          <input matInput #email maxlength="256" placeholder="xxx@xxx.com">
+          <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+          <mat-hint align="end">{{email.value.length}} / 256</mat-hint>
+        </mat-form-field>
+      </div>
+      <mat-card-footer>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" routerLink="crear">Registrar</button>
+          <button mat-raised-button color="warn">Cancelar</button>
+        </mat-card-actions>
+      </mat-card-footer>
+    </form>
+  </mat-card-content>
+</mat-card>
