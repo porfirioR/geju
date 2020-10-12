@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserModel } from 'src/app/core/models/user-model';
 import { UserService } from 'src/app/core/services/user.service';
-import Swal from 'sweetalert2';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-upsert',
@@ -26,9 +26,9 @@ export class UserUpsertComponent implements OnInit {
       name: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required, Validators.email],
-      phone: ['', Validators.required, Validators.min(10), Validators.max(10)],
+      phone: ['', Validators.required, Validators.max(10)],
       rol: ['', Validators.required],
-      birthDate: ['', Validators.required]
+      birthdate: ['', Validators.required]
     });
   }
 
@@ -37,10 +37,10 @@ export class UserUpsertComponent implements OnInit {
     this.user = Object.assign({}, this.userForm.value);
     console.log('hola');
     this.userService.create(this.user).subscribe(response => {
-      Swal.fire({icon: 'success', title: 'Usuario Registrado con exito'});
+      swal.fire({icon: 'success', title: 'Usuario Registrado con exito'});
       this.close();
     }, err => {
-      Swal.fire({icon: 'error', title: 'Error...', text: 'Error al guardar.'});
+      swal.fire({icon: 'error', title: 'Error...', text: 'Error al guardar.'});
     });
   }
 
