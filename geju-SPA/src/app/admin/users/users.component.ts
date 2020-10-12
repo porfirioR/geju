@@ -18,7 +18,7 @@ export class UsersComponent implements OnInit {
     dateColumn: {
       filter: 'agDateColumnFilter',
       filterParams: {
-        comparator(filterLocalDateAtMidnight, cellValue: string) {
+        comparator(filterLocalDateAtMidnight, cellValue: string): number {
           const cellDate = cellValue ? (new Date(cellValue)) : '';
           if (cellDate < filterLocalDateAtMidnight) { return -1;
           } else if (cellDate > filterLocalDateAtMidnight) { return 1;
@@ -40,8 +40,8 @@ export class UsersComponent implements OnInit {
     ];
     /* { headerName: 'Año', field: 'year', sortable: true, filter: 'agNumberColumnFilter', resizable: true, maxWidth: 140,
       valueGetter(params) { return Number(params.data.year); }, cellRenderer: this.numberFormatter },
-    { headerName: 'Formato', field: 'format', sortable: true, filter: true, resizable: true */ 
-  
+    { headerName: 'Formato', field: 'format', sortable: true, filter: true, resizable: true */
+
   constructor(private readonly userService: UserService) { }
 
   ngOnInit(): void {
@@ -63,7 +63,7 @@ export class UsersComponent implements OnInit {
     return data.value ? (new Date(data.value)).toLocaleDateString() : '';
   }
 
-  numberFormatter(cell) {
+  numberFormatter(cell): any {
     return cell.value ? Number(cell.value) : '';
   }
 
