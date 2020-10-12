@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeJu.Common;
+using System;
 using System.Collections.Generic;
 
 namespace GeJu.Storage.Sql.Entities
@@ -11,7 +12,9 @@ namespace GeJu.Storage.Sql.Entities
         public bool Activo { get; set; }
         public DateTime FechaNaciento { get; set; }
         public DateTime FechaCreado { get; set; }
+        public DateTime UltimoInicio { get; set; }
         public bool Deuda { get; set; }
+        public Country Pais { get; set; }
         virtual public ICollection<UsuarioRol> UsuariosRoles { get; set; }
 
     }

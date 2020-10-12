@@ -19,19 +19,14 @@ namespace GeJu.Services.Admin.Implementations
             _context = context;
         }
 
-        public async Task CreateAsync(CrearUsuario command)
+        public async Task CreateAsync(CreateUser command)
         {
-            try
-            {
-                var user = _mapper.Map<Usuario>(command);
-                user.Id = Guid.NewGuid().ToString();
-                await _context.AddAsync(user);
-                _context.SaveChangesAsync().Wait();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
+            var user = _mapper.Map<Usuario>(command);
+            user.Id = Guid.NewGuid().ToString();
+            await _context.AddAsync(user);
+            _context.SaveChangesAsync().Wait();
+            
             
         }
 
@@ -53,11 +48,11 @@ namespace GeJu.Services.Admin.Implementations
             return _context.Set<Usuario>().SingleOrDefault(x => x.Id == id);
         }
 
-        public async Task UpdateAsync(ActualizarUsuario command)
+        public async Task<bool> UpdateAsync(UpdateUser command)
         {
-            var user = _mapper.Map<ActualizarUsuario>(command);
+            var user = _mapper.Map<UpdateUser>(command);
             _context.Update(user);
-            _context.SaveChangesAsync().Wait();
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

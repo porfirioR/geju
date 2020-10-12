@@ -9,8 +9,8 @@ namespace GeJu.Services.Admin.Interfaces
     {
         Usuario GetUserById(string id);
         IQueryable<Usuario> GetAll();
-        Task CreateAsync(CrearUsuario command);
-        Task UpdateAsync(ActualizarUsuario command);
+        Task CreateAsync(CreateUser command);
+        Task<bool> UpdateAsync(UpdateUser command);
         void Delete(string id);
     }
 }

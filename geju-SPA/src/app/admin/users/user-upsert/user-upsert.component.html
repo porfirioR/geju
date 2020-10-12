@@ -54,8 +54,8 @@
       </mat-grid-list>
       <mat-card-footer>
         <mat-card-actions>
-          <button mat-raised-button color="primary">Registrar</button>
-          <button mat-raised-button color="warn">Cancelar</button>
+          <button mat-raised-button color="primary" [disabled]="userForm.invalid">Registrar</button>
+          <button mat-raised-button color="warn" (click)="close()">Cancelar</button>
         </mat-card-actions>
       </mat-card-footer>
     </form>

@@ -1,6 +1,6 @@
 ﻿namespace Intermedio.Users
 {
-    public class ActualizarUsuario : CrearUsuario
+    public class UpdateUser : CreateUser
     {
         public string Id { get; set; }
     }

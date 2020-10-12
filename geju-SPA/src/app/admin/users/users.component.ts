@@ -29,11 +29,11 @@ export class UsersComponent implements OnInit {
   };
   columnDefs = [
     { headerName: 'Id', field: 'id', sortable: true, filter: true, resizable: true, hidden: true },
-    { headerName: 'Nombre', field: 'nombre', sortable: true, filter: true, resizable: true },
-    { headerName: 'Apellido', field: 'apellido', sortable: true, resizable: true, filter: true },
-    { headerName: 'Correo', field: 'correo', sortable: true, resizable: true, filter: true },
-    { headerName: 'Activo', field: 'activo', sortable: true, filter: true, resizable: true, cellRenderer: this.activeFormatter },
-    { headerName: 'Fecha de nacimiento', field: 'fechaNaciento', sortable: true, filter: 'agDateColumnFilter', resizable: true,
+    { headerName: 'Nombre', field: 'name', sortable: true, filter: true, resizable: true },
+    { headerName: 'Apellido', field: 'lastName', sortable: true, resizable: true, filter: true },
+    { headerName: 'Correo', field: 'email', sortable: true, resizable: true, filter: true },
+    { headerName: 'Activo', field: 'active', sortable: true, filter: true, resizable: true, cellRenderer: this.activeFormatter },
+    { headerName: 'Fecha de nacimiento', field: 'birthdate', sortable: true, filter: 'agDateColumnFilter', resizable: true,
       type: 'dateColumn', cellRenderer: this.dateFormatter},
     { headerName: 'Fecha de creación', field: 'lastActive', sortable: true, filter: 'agDateColumnFilter', resizable: true,
       type: 'dateColumn', cellRenderer: this.dateFormatter}

@@ -29,20 +29,20 @@ namespace GeJu.Api.Main.Controllers.Admin
         }
 
         [HttpPost]
-        public IActionResult CreateUser([FromBody] CrearUsuarioDTO userDTO)
+        public IActionResult CreateUser([FromBody] CreateUserDTO userDTO)
         {
             var response = _usersWorkflow.CreateAsync(userDTO);
             return Ok(response);
         }
 
         [HttpPut]
-        public IActionResult UpdateUser([FromBody] ActualizarUsuarioDTO userDTO)
+        public IActionResult UpdateUser([FromBody] UpdateUserDTO userDTO)
         {
             var response = _usersWorkflow.UpdateAsync(userDTO);
             return Ok(response);
         }
         [HttpPatch("id")]
-        public IActionResult ActiveUser(string id, [FromBody] ActualizarUsuarioDTO userDTO)
+        public IActionResult ActiveUser(string id, [FromBody] UpdateUserDTO userDTO)
         {
             var response = _usersWorkflow.UpdateAsync(userDTO);
             return Ok(response);

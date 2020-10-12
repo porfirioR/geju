@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserModel } from 'src/app/core/models/user-model';
 import { UserService } from 'src/app/core/services/user.service';
 import Swal from 'sweetalert2';
@@ -12,7 +13,9 @@ import Swal from 'sweetalert2';
 export class UserUpsertComponent implements OnInit {
   userForm: FormGroup;
   user: UserModel;
-  constructor(private fb: FormBuilder, private readonly userService: UserService) { }
+  constructor(private fb: FormBuilder,
+              private readonly router: Router,
+              private readonly userService: UserService) { }
 
   ngOnInit(): void {
     this.createUserForm();
@@ -32,8 +35,16 @@ export class UserUpsertComponent implements OnInit {
   save = () => {
     if (this.userForm.invalid) { return; }
     this.user = Object.assign({}, this.userForm.value);
+    console.log('hola');
     this.userService.create(this.user).subscribe(response => {
-      Swal.fire({icon: 'success'});
+      Swal.fire({icon: 'success', title: 'Usuario Registrado con exito'});
+      this.close();
+    }, err => {
+      Swal.fire({icon: 'error', title: 'Error...', text: 'Error al guardar.'});
     });
+  }
+
+  close = () => {
+    this.router.navigate(['administracion/usuarios']);
   }
 }

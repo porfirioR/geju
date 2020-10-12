@@ -8,8 +8,8 @@ namespace GeJu.Api.Main.Mapper
     {
         public UserProfiles()
         {
-            CreateMap<ActualizarUsuario, ActualizarUsuarioDTO>().ReverseMap();
-            CreateMap<CrearUsuario, CrearUsuarioDTO>().ReverseMap();
+            CreateMap<UpdateUser, UpdateUserDTO>().ReverseMap();
+            CreateMap<CreateUser, CreateUserDTO>().ReverseMap();
         }
     }
 }

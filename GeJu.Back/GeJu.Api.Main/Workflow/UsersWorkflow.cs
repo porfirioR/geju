@@ -19,9 +19,9 @@ namespace GeJu.Api.Main.Workflow
             _mapper = mapper;
         }
 
-        public async Task<bool> CreateAsync(CrearUsuarioDTO userDTO)
+        public async Task<bool> CreateAsync(CreateUserDTO userDTO)
         {
-            var userCommand = _mapper.Map<CrearUsuario>(userDTO);
+            var userCommand = _mapper.Map<CreateUser>(userDTO);
             await _usersServices.CreateAsync(userCommand);
             return await Task.FromResult(true);
         }
@@ -31,27 +31,26 @@ namespace GeJu.Api.Main.Workflow
             _usersServices.Delete(id);
         }
 
-        public IEnumerable<ActualizarUsuarioDTO> GetAll()
+        public IEnumerable<UpdateUserDTO> GetAll()
         {
             var users = _usersServices.GetAll();
-            var usersCommands = users.ProjectTo<ActualizarUsuario>(_mapper.ConfigurationProvider);
-            var usersDto = _mapper.Map<IEnumerable<ActualizarUsuarioDTO>>(usersCommands);
+            var usersCommands = users.ProjectTo<UpdateUser>(_mapper.ConfigurationProvider);
+            var usersDto = _mapper.Map<IEnumerable<UpdateUserDTO>>(usersCommands);
             return usersDto;
         }
 
-        public ActualizarUsuarioDTO GetById(string id)
+        public UpdateUserDTO GetById(string id)
         {
             var user = _usersServices.GetUserById(id);
-            var userCommand = _mapper.Map<ActualizarUsuario>(user);
-            var userDto = _mapper.Map<ActualizarUsuarioDTO>(userCommand);
+            var userCommand = _mapper.Map<UpdateUser>(user);
+            var userDto = _mapper.Map<UpdateUserDTO>(userCommand);
             return userDto;
         }
 
-        public async Task<bool> UpdateAsync(ActualizarUsuarioDTO userDTO)
+        public async Task<bool> UpdateAsync(UpdateUserDTO userDTO)
         {
-            var userUpdate = _mapper.Map<ActualizarUsuario>(userDTO);
-            await _usersServices.UpdateAsync(userUpdate);
-            return await Task.FromResult(true);
+            var userUpdate = _mapper.Map<UpdateUser>(userDTO);
+            return await _usersServices.UpdateAsync(userUpdate);
         }
     }
 }
