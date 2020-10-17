@@ -1,4 +1,4 @@
-﻿using GeJu.Storage.Sql.Entities;
+﻿using GeJu.Sql.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

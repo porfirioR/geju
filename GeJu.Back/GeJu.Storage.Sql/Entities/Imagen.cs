@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GeJu.Storage.Sql.Entities
+namespace GeJu.Sql.Entities
 {
     public class Imagen: BaseEntity
     {

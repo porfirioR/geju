@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Intermedio.Users;
-using GeJu.Api.Main.DTO.Users;
 using GeJu.Api.Main.Workflow.Interfaces;
+using GeJu.Common.DTO.User;
 using GeJu.Services.Admin.Interfaces;
+using Intermedio.Users;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace GeJu.Api.Main.Workflow
             return await Task.FromResult(true);
         }
 
-        public void Delete(string id)
+        public void Delete(Guid id)
         {
             _usersServices.Delete(id);
         }
@@ -39,9 +40,9 @@ namespace GeJu.Api.Main.Workflow
             return usersDto;
         }
 
-        public UpdateUserDTO GetById(string id)
+        public UpdateUserDTO GetById(Guid id)
         {
-            var user = _usersServices.GetUserById(id);
+            var user = _usersServices.GetById(id);
             var userCommand = _mapper.Map<UpdateUser>(user);
             var userDto = _mapper.Map<UpdateUserDTO>(userCommand);
             return userDto;

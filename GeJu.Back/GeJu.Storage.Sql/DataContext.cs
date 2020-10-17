@@ -1,12 +1,12 @@
-﻿using GeJu.Storage.Sql.Configurations;
-using GeJu.Storage.Sql.Entities;
+﻿using GeJu.Sql.Configurations;
+using GeJu.Sql.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace GeJu.Storage.Sql
+namespace GeJu.Sql
 {
     public class DataContext : DbContext
     {
-        public DataContext(DbContextOptions<DataContext> options): base(options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
 

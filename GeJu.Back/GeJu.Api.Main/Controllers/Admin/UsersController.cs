@@ -1,6 +1,7 @@
-﻿using GeJu.Api.Main.DTO.Users;
-using GeJu.Api.Main.Workflow.Interfaces;
+﻿using GeJu.Api.Main.Workflow.Interfaces;
+using GeJu.Common.DTO.User;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace GeJu.Api.Main.Controllers.Admin
 {
@@ -24,7 +25,7 @@ namespace GeJu.Api.Main.Controllers.Admin
         [HttpGet("{id}")]
         public IActionResult GetUser(string id)
         {
-            var user = _usersWorkflow.GetById(id);
+            var user = _usersWorkflow.GetById(new Guid(id));
             return Ok(user);
         }
 

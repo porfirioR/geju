@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Intermedio.Users;
-using GeJu.Storage.Sql.Entities;
+using GeJu.Sql.Entities;
+using GeJu.Common.DTO.User;
 
 namespace GeJu.Services.Admin.Mapper
 {
@@ -42,6 +43,8 @@ namespace GeJu.Services.Admin.Mapper
                 .ForMember(dest => dest.Country,
                     opt => opt.MapFrom(src => src.Pais));
             CreateMap<UpdateUser, Usuario>();
+            CreateMap<UpdateUser, UpdateUserDTO>().ReverseMap();
+            CreateMap<CreateUser, CreateUserDTO>().ReverseMap();
         }
     }
 }

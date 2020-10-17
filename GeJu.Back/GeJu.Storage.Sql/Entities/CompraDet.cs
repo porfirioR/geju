@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GeJu.Storage.Sql.Entities
+namespace GeJu.Sql.Entities
 {
     public class CompraDet: BaseEntity
     {

@@ -1,8 +1,8 @@
-﻿using GeJu.Storage.Sql.Entities;
+﻿using GeJu.Sql.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace GeJu.Storage.Sql.Configurations
+namespace GeJu.Sql.Configurations
 {
     internal class UsuarioConfiguracion : IEntityTypeConfiguration<Usuario>
     {

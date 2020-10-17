@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Intermedio.Users;
 using GeJu.Services.Admin.Interfaces;
-using GeJu.Storage.Sql;
-using GeJu.Storage.Sql.Entities;
+using GeJu.Sql;
+using GeJu.Sql.Entities;
+using Intermedio.Users;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,14 +23,11 @@ namespace GeJu.Services.Admin.Implementations
         {
 
             var user = _mapper.Map<Usuario>(command);
-            user.Id = Guid.NewGuid().ToString();
             await _context.AddAsync(user);
             _context.SaveChangesAsync().Wait();
-            
-            
         }
 
-        public void Delete(string id)
+        public void Delete(Guid id)
         {
             var userToDelete = _context.Set<Usuario>().SingleOrDefault(x => x.Id == id);
             userToDelete.Activo = false;
@@ -43,7 +40,7 @@ namespace GeJu.Services.Admin.Implementations
             return _context.Set<Usuario>().AsQueryable();
         }
 
-        public Usuario GetUserById(string id)
+        public Usuario GetById(Guid id)
         {
             return _context.Set<Usuario>().SingleOrDefault(x => x.Id == id);
         }

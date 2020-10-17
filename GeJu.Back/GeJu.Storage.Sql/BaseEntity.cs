@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace GeJu.Storage.Sql
+namespace GeJu.Sql
 {
     public abstract class BaseEntity
     {
         [Key]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

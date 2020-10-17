@@ -2,7 +2,7 @@ using AutoMapper;
 using GeJu.Api.Main.Workflow;
 using GeJu.Api.Main.Workflow.Interfaces;
 using GeJu.Services.Admin;
-using GeJu.Storage.Sql;
+using GeJu.Sql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -35,7 +35,6 @@ namespace GeJu.Api.Main
             services.AddScoped<IUsersWorkflow, UsersWorkflow>();
             var mappingConfig = new MapperConfiguration(mc =>
             {
-                mc.AddProfile(new Mapper.UserProfiles());
                 mc.AddProfile(new Services.Admin.Mapper.UserProfiles());
             });
             IMapper mapper = mappingConfig.CreateMapper();

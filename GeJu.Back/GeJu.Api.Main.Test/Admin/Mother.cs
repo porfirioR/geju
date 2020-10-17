@@ -1,5 +1,5 @@
-﻿using GeJu.Api.Main.DTO.Users;
-using GeJu.Common;
+﻿using GeJu.Common;
+using GeJu.Common.DTO.User;
 using System;
 
 namespace GeJu.Api.Main.Test.Admin

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GeJu.Api.Main.DTO.Users
+namespace GeJu.Common.DTO.User
 {
     public class UpdateUserDTO : CreateUserDTO
     {

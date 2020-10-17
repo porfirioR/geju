@@ -1,4 +1,4 @@
-﻿using GeJu.Api.Main.DTO.Users;
+﻿using GeJu.Common.DTO.User;
 using Microsoft.AspNetCore.JsonPatch;
 using Newtonsoft.Json;
 using NUnit.Framework;

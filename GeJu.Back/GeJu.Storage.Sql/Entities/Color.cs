@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GeJu.Storage.Sql.Entities
+namespace GeJu.Sql.Entities
 {
     public class Color: BaseEntity
     {
