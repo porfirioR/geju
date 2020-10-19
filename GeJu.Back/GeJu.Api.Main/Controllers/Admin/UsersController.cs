@@ -1,7 +1,8 @@
-﻿using GeJu.Api.Main.Workflow.Interfaces;
+﻿using GeJu.Api.Main.Middle.Interfaces;
 using GeJu.Common.DTO.User;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Controllers.Admin
 {
@@ -9,8 +10,8 @@ namespace GeJu.Api.Main.Controllers.Admin
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUsersWorkflow _usersWorkflow;
-        public UsersController(IUsersWorkflow usersWorkflow)
+        private readonly IUsersMiddle _usersWorkflow;
+        public UsersController(IUsersMiddle usersWorkflow)
         {
             _usersWorkflow = usersWorkflow;
         }
@@ -30,23 +31,30 @@ namespace GeJu.Api.Main.Controllers.Admin
         }
 
         [HttpPost]
-        public IActionResult CreateUser([FromBody] CreateUserDTO userDTO)
+        public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserDTO userDTO)
         {
-            var response = _usersWorkflow.CreateAsync(userDTO);
+            var response = await _usersWorkflow.CreateAsync(userDTO);
             return Ok(response);
         }
 
         [HttpPut]
-        public IActionResult UpdateUser([FromBody] UpdateUserDTO userDTO)
+        public async Task<IActionResult> UpdateUserAsync([FromBody] UpdateUserDTO userDTO)
         {
-            var response = _usersWorkflow.UpdateAsync(userDTO);
+            var response = await _usersWorkflow.UpdateAsync(userDTO);
             return Ok(response);
         }
-        [HttpPatch("id")]
-        public IActionResult ActiveUser(string id, [FromBody] UpdateUserDTO userDTO)
+
+        //[HttpPatch("id")]
+        //public IActionResult ActiveUser(string id, [FromBody] UpdateUserDTO userDTO)
+        //{
+        //    var response = _usersWorkflow.UpdateAsync(userDTO);
+        //    return Ok(response);
+        //}
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(string id)
         {
-            var response = _usersWorkflow.UpdateAsync(userDTO);
-            return Ok(response);
+            return Ok(await _usersWorkflow.DeleteAsync(new Guid(id)));
         }
     }
 }

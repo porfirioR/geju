@@ -1,20 +1,20 @@
-﻿using AutoMapper;
+﻿using AccessServicesModel.Users;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using GeJu.Api.Main.Workflow.Interfaces;
+using GeJu.Api.Main.Middle.Interfaces;
 using GeJu.Common.DTO.User;
 using GeJu.Services.Admin.Interfaces;
-using Intermedio.Users;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GeJu.Api.Main.Workflow
+namespace GeJu.Api.Main.Middle
 {
-    public class UsersWorkflow : IUsersWorkflow
+    public class UsersMiddle : IUsersMiddle
     {
         private readonly IMapper _mapper;
         private readonly IUsersServices _usersServices;
-        public UsersWorkflow(IUsersServices usersServices, IMapper mapper)
+        public UsersMiddle(IUsersServices usersServices, IMapper mapper)
         {
             _usersServices = usersServices;
             _mapper = mapper;
@@ -23,13 +23,12 @@ namespace GeJu.Api.Main.Workflow
         public async Task<bool> CreateAsync(CreateUserDTO userDTO)
         {
             var userCommand = _mapper.Map<CreateUser>(userDTO);
-            await _usersServices.CreateAsync(userCommand);
-            return await Task.FromResult(true);
+            return await Task.FromResult(await _usersServices.CreateAsync(userCommand));
         }
 
-        public void Delete(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
-            _usersServices.Delete(id);
+            return await _usersServices.DeleteAsync(id);
         }
 
         public IEnumerable<UpdateUserDTO> GetAll()
@@ -51,7 +50,7 @@ namespace GeJu.Api.Main.Workflow
         public async Task<bool> UpdateAsync(UpdateUserDTO userDTO)
         {
             var userUpdate = _mapper.Map<UpdateUser>(userDTO);
-            return await _usersServices.UpdateAsync(userUpdate);
+            return await Task.FromResult(await _usersServices.UpdateAsync(userUpdate));
         }
     }
 }

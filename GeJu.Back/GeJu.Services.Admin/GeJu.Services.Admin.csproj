@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Commands\GeJu.Intermedio.csproj" />
+    <ProjectReference Include="..\Commands\GeJu.AccessServicesModel.csproj" />
     <ProjectReference Include="..\GeJu.Storage.Sql\GeJu.Sql.csproj" />
   </ItemGroup>
 

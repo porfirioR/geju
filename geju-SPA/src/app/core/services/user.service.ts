@@ -20,8 +20,15 @@ export class UserService {
     return this.http.get<UserModel>(`${this.baseUrl}/${id}`);
   }
 
-  create = (trial: UserModel): Observable<UserModel> => {
-    return this.http.post<UserModel>(this.baseUrl, trial);
+  create = (user: UserModel): Observable<UserModel> => {
+    return this.http.post<UserModel>(this.baseUrl, user);
   }
 
+  update = (user: UserModel): Observable<UserModel> => {
+    return this.http.put<UserModel>(this.baseUrl, user);
+  }
+
+  delete = (id: string) => {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
 }

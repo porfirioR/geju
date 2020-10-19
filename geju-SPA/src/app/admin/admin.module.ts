@@ -9,32 +9,14 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { UserUpsertComponent } from './users/user-upsert/user-upsert.component';
 import { TapsComponent } from './shared/taps/taps.component';
+import { ConfigurationComponent } from './shared/configuration/configuration.component';
 import { SharedModule } from '../shared/shared.module';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
-import {MatInputModule} from '@angular/material/input';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminRoutes),
-    MatToolbarModule,
-    MatTabsModule,
     SharedModule,
-    MatCardModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatInputModule,
-    MatGridListModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    
   ],
   declarations: [
     MainLayoutComponent,
@@ -43,7 +25,8 @@ import {MatSelectModule} from '@angular/material/select';
     UsersComponent,
     UserUpsertComponent,
     TapsComponent,
-    ProductsComponent
+    ProductsComponent,
+    ConfigurationComponent
   ]
 })
 export class AdminModule { }

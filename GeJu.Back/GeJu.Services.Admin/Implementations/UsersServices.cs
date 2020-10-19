@@ -1,8 +1,8 @@
-﻿using AutoMapper;
+﻿using AccessServicesModel.Users;
+using AutoMapper;
 using GeJu.Services.Admin.Interfaces;
 using GeJu.Sql;
 using GeJu.Sql.Entities;
-using Intermedio.Users;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,20 +19,20 @@ namespace GeJu.Services.Admin.Implementations
             _context = context;
         }
 
-        public async Task CreateAsync(CreateUser command)
+        public async Task<bool> CreateAsync(CreateUser command)
         {
 
             var user = _mapper.Map<Usuario>(command);
             await _context.AddAsync(user);
-            _context.SaveChangesAsync().Wait();
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public void Delete(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var userToDelete = _context.Set<Usuario>().SingleOrDefault(x => x.Id == id);
             userToDelete.Activo = false;
             _context.Update(userToDelete);
-            _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public IQueryable<Usuario> GetAll()
@@ -47,7 +47,7 @@ namespace GeJu.Services.Admin.Implementations
 
         public async Task<bool> UpdateAsync(UpdateUser command)
         {
-            var user = _mapper.Map<UpdateUser>(command);
+            var user = _mapper.Map<Usuario>(command);
             _context.Update(user);
             return await _context.SaveChangesAsync() > 0;
         }

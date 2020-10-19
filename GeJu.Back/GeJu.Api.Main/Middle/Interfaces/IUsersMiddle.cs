@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GeJu.Api.Main.Workflow.Interfaces
+namespace GeJu.Api.Main.Middle.Interfaces
 {
-    public interface IUsersWorkflow
+    public interface IUsersMiddle
     {
         Task<bool> CreateAsync(CreateUserDTO userDTO);
         Task<bool> UpdateAsync(UpdateUserDTO userDTO);
         IEnumerable<UpdateUserDTO> GetAll();
         UpdateUserDTO GetById(Guid id);
-        void Delete(Guid id);
+        Task<bool> DeleteAsync(Guid id);
     }
 }

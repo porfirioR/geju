@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using Intermedio.Users;
+using AccessServicesModel.Users;
 using GeJu.Sql.Entities;
 using GeJu.Common.DTO.User;
+using System;
 
 namespace GeJu.Services.Admin.Mapper
 {
@@ -11,7 +12,7 @@ namespace GeJu.Services.Admin.Mapper
         {
             CreateMap<CreateUser, Usuario>()
                 .ForMember(dest => dest.Activo,
-                    opt => opt.MapFrom(src => src.Active))
+                    opt => opt.MapFrom(src => true))
                 .ForMember(dest => dest.Apellido,
                     opt => opt.MapFrom(src => src.LastName))
                 .ForMember(dest => dest.Nombre,
@@ -20,13 +21,12 @@ namespace GeJu.Services.Admin.Mapper
                     opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.FechaNaciento,
                     opt => opt.MapFrom(src => src.Birthdate))
-                .ForMember(dest => dest.FechaCreado,
-                    opt => opt.MapFrom(src => src.CreationDate))
                 .ForMember(dest => dest.UltimoInicio,
                     opt => opt.MapFrom(src => src.LastActive))
                 .ForMember(dest => dest.Pais,
                     opt => opt.MapFrom(src => src.Country));
-            CreateMap<Usuario, UpdateUser>().ForMember(dest => dest.Active,
+            CreateMap<Usuario, UpdateUser>()
+                .ForMember(dest => dest.Active,
                     opt => opt.MapFrom(src => src.Activo))
                 .ForMember(dest => dest.LastName,
                     opt => opt.MapFrom(src => src.Apellido))
@@ -42,7 +42,23 @@ namespace GeJu.Services.Admin.Mapper
                     opt => opt.MapFrom(src => src.UltimoInicio))
                 .ForMember(dest => dest.Country,
                     opt => opt.MapFrom(src => src.Pais));
-            CreateMap<UpdateUser, Usuario>();
+            CreateMap<UpdateUser, Usuario>()
+                .ForMember(dest => dest.Id,
+                    opt => opt.MapFrom(src => new Guid(src.Id)))
+                .ForMember(dest => dest.Activo,
+                    opt => opt.MapFrom(src => src.Active))
+                .ForMember(dest => dest.Apellido,
+                    opt => opt.MapFrom(src => src.LastName))
+                .ForMember(dest => dest.Nombre,
+                    opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.Correo,
+                    opt => opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.FechaNaciento,
+                    opt => opt.MapFrom(src => src.Birthdate))
+                .ForMember(dest => dest.UltimoInicio,
+                    opt => opt.MapFrom(src => src.LastActive))
+                .ForMember(dest => dest.Pais,
+                    opt => opt.MapFrom(src => src.Country));
             CreateMap<UpdateUser, UpdateUserDTO>().ReverseMap();
             CreateMap<CreateUser, CreateUserDTO>().ReverseMap();
         }

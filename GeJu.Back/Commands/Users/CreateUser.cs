@@ -1,7 +1,7 @@
 ﻿using GeJu.Common;
 using System;
 
-namespace Intermedio.Users
+namespace AccessServicesModel.Users
 {
     public class CreateUser
     {
@@ -10,7 +10,6 @@ namespace Intermedio.Users
         public string Email { get; set; }
         public bool Active { get; set; }
         public DateTime Birthdate { get; set; }
-        public DateTime CreationDate { get; set; }
         public DateTime LastActive { get; set; }
         public Country Country { get; set; }
     }

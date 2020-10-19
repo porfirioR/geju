@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeJu.Api.Main.Test", "GeJu.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeJu.Sql", "GeJu.Storage.Sql\GeJu.Sql.csproj", "{581E1B49-F978-49F0-96EE-64A68A48534C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeJu.Intermedio", "Commands\GeJu.Intermedio.csproj", "{1410920B-85FD-43F5-B18C-2EF63236DA93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeJu.AccessServicesModel", "Commands\GeJu.AccessServicesModel.csproj", "{1410920B-85FD-43F5-B18C-2EF63236DA93}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeJu.Common", "GeJu.Common\GeJu.Common.csproj", "{5CA42562-6A0A-4F37-847F-C7952E795FC6}"
 EndProject

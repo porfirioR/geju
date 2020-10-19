@@ -10,7 +10,6 @@
           <mat-form-field rows:1 cols:1 class="example-full-width" rowHeight="100px">
             <mat-label>Nombre</mat-label>
             <input matInput #name maxlength="256" placeholder="Nombre" formControlName="name">
-            <mat-hint align="start"><strong>Requerido</strong> </mat-hint>
             <mat-hint align="end">{{name.value.length}} / 256</mat-hint>
           </mat-form-field>
         </mat-grid-tile>
@@ -18,37 +17,39 @@
           <mat-form-field rows:1 cols:2 class="example-full-width" rowHeight="100px">
             <mat-label>Apellido</mat-label>
             <input matInput #lastname maxlength="256" placeholder="Apellido" formControlName="lastName">
-            <mat-hint align="start"><strong>Apellido</strong> </mat-hint>
             <mat-hint align="end">{{lastname.value.length}} / 256</mat-hint>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile rows:2 cols:1>
           <mat-form-field rows:2 cols:1 class="example-full-width" rowHeight="100px">
             <mat-label>Correo</mat-label>
-            <input matInput #email maxlength="256" placeholder="xxx@xxx.com" formControlName="email">
-            <mat-hint align="end">{{email.value.length}} / 256</mat-hint>
+            <input matInput maxlength="100" placeholder="xxx@xxx.com" formControlName="email">
           </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile rows:2 cols:2 class="example-full-width" rowHeight="100px">
-          <mat-form-field>
-            <mat-label>Número de teléfono</mat-label>
-            <span matPrefix>+599 &nbsp;</span>
-            <input matInput #phone type="tel" placeholder="981-123-123" formControlName="phone">
-          </mat-form-field>
+        <mat-grid-tile rows:2 cols:2>
+          <mat-form-field rows:2 cols:2 class="example-full-width" rowHeight="100px">
+            <mat-label>Pais</mat-label>
+              <mat-select multiple="false" formControlName="country">
+                <mat-option>Otro</mat-option>
+                <mat-option value="0">Paraguay</mat-option>
+              </mat-select>
+            </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile rows:3 cols:1>
           <mat-form-field rows:2 cols:1 class="example-full-width" rowHeight="100px">
             <mat-label>Roles</mat-label>
-            <mat-select multiple>
+            <mat-select multiple formControlName="rol">
               <mat-option vallue="Admin">Administrador</mat-option>
               <mat-option vallue="Normal">Normal</mat-option>
             </mat-select>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile rows:3 cols:2 class="example-full-width" rowHeight="100px">
-          <mat-form-field>
+          <mat-form-field appearance="fill">
             <mat-label>Fecha Nacimiento</mat-label>
-            <input matInput type="date" formControlName="birthdate">
+            <input matInput [matDatepicker]="picker" formControlName="birthdate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </mat-grid-tile>
       </mat-grid-list>

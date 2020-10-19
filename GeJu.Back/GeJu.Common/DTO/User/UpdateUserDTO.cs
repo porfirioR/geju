@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace GeJu.Common.DTO.User
 {
@@ -6,5 +7,6 @@ namespace GeJu.Common.DTO.User
     {
         [Required]
         public string Id { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }

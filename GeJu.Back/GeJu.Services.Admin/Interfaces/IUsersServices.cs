@@ -1,5 +1,5 @@
 ﻿using GeJu.Sql.Entities;
-using Intermedio.Users;
+using AccessServicesModel.Users;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,8 +10,8 @@ namespace GeJu.Services.Admin.Interfaces
     {
         Usuario GetById(Guid id);
         IQueryable<Usuario> GetAll();
-        Task CreateAsync(CreateUser command);
+        Task<bool> CreateAsync(CreateUser command);
         Task<bool> UpdateAsync(UpdateUser command);
-        void Delete(Guid id);
+        Task<bool> DeleteAsync(Guid id);
     }
 }

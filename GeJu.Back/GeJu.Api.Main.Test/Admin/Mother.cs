@@ -8,8 +8,7 @@ namespace GeJu.Api.Main.Test.Admin
     {
         public static CreateUserDTO NewUserObject => new CreateUserDTO
         {
-            Country = Country.Paraguay,
-            CreationDate = DateTime.Now,
+            //Country = Country.Paraguay,
             Birthdate = DateTime.Now,
             Email = "prueba@prueba.com",
             LastActive = DateTime.Now,

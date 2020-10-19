@@ -12,6 +12,7 @@ export const AdminRoutes: Routes = [
 
     children: [
       { path: 'usuarios/crear', component: UserUpsertComponent },
+      { path: 'usuarios/modificar/:id', component: UserUpsertComponent },
       { path: 'marcas', component: BrandsComponent },
       { path: 'usuarios', component: UsersComponent },
       { path: 'productos', component: ProductsComponent }

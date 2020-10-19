@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GridApi } from 'ag-grid-community/dist/lib/gridApi';
 import { UserModel } from 'src/app/core/models/user-model';
+import Swal from 'sweetalert2';
 import { UserService } from '../../core/services/user.service';
 
 @Component({
@@ -28,7 +30,7 @@ export class UsersComponent implements OnInit {
     }
   };
   columnDefs = [
-    { headerName: 'Id', field: 'id', sortable: true, filter: true, resizable: true, hidden: true },
+    { headerName: 'Id', field: 'id', sortable: true, filter: true, resizable: true },
     { headerName: 'Nombre', field: 'name', sortable: true, filter: true, resizable: true },
     { headerName: 'Apellido', field: 'lastName', sortable: true, resizable: true, filter: true },
     { headerName: 'Correo', field: 'email', sortable: true, resizable: true, filter: true },
@@ -45,9 +47,13 @@ export class UsersComponent implements OnInit {
   constructor(private readonly userService: UserService) { }
 
   ngOnInit(): void {
-    console.log('hola');
+    this.getAll();
+  }
+
+  getAll(): void {
     this.userService.getAll().subscribe(response => {
       this.rowData = response;
+      this.selectedRow = undefined;
     });
   }
 
@@ -69,5 +75,25 @@ export class UsersComponent implements OnInit {
 
   activeFormatter(cell): string {
     return cell.value ? 'Si' : 'No';
+  }
+
+  remove = () => {
+    Swal.fire({
+      title: 'Estas seguro que desea eliminar el usuario',
+      text: 'Estos cambios es permanente',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Borrar',
+      cancelButtonText: 'Cancelar'
+      }).then(result => {
+      if (result.isConfirmed) {
+        this.userService.delete(this.selectedRow.id).subscribe(response => {
+          Swal.fire('Exito', 'Usuario borrado con exito', 'success');
+          this.getAll();
+        }, err => {
+          Swal.fire('Error', 'Error al borrar usuario', 'error');
+        });
+      }
+    });
   }
 }

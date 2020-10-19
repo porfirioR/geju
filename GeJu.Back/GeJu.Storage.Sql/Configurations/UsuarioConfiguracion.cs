@@ -9,7 +9,9 @@ namespace GeJu.Sql.Configurations
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
             builder.HasKey(u => u.Id);
+            builder.Property(u => u.FechaCreado).HasDefaultValueSql("GetUtcDate()");
         }
+
     }
     internal class UsuarioRolConfiguracion : IEntityTypeConfiguration<UsuarioRol>
     {
