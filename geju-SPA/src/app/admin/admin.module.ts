@@ -10,13 +10,14 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { UserUpsertComponent } from './users/user-upsert/user-upsert.component';
 import { TapsComponent } from './shared/taps/taps.component';
 import { ConfigurationComponent } from './shared/configuration/configuration.component';
+import { NavigationComponent } from './shared/navigation/navigation.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminRoutes),
-    SharedModule,
+    SharedModule
   ],
   declarations: [
     MainLayoutComponent,
@@ -26,7 +27,8 @@ import { SharedModule } from '../shared/shared.module';
     UserUpsertComponent,
     TapsComponent,
     ProductsComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    NavigationComponent
   ]
 })
 export class AdminModule { }

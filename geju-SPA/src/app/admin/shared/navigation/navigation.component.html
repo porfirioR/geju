@@ -1,0 +1,4 @@
+<ng-template *ngFor="let item of navigation">
+  <li><a [routerLink]="item.route">{{item.name}}</a></li>
+</ng-template>
+<span>/{{actualPosition}}</span>
