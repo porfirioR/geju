@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from 'src/app/core/models/user-model';
+import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
 import { UserService } from 'src/app/core/services/user.service';
 import swal from 'sweetalert2';
 
@@ -14,9 +15,11 @@ export class UserUpsertComponent implements OnInit {
   userForm: FormGroup;
   user: UserModel;
   userId: string;
+  positionName = 'Crear';
   constructor(private fb: FormBuilder,
               private readonly router: Router,
               private readonly activatedRoute: ActivatedRoute,
+              public singleton: SingletonService,
               private readonly userService: UserService) { }
 
   ngOnInit(): void {
@@ -31,6 +34,7 @@ export class UserUpsertComponent implements OnInit {
           this.userForm.patchValue({ email: this.user.email });
           this.userForm.patchValue({ country: this.user.country});
           this.userForm.patchValue({ birthdate: this.user.birthdate});
+          this.positionName = 'Modificar';
         }, error => {
           swal.fire('Error...', 'Usuario no encontrado.', 'error');
           this.close();

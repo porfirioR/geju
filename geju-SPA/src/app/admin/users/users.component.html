@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header class="row">
     <h2 class="col-2">Usuarios</h2>
-    <app-navigation class="col-6" [actualPosition]="'usuarios'" ></app-navigation>
+    <app-navigation class="col-6" [navigation]="singleton.getAdminPath()" [actualPosition]="'usuarios'"></app-navigation>
     <mat-card-actions class="col-auto">
       <button mat-raised-button color="primary" routerLink="crear">Agregar</button>
       <button mat-raised-button color="accent" [routerLink]="['modificar', selectedRow ? selectedRow.id: '']" [disabled]="!selectedRow">Modificar</button>
@@ -10,19 +10,10 @@
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <ag-grid-angular
-      style="width: 100%; height: 755px; min-height: 500px"
-      class="ag-theme-alpine"
-      [rowData]="rowData"
-      [columnDefs]="columnDefs"
-      [columnTypes]="columnTypes"
-      [pagination]="true"
-      [rowSelection]="rowSelection"
-      (selectionChanged)="onSelectionChanged()"
-      (gridReady)="onGridReady($event)"
-      [enableCellChangeFlash]="true"
-      [getRowNodeId]="getRowNodeId"
-    >
+    <ag-grid-angular style="width: 100%; height: 755px; min-height: 500px" class="ag-theme-alpine"
+      [rowData]="rowData" [columnDefs]="columnDefs" [columnTypes]="columnTypes" [pagination]="true"
+      [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged()" (gridReady)="onGridReady($event)"
+      [enableCellChangeFlash]="true" [getRowNodeId]="getRowNodeId">
     </ag-grid-angular>
   </mat-card-content>
 </mat-card>
