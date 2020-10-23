@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header class="row">
-    <h2 class="col-2">Usuarios</h2>
-    <app-navigation class="col-6" [navigation]="singleton.getAdminPath()" [actualPosition]="'usuarios'"></app-navigation>
+    <mat-card-title class="col-1">Usuarios</mat-card-title>
+    <app-navigation class="col-lg-6" [navigation]="singleton.getAdminPath()" [actualPosition]="'usuarios'"></app-navigation>
     <mat-card-actions class="col-auto">
       <button mat-raised-button color="primary" routerLink="crear">Agregar</button>
       <button mat-raised-button color="accent" [routerLink]="['modificar', selectedRow ? selectedRow.id: '']" [disabled]="!selectedRow">Modificar</button>

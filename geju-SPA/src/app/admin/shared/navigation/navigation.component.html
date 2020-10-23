@@ -1,4 +1,8 @@
-<ng-container *ngFor="let item of navigation">
-  <a [routerLink]="item.route">{{item.name}}</a>
-</ng-container>
-<span>/{{actualPosition}}</span>
+<section class="col">
+  <a href="/"><i class="fas fa-home"></i></a>
+  <span>/</span>
+  <ng-container *ngFor="let item of navigation">
+    <a [routerLink]="item.route">{{item.name}}</a>
+  </ng-container>
+  <span>/{{actualPosition}}</span>
+</section>

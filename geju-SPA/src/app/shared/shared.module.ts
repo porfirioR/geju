@@ -14,8 +14,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { far } from '@fortawesome/free-regular-svg-icons';
 import { MatNativeDateModule } from '@angular/material/core';
 
 
@@ -33,7 +31,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatSelectModule,
     MatIconModule,
-    FontAwesomeModule,
     MatDatepickerModule,
     MatNativeDateModule,
   ],
@@ -42,7 +39,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     AgGridModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule,
     MatToolbarModule,
     MatTabsModule,
     MatCardModule,
@@ -58,7 +54,5 @@ import { MatNativeDateModule } from '@angular/material/core';
   providers: [MatDatepickerModule]
 })
 export class SharedModule {
-  constructor(library: FaIconLibrary) {
-    library.addIconPacks(far);
-  }
+
 }
