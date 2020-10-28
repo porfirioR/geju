@@ -1,3 +1,19 @@
-<p>
-  brands works!
-</p>
+<mat-card>
+  <mat-card-header class="row">
+    <mat-card-title class="col-1">Marcas</mat-card-title>
+    <app-navigation class="col-lg-6" [navigation]="singleton.getAdminPath()" [actualPosition]="'marcas'"></app-navigation>
+    <mat-card-actions class="col-auto">
+      <button mat-raised-button color="primary" routerLink="crear">Agregar</button>
+      <button mat-raised-button color="accent" [routerLink]="['modificar', selectedRow ? selectedRow.id: '']" [disabled]="!selectedRow">Modificar</button>
+      <button mat-raised-button color="warn" [disabled]="!selectedRow"(click)="remove()">Eliminar</button>
+    </mat-card-actions>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <ag-grid-angular style="width: 100%; height: 755px; min-height: 500px" class="ag-theme-alpine"
+      [rowData]="rowData" [columnDefs]="columnDefs" [columnTypes]="columnTypes" [pagination]="true"
+      [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged()" (gridReady)="onGridReady($event)"
+      [enableCellChangeFlash]="true" [getRowNodeId]="getRowNodeId">
+    </ag-grid-angular>
+  </mat-card-content>
+</mat-card>

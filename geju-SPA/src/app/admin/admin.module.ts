@@ -12,6 +12,7 @@ import { TapsComponent } from './shared/taps/taps.component';
 import { ConfigurationComponent } from './shared/configuration/configuration.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { SharedModule } from '../shared/shared.module';
+import { BrandsComponent } from './components/brands/brands.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { SharedModule } from '../shared/shared.module';
     UserUpsertComponent,
     TapsComponent,
     ProductsComponent,
+    BrandsComponent,
     ConfigurationComponent,
     NavigationComponent
   ]

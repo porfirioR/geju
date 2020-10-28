@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { GridApi } from 'ag-grid-community/dist/lib/gridApi';
 import { UserModel } from 'src/app/core/models/user-model';
 import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
