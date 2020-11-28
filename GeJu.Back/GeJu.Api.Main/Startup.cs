@@ -1,4 +1,5 @@
 using AutoMapper;
+using DAL.Interfaces;
 using GeJu.Api.Main.Middle;
 using GeJu.Api.Main.Middle.Interfaces;
 using GeJu.Services.Admin;
@@ -23,7 +24,10 @@ namespace GeJu.Api.Main
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             ServiceInjection.ConfigureServices(services);
+            DAL.ServiceInjection.ConfigureServices(services);
+
             services.AddCors(options =>
             {
                 options.AddPolicy(name: "MyAllowSpecificOrigins",
@@ -32,15 +36,18 @@ namespace GeJu.Api.Main
                                       builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
                                   });
             });
-            services.AddScoped<IUsersMiddle, UsersMiddle>();
+            //services.AddScoped<IUsersMiddle, BrandDAL>();
+
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new Services.Admin.Mapper.UserProfiles());
+                mc.AddProfile(new Services.Admin.Mapper.BrandProfiles());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
             services.AddDbContext<DataContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

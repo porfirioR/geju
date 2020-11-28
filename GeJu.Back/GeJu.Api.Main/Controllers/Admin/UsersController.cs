@@ -1,5 +1,5 @@
 ﻿using GeJu.Api.Main.Middle.Interfaces;
-using GeJu.Common.DTO.User;
+using GeJu.Common.DTO.Users;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

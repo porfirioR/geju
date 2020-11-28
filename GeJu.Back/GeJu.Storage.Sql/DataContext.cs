@@ -13,12 +13,14 @@ namespace GeJu.Sql
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Rol> Roles { get; set; }
         public DbSet<UsuarioRol> UsuariosRoles { get; set; }
+        public DbSet<Marca> Marcas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new UsuarioConfiguracion());
             modelBuilder.ApplyConfiguration(new UsuarioRolConfiguracion());
+            modelBuilder.ApplyConfiguration(new BrandConfiguration());
         }
     }
 }

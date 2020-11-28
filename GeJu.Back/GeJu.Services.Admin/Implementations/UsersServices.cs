@@ -19,10 +19,9 @@ namespace GeJu.Services.Admin.Implementations
             _context = context;
         }
 
-        public async Task<bool> CreateAsync(CreateUser command)
+        public async Task<bool> CreateAsync(CreateUser model)
         {
-
-            var user = _mapper.Map<Usuario>(command);
+            var user = _mapper.Map<Usuario>(model);
             await _context.AddAsync(user);
             return await _context.SaveChangesAsync() > 0;
         }

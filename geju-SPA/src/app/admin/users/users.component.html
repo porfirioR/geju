@@ -4,8 +4,8 @@
     <app-navigation class="col-lg-6" [navigation]="singleton.getAdminPath()" [actualPosition]="'usuarios'"></app-navigation>
     <mat-card-actions class="col-auto">
       <button mat-raised-button color="primary" routerLink="crear">Agregar</button>
-      <button mat-raised-button color="accent" [routerLink]="['modificar', selectedRow ? selectedRow.id: '']" [disabled]="!selectedRow">Modificar</button>
-      <button mat-raised-button color="warn" [disabled]="!selectedRow"(click)="remove()">Eliminar</button>
+      <button mat-raised-button color="primary" [routerLink]="['modificar', selectedRow ? selectedRow.id: '']" [disabled]="!selectedRow">Modificar</button>
+      <button mat-raised-button color="primary" [disabled]="!selectedRow"(click)="remove()">Eliminar</button>
     </mat-card-actions>
   </mat-card-header>
   <mat-divider></mat-divider>

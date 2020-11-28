@@ -1,4 +1,4 @@
-﻿using GeJu.Common.DTO.User;
+﻿using GeJu.Common.DTO.Users;
 using Microsoft.AspNetCore.JsonPatch;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Test.Admin
 {
-    internal class UserControllerTest: TestBase
+    internal class BrandControllerTest: TestBase
     {
         private readonly string _uri = "api/users";
         private string _userId;

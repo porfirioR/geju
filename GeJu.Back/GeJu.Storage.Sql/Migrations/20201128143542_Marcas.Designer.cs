@@ -4,14 +4,16 @@ using GeJu.Sql;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GeJu.Sql.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20201128143542_Marcas")]
+    partial class Marcas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,8 +31,7 @@ namespace GeJu.Sql.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Descripcion")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaCreado")
                         .ValueGeneratedOnAdd()
@@ -41,11 +42,6 @@ namespace GeJu.Sql.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GetUtcDate()");
-
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25)
-                        .IsUnicode(true);
 
                     b.HasKey("Id");
 

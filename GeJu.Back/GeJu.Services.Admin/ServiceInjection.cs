@@ -9,6 +9,7 @@ namespace GeJu.Services.Admin
         public static void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IUsersServices, UsersServices>();
+            services.AddTransient<IBrandsServices, BrandServices>();
         }
     }
 }

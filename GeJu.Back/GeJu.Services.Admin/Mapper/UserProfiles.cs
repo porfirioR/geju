@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using AccessServicesModel.Users;
 using GeJu.Sql.Entities;
-using GeJu.Common.DTO.User;
 using System;
+using GeJu.Common.DTO.Users;
 
 namespace GeJu.Services.Admin.Mapper
 {
