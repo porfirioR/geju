@@ -48,16 +48,16 @@ export class UserUpsertComponent implements OnInit {
       name: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
-      country: [''],
-      rol: [''],
+      country: ['', Validators.required],
       birthdate: ['', Validators.required],
+      rol: [''],
     });
   }
 
   save = () => {
-    if (this.userForm.invalid) { return; }
+    this.loadValueForm();
     if (this.userId) {
-      this.valueChanged();
+      this.user.id = this.userId;
       this.userService.update(this.user).subscribe(response => {
         swal.fire({icon: 'success', title: 'Usuario actualizado con exito'});
         this.close();
@@ -65,7 +65,6 @@ export class UserUpsertComponent implements OnInit {
         swal.fire({icon: 'error', title: 'Error...', text: 'Error al actualizar.'});
       });
     } else {
-      this.user = Object.assign({}, this.userForm.value);
       this.userService.create(this.user).subscribe(response => {
         swal.fire({icon: 'success', title: 'Usuario Registrado con exito'});
         this.close();
@@ -75,16 +74,11 @@ export class UserUpsertComponent implements OnInit {
     }
   }
 
-  valueChanged = (): UserModel => {
-    let aux = new UserModel();
-    aux = Object.assign({}, this.userForm.value);
-    this.user.name = aux.name;
-    this.user.lastName = aux.lastName;
-    this.user.email = aux.email;
-    this.user.country = aux.country;
-    this.user.birthdate = aux.birthdate;
-    return aux;
+  loadValueForm = (): void => {
+    this.user = Object.assign(new UserModel(), this.userForm.value);
+    this.user.country = parseInt(this.userForm.get('country').value, 10);
   }
+
 
   close = () => {
     this.router.navigate(['administracion/usuarios']);

@@ -38,7 +38,7 @@ export class UpsertBrandComponent implements OnInit {
             this.positionName = 'Modificar';
           },
           (error) => {
-            swal.fire('Error...', 'Usuario no encontrado.', 'error');
+            swal.fire('Error...', 'Marca no encontrada.', 'error');
             this.close();
           }
         );
@@ -59,17 +59,17 @@ export class UpsertBrandComponent implements OnInit {
       this.brand.id = this.brandId;
       this.brandService.update(this.brand).subscribe(
         (response) => {
-          swal.fire({ icon: 'success', title: 'Usuario actualizado con exito' });
+          swal.fire({ icon: 'success', title: 'Marca actualizada con éxito' });
           this.close();
         }, (err) => {
-          swal.fire({ icon: 'error', title: 'Error...', text: 'Error al actualizar.' });
+          swal.fire({ icon: 'error', title: 'Error...', text: 'Error al actualizar la marca.' });
         }
       );
     } else {
       this.brand = this.valueChanged();
       this.brandService.create(this.brand).subscribe(
         (response) => {
-          swal.fire({ icon: 'success', title: 'Usuario Registrado con exito' });
+          swal.fire({ icon: 'success', title: 'Marca registrada con éxito' });
           this.close();
         },
         (err) => {

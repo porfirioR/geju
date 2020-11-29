@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community/dist/lib/gridApi';
+import Swal from 'sweetalert2';
+
 import { UserModel } from 'src/app/core/models/user-model';
 import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
-import Swal from 'sweetalert2';
 import { UserService } from '../../core/services/user.service';
 
 @Component({
@@ -30,11 +31,12 @@ export class UsersComponent implements OnInit {
     }
   };
   columnDefs = [
-    { headerName: 'Id', field: 'id', sortable: true, filter: true, resizable: true },
-    { headerName: 'Nombre', field: 'name', sortable: true, filter: true, resizable: true },
-    { headerName: 'Apellido', field: 'lastName', sortable: true, resizable: true, filter: true },
-    { headerName: 'Correo', field: 'email', sortable: true, resizable: true, filter: true },
-    { headerName: 'Activo', field: 'active', sortable: true, filter: true, resizable: true, cellRenderer: this.activeFormatter },
+    { headerName: 'Id', field: 'id', sortable: true, filter: true, resizable: true, width: 300 },
+    { headerName: 'Nombre', field: 'name', sortable: true, filter: true, resizable: true, width: 300 },
+    { headerName: 'Apellido', field: 'lastName', sortable: true, resizable: true, filter: true, width: 300 },
+    { headerName: 'Correo', field: 'email', sortable: true, resizable: true, filter: true, width: 325 },
+    { headerName: 'Activo', field: 'active', sortable: true, filter: true, resizable: true, width: 100,
+     cellRenderer: this.activeFormatter },
     { headerName: 'Fecha de nacimiento', field: 'birthdate', sortable: true, filter: 'agDateColumnFilter', resizable: true,
       type: 'dateColumn', cellRenderer: this.dateFormatter},
     { headerName: 'Fecha de creación', field: 'lastActive', sortable: true, filter: 'agDateColumnFilter', resizable: true,

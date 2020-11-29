@@ -19,11 +19,11 @@ namespace GeJu.Services.Admin.Implementations
             _context = context;
         }
 
-        public async Task<bool> CreateAsync(CreateUser model)
+        public async Task<Usuario> CreateAsync(CreateUser model)
         {
             var user = _mapper.Map<Usuario>(model);
             await _context.AddAsync(user);
-            return await _context.SaveChangesAsync() > 0;
+            return await _context.SaveChangesAsync() > 0 ? user : null;
         }
 
         public async Task<bool> DeleteAsync(Guid id)
@@ -36,7 +36,7 @@ namespace GeJu.Services.Admin.Implementations
 
         public IQueryable<Usuario> GetAll()
         {
-            return _context.Set<Usuario>().AsQueryable();
+            return _context.Set<Usuario>().Where(u => u.Activo).AsQueryable();
         }
 
         public Usuario GetById(Guid id)
@@ -44,11 +44,11 @@ namespace GeJu.Services.Admin.Implementations
             return _context.Set<Usuario>().SingleOrDefault(x => x.Id == id);
         }
 
-        public async Task<bool> UpdateAsync(UpdateUser command)
+        public async Task<Usuario> UpdateAsync(UpdateUser updateUser)
         {
-            var user = _mapper.Map<Usuario>(command);
-            _context.Update(user);
-            return await _context.SaveChangesAsync() > 0;
+            var entity = GetById(updateUser.Id);
+            var user = _mapper.Map(updateUser, entity);
+            return await _context.SaveChangesAsync() > 0 ? user : null;
         }
     }
 }

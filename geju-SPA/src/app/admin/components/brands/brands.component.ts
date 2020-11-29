@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community/dist/lib/gridApi';
-import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
 import Swal from 'sweetalert2';
+
+import { SingletonService } from '../../../core/services/singleton/singleton.service';
 import { BrandModel } from '../../../core/models/brand-model';
 import { BrandService } from '../../../core/services/brand.service';
+
+
 @Component({
   selector: 'app-brands',
   templateUrl: './brands.component.html',
