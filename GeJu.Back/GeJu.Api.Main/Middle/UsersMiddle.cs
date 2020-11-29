@@ -2,7 +2,7 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using GeJu.Api.Main.Middle.Interfaces;
-using GeJu.Common.DTO.User;
+using GeJu.Common.DTO.Users;
 using GeJu.Services.Admin.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Middle
 {
-    public class UsersMiddle : IUsersMiddle
+    public class BrandDAL : IUsersMiddle
     {
         private readonly IMapper _mapper;
         private readonly IUsersServices _usersServices;
-        public UsersMiddle(IUsersServices usersServices, IMapper mapper)
+        public BrandDAL(IUsersServices usersServices, IMapper mapper)
         {
             _usersServices = usersServices;
             _mapper = mapper;

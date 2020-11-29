@@ -5,6 +5,8 @@
   <a mat-tab-link *ngFor="let link of navLinks"
     [routerLink]="link.path"
     routerLinkActive #rla='routerLinkActive'
-     [active]="rla.isActive"> {{link.label}} </a>
+    [active]="rla.isActive">
+      <mat-icon [class]="link.icon" inline="true">{{link.label}}</mat-icon>
+  </a>
 </nav>
 

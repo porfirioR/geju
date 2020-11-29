@@ -1,4 +1,4 @@
-﻿namespace GeJu.Common.DTO.User
+﻿namespace GeJu.Common.DTO.Users
 {
     public class PatchUsuarioDTO
     {

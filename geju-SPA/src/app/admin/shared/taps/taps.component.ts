@@ -7,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TapsComponent implements OnInit {
   navLinks = [
-    {label: 'Tamaños', path: 'tamanio'}, {label: 'Usuarios', path: 'usuarios'}, {label: 'Marcas', path: 'marcas'}, {label: 'Color', path: 'tamanio'},
-    {label: 'Grupos', path: 'tamanio'}, {label: 'Productos', path: 'productos'}, {label: 'Sección', path: 'tamanio'},
-    {label: 'Inventario', path: 'tamanio'}, {label: 'Compras', path: 'tamanio'}, {label: 'Roles', path: 'tamanio'},
-    {label: 'Ventas', path: 'sell'}
+    {label: 'Tamaños', path: 'tamanio', icon: 'fas fa-expand-arrows-alt'},
+    {label: 'Usuarios', path: 'usuarios', icon: 'fas fa-users'},
+    {label: 'Marcas', path: 'marcas', icon: 'fas fa-tags'},
+    {label: 'Color', path: 'tamanio', icon: 'fas fa-palette'},
+    {label: 'Grupos', path: 'tamanio', icon: 'far fa-object-group'},
+    {label: 'Productos', path: 'productos', icon: 'fas fa-box-open'},
+    {label: 'Sección', path: 'tamanio', icon: 'fas fa-puzzle-piece'},
+    {label: 'Inventario', path: 'tamanio', icon: 'fas fa-archive'},
+    {label: 'Compras', path: 'tamanio', icon: 'fas fa-shopping-cart'},
+    {label: 'Roles', path: 'tamanio', icon: 'fas fa-expand-arrows-alt'},
+    {label: 'Ventas', path: 'sell', icon: 'fas fa-comment-dollar'}
   ];
   constructor() { }
 

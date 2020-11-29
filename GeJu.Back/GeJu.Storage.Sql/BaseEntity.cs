@@ -9,6 +9,8 @@ namespace GeJu.Sql
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
+        public bool Activo { get; set; }
         public DateTime FechaCreado { get; set; }
+        public DateTime FechaModificado { get; set; }
     }
 }

@@ -14,8 +14,17 @@ export class SingletonService {
   getUserPath = (): Array<NavegationModel> =>  {
     const user = Object.assign([], this.adminPath );
     const userNav = new NavegationModel();
-    userNav.name = '/Usuarios';
+    userNav.name = 'Usuarios';
     userNav.route = '/administracion/usuarios';
+    user.push(userNav);
+    return user;
+  }
+
+  getBrandPath = (): Array<NavegationModel> =>  {
+    const user = Object.assign([], this.adminPath );
+    const userNav = new NavegationModel();
+    userNav.name = 'Marcas';
+    userNav.route = '/administracion/marcas';
     user.push(userNav);
     return user;
   }

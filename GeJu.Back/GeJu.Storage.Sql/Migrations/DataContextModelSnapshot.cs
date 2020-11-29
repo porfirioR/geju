@@ -19,16 +19,55 @@ namespace GeJu.Sql.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("GeJu.Sql.Entities.Marca", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime>("FechaCreado")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GetUtcDate()");
+
+                    b.Property<DateTime>("FechaModificado")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GetUtcDate()");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25)
+                        .IsUnicode(true);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Marcas");
+                });
+
             modelBuilder.Entity("GeJu.Sql.Entities.Rol", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaCreado")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaModificado")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -58,6 +97,9 @@ namespace GeJu.Sql.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GetUtcDate()");
+
+                    b.Property<DateTime>("FechaModificado")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("FechaNaciento")
                         .HasColumnType("datetime2");

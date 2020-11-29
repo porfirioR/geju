@@ -6,6 +6,9 @@
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 
+$primaryColor: #009846;
+$backgroundColor: #d2f694;
+
 html,
 body {
   height: 100%;
@@ -62,34 +65,47 @@ body {
 
 /* button color  primary*/
 .mat-raised-button.mat-primary {
-  background-color: #009846;
+  background-color: $primaryColor;
 }
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
 /*   background-color: #3f51b5;
- */  background-color: #009846;
+ */  background-color: $primaryColor;
 }
 .mat-input-element {
-  caret-color: #009846;
+  caret-color: $primaryColor;
 }
 .mat-form-field.mat-focused .mat-form-field-label {
-  color: #009846;
+  color: $primaryColor;
 }
 .mat-form-field.mat-focused .mat-form-field-ripple {
-  background-color: #009846;
+  background-color: $primaryColor;
 
 }
 .mat-calendar-body-selected {
-  background-color: #009846;
+  background-color: $primaryColor;
   color: white;
 }
 .mat-datepicker-toggle-active {
-  color: #009846;
+  color: $primaryColor;
+}
+
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+  color: $primaryColor;
+}
+
+a:hover {
+  color: $primaryColor;
+}
+
+.mat-card-footer > .mat-card-actions {
+  text-align: center;
 }
 /* 
 .mat-raised-button.mat-accent {
-  background-color: #009846;
+  background-color: $primaryColor;
 
 } */
-/* #009846 principal
+/* $primaryColor principal
 #B5D7A8 fondo
 */

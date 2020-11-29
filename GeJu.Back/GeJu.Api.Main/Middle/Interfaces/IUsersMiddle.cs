@@ -1,4 +1,4 @@
-﻿using GeJu.Common.DTO.User;
+﻿using GeJu.Common.DTO.Users;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
