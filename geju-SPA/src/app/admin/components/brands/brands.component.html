@@ -7,7 +7,9 @@
       <button mat-stroked-button color="primary" [routerLink]="['modificar', selectedRow ? selectedRow.id: '']" [disabled]="!selectedRow">
         <mat-icon class="fas fa-edit" inline="true">Modificar</mat-icon>
       </button>
-      <button mat-stroked-button color="primary" [disabled]="!selectedRow"(click)="remove()"><mat-icon class="fas fa-trash" inline="true">Eliminar</mat-icon></button>
+      <button mat-stroked-button color="primary" [disabled]="!selectedRow"(click)="remove()">
+        <mat-icon class="fas fa-trash" inline="true">Eliminar</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card-header>
   <mat-divider></mat-divider>

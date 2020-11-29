@@ -1,20 +1,27 @@
-﻿using GeJu.Common.DTO.Users;
+﻿using GeJu.Common;
+using GeJu.Common.DTO.Users;
 using System;
 
 namespace GeJu.Api.Main.Test.Admin
 {
     internal static class Mother
     {
-        public static CreateUserDTO NewUserObject => new CreateUserDTO
+        public static CreateUserDTO NewUser => new CreateUserDTO
         {
-            //Country = Country.Paraguay,
-            Birthdate = DateTime.Now,
-            Email = "prueba@prueba.com",
-            LastActive = DateTime.Now,
-            LastName = "Prueba",
             Name = "Prueba",
-            Active = true
+            LastName = "Prueba",
+            Email = "prueba@prueba.com",
+            Country = Country.Paraguay,
+            Birthdate = DateTime.Now,
         };
 
+        public static UpdateUserDTO UpdateUser => new UpdateUserDTO
+        {
+            Name = "PruebaEdicion",
+            LastName = "Prueba",
+            Email = "prueba@prueba.com",
+            Country = Country.Paraguay,
+            Birthdate = DateTime.Now,
+        };
     }
 }
