@@ -1,7 +1,4 @@
 using AutoMapper;
-using DAL.Interfaces;
-using GeJu.Api.Main.Middle;
-using GeJu.Api.Main.Middle.Interfaces;
 using GeJu.Services.Admin;
 using GeJu.Sql;
 using Microsoft.AspNetCore.Builder;
@@ -36,7 +33,6 @@ namespace GeJu.Api.Main
                                       builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
                                   });
             });
-            //services.AddScoped<IUsersMiddle, BrandDAL>();
 
             var mappingConfig = new MapperConfiguration(mc =>
             {

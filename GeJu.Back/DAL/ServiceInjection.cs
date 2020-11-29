@@ -8,6 +8,7 @@ namespace DAL
         public static void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IBrandDAL, BrandDAL>();
+            services.AddTransient<IUserDAL, UserDAL>();
         }
     }
 }

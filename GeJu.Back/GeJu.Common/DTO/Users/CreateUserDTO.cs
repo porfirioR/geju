@@ -11,9 +11,9 @@ namespace GeJu.Common.DTO.Users
         public string LastName { get; set; }
         [Required]
         public string Email { get; set; }
-        public bool Active { get; set; }
+        [Required]
+        public Country Country { get; set; }
+        [Required]
         public DateTime Birthdate { get; set; }
-        public DateTime LastActive { get; set; }
-        //public Country Country { get; set; }
     }
 }

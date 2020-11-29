@@ -4,7 +4,8 @@ namespace AccessServicesModel.Users
 {
     public class UpdateUser : CreateUser
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public DateTime CreationDate { get; set; }
+        public DateTime LastActive { get; set; }
     }
 }
