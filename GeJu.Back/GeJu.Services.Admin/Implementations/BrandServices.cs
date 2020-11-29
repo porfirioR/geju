@@ -36,7 +36,7 @@ namespace GeJu.Services.Admin.Implementations
 
         public IQueryable<Marca> GetAll()
         {
-            return _context.Set<Marca>().AsQueryable();
+            return _context.Set<Marca>().Where(m => m.Activo).AsQueryable();
         }
 
         public Marca GetById(Guid id)

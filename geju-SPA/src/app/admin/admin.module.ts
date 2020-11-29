@@ -13,6 +13,7 @@ import { ConfigurationComponent } from './shared/configuration/configuration.com
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { SharedModule } from '../shared/shared.module';
 import { BrandsComponent } from './components/brands/brands.component';
+import { UpsertBrandComponent } from './components/brands/upsert-brand/upsert-brand.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { BrandsComponent } from './components/brands/brands.component';
     ProductsComponent,
     BrandsComponent,
     ConfigurationComponent,
-    NavigationComponent
+    NavigationComponent,
+    UpsertBrandComponent
   ]
 })
 export class AdminModule { }

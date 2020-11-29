@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(AppRoutingModule),
+    RouterModule.forRoot(AppRoutingModule, { relativeLinkResolution: 'legacy' }),
     HttpClientModule,
     BrowserAnimationsModule,
   ],

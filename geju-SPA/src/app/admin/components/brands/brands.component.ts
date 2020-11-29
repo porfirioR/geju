@@ -30,16 +30,10 @@ export class BrandsComponent implements OnInit {
   };
 
   columnDefs = [
-    { headerName: 'Id', field: 'id', sortable: true, filter: true, resizable: true },
-    { headerName: 'Nombre', field: 'name', sortable: true, filter: true, resizable: true },
-    { headerName: 'Apellido', field: 'lastName', sortable: true, resizable: true, filter: true },
-    { headerName: 'Correo', field: 'email', sortable: true, resizable: true, filter: true },
-    { headerName: 'Activo', field: 'active', sortable: true, filter: true, resizable: true, cellRenderer: this.activeFormatter },
-    { headerName: 'Fecha de nacimiento', field: 'birthdate', sortable: true, filter: 'agDateColumnFilter', resizable: true,
-      type: 'dateColumn', cellRenderer: this.dateFormatter},
-    { headerName: 'Fecha de creación', field: 'lastActive', sortable: true, filter: 'agDateColumnFilter', resizable: true,
-      type: 'dateColumn', cellRenderer: this.dateFormatter}
-    ];
+    { headerName: 'Id', field: 'id', sortable: true, filter: true, resizable: true, width: 500 },
+    { headerName: 'Nombre', field: 'name', sortable: true, filter: true, resizable: true, width: 600 },
+    { headerName: 'Descripción', field: 'description', sortable: true, resizable: true, filter: true, width: 620 }
+  ];
 
   constructor(private readonly brandService: BrandService, public singleton: SingletonService) { }
 
@@ -62,17 +56,6 @@ export class BrandsComponent implements OnInit {
     this.gridApi = params.api;
   }
 
-  dateFormatter(data): string {
-    return data.value ? (new Date(data.value)).toLocaleDateString() : '';
-  }
-
-  numberFormatter(cell): any {
-    return cell.value ? Number(cell.value) : '';
-  }
-
-  activeFormatter(cell): string {
-    return cell.value ? 'Si' : 'No';
-  }
   remove = () => {
     Swal.fire({
       title: 'Estas seguro que desea eliminar el usuario',
