@@ -14,6 +14,8 @@ import { NavigationComponent } from './shared/navigation/navigation.component';
 import { SharedModule } from '../shared/shared.module';
 import { BrandsComponent } from './components/brands/brands.component';
 import { UpsertBrandComponent } from './components/brands/upsert-brand/upsert-brand.component';
+import { GroupsComponent } from './components/groups/groups.component';
+import { UpsertGroupComponent } from './components/groups/upsert-group/upsert-group.component';
 
 @NgModule({
   imports: [
@@ -30,9 +32,11 @@ import { UpsertBrandComponent } from './components/brands/upsert-brand/upsert-br
     TapsComponent,
     ProductsComponent,
     BrandsComponent,
+    UpsertBrandComponent,
     ConfigurationComponent,
     NavigationComponent,
-    UpsertBrandComponent
+    GroupsComponent,
+    UpsertGroupComponent
   ]
 })
 export class AdminModule { }

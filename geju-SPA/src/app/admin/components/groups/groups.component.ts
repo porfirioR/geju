@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { GridApi } from 'ag-grid-community/dist/lib/gridApi';
+import { GridApi } from 'ag-grid-community';
+import { GroupModel } from 'src/app/core/models/group-model';
+import { GroupService } from 'src/app/core/services/group.service';
+import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
 import Swal from 'sweetalert2';
 
-import { SingletonService } from '../../../core/services/singleton/singleton.service';
-import { BrandModel } from '../../../core/models/brand-model';
-import { BrandService } from '../../../core/services/brand.service';
-
-
 @Component({
-  selector: 'app-brands',
-  templateUrl: './brands.component.html',
-  styleUrls: ['./brands.component.css']
+  selector: 'app-groups',
+  templateUrl: './groups.component.html',
+  styleUrls: ['./groups.component.css']
 })
-export class BrandsComponent implements OnInit {
+export class GroupsComponent implements OnInit {
   private gridApi: GridApi;
-  rowData: BrandModel[];
-  selectedRow: BrandModel;
+  rowData: GroupModel[];
+  selectedRow: GroupModel;
   rowSelection = 'single';
   getRowNodeId;
   columnTypes = {
@@ -38,14 +36,14 @@ export class BrandsComponent implements OnInit {
     { headerName: 'Descripción', field: 'description', sortable: true, resizable: true, filter: true, width: 620 }
   ];
 
-  constructor(private readonly brandService: BrandService, public singleton: SingletonService) { }
+  constructor(private readonly groupService: GroupService, public singleton: SingletonService) { }
 
   ngOnInit(): void {
     this.getAll();
   }
 
   getAll(): void {
-    this.brandService.getAll().subscribe(response => {
+    this.groupService.getAll().subscribe(response => {
       this.rowData = response;
       this.selectedRow = undefined;
     });
@@ -69,7 +67,7 @@ export class BrandsComponent implements OnInit {
       cancelButtonText: 'Cancelar'
       }).then(result => {
       if (result.isConfirmed) {
-        this.brandService.delete(this.selectedRow.id).subscribe(response => {
+        this.groupService.delete(this.selectedRow.id).subscribe(response => {
           Swal.fire('Exito', 'Marca borrada con éxito', 'success');
           this.getAll();
         }, err => {

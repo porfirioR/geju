@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TapsComponent implements OnInit {
   navLinks = [
-    {label: 'Tamaños', path: 'tamanio', icon: 'fas fa-expand-arrows-alt'},
+    {label: 'Tamaños', path: 'tamaños', icon: 'fas fa-expand-arrows-alt'},
     {label: 'Usuarios', path: 'usuarios', icon: 'fas fa-users'},
     {label: 'Marcas', path: 'marcas', icon: 'fas fa-tags'},
     {label: 'Color', path: 'tamanio', icon: 'fas fa-palette'},
-    {label: 'Grupos', path: 'tamanio', icon: 'far fa-object-group'},
+    {label: 'Grupos', path: 'grupos', icon: 'far fa-object-group'},
     {label: 'Productos', path: 'productos', icon: 'fas fa-box-open'},
     {label: 'Sección', path: 'tamanio', icon: 'fas fa-puzzle-piece'},
     {label: 'Inventario', path: 'tamanio', icon: 'fas fa-archive'},
