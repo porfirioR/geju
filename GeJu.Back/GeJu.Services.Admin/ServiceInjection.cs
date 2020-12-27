@@ -10,6 +10,7 @@ namespace GeJu.Services.Admin
         {
             services.AddTransient<IUsersServices, UsersServices>();
             services.AddTransient<IBrandsServices, BrandServices>();
+            services.AddTransient<ISizesServices, SizesServices>();
         }
     }
 }

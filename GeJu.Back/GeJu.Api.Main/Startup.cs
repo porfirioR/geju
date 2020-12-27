@@ -38,6 +38,7 @@ namespace GeJu.Api.Main
             {
                 mc.AddProfile(new Services.Admin.Mapper.UserProfiles());
                 mc.AddProfile(new Services.Admin.Mapper.BrandProfiles());
+                mc.AddProfile(new Services.Admin.Mapper.SizeProfiles());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);

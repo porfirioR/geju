@@ -11,6 +11,7 @@ namespace GeJu.Storage.Sql.Configurations
             throw new System.NotImplementedException();
         }
     }
+
     public class ProductoGrupoConfiguracion : IEntityTypeConfiguration<ProductoGrupo>
     {
         public void Configure(EntityTypeBuilder<ProductoGrupo> builder)
@@ -24,6 +25,7 @@ namespace GeJu.Storage.Sql.Configurations
                 .HasForeignKey(pg => pg.GrupoId);
         }
     }
+
     public class ProductoSeccionConfiguracion : IEntityTypeConfiguration<ProductoSeccion>
     {
         public void Configure(EntityTypeBuilder<ProductoSeccion> builder)
@@ -37,6 +39,7 @@ namespace GeJu.Storage.Sql.Configurations
             builder.HasKey(ps => new { ps.ProductoId, ps.SeccionId });
         }
     }
+
     public class ProductoColorConfiguracion : IEntityTypeConfiguration<ProductoColor>
     {
         public void Configure(EntityTypeBuilder<ProductoColor> builder)
@@ -48,6 +51,21 @@ namespace GeJu.Storage.Sql.Configurations
                 .WithMany(c => c.ProductosColores)
                 .HasForeignKey(pc => pc.ColorId);
             builder.HasKey(pc => new { pc.ProductoId, pc.ColorId });
+        }
+    }
+
+    public class ProductoTamañoConfiguracion : IEntityTypeConfiguration<ProductoTamaño>
+    {
+        public void Configure(EntityTypeBuilder<ProductoTamaño> builder)
+        {
+            builder.HasOne(pc => pc.Producto)
+                .WithMany(p => p.ProductoTamaños)
+                .HasForeignKey(pc => pc.ProductoId);
+            builder.HasOne(ps => ps.Tamaño)
+                .WithMany(c => c.ProductoTamaños)
+                .HasForeignKey(pc => pc.TamañoId);
+            builder.HasKey(pc => new { pc.ProductoId, pc.TamañoId });
+            builder.Property(pt => pt.Cantidad).HasDefaultValue(0);
         }
     }
 }

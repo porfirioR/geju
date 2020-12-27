@@ -14,6 +14,8 @@ namespace GeJu.Sql
         public DbSet<Rol> Roles { get; set; }
         public DbSet<UsuarioRol> UsuariosRoles { get; set; }
         public DbSet<Marca> Marcas { get; set; }
+        public DbSet<Tamaño> Tamaños { get; set; }
+        public DbSet<ProductoTamaño> ProductoTamaños { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,6 +23,7 @@ namespace GeJu.Sql
             modelBuilder.ApplyConfiguration(new UsuarioConfiguracion());
             modelBuilder.ApplyConfiguration(new UsuarioRolConfiguracion());
             modelBuilder.ApplyConfiguration(new BrandConfiguration());
+            modelBuilder.ApplyConfiguration(new TamañoConfiguracion());
         }
     }
 }

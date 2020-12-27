@@ -4,24 +4,18 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GeJu.Sql.Configurations
 {
-    internal class BrandConfiguration : IEntityTypeConfiguration<Marca>
+    internal class TamañoConfiguracion : IEntityTypeConfiguration<Tamaño>
     {
-        public void Configure(EntityTypeBuilder<Marca> builder)
+        public void Configure(EntityTypeBuilder<Tamaño> builder)
         {
             builder.HasKey(u => u.Id);
             builder
-                .Property(d => d.FechaCreado)
+                .Property(u => u.FechaCreado)
                 .HasDefaultValueSql("GetUtcDate()");
             builder
                 .Property(d => d.FechaModificado)
                 .HasDefaultValueSql("GetUtcDate()");
-            builder
-                .Property(m => m.Descripcion)
-                .HasMaxLength(100);
-            builder
-                .Property(m => m.Nombre)
-                .HasMaxLength(25)
-                .IsUnicode();
         }
+
     }
 }

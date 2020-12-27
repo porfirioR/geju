@@ -18,9 +18,9 @@ namespace GeJu.Sql.Entities
         public int MarcaId { get; set; }
         public Marca Marca { get; set; }
         public int TamanhoId { get; set; }
-        public Tamanho Tamanho { get; set; }
         public ICollection<ProductoColor> ProductosColores { get; set; }
         public ICollection<ProductoGrupo> ProductoGrupos { get; set; }
         public ICollection<ProductoSeccion> ProductoSecciones { get; set; }
+        public ICollection<ProductoTamaño> ProductoTamaños { get; set; }
     }
 }
