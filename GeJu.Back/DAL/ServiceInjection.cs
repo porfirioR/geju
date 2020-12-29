@@ -9,6 +9,7 @@ namespace DAL
         {
             services.AddTransient<IBrandDAL, BrandDAL>();
             services.AddTransient<IUserDAL, UserDAL>();
+            services.AddTransient<ISizeDAL, SizeDAL>();
         }
     }
 }

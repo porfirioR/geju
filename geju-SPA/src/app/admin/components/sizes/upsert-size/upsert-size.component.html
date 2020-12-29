@@ -1,16 +1,16 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title class="col-1">Grupos</mat-card-title>
-    <app-navigation class="col-lg-6" [navigation]="singleton.getGroupPath()" [actualPosition]="positionName"></app-navigation>
+    <mat-card-title class="col-1">Tamaños</mat-card-title>
+    <app-navigation class="col-lg-6" [navigation]="singleton.getSizePath()" [actualPosition]="positionName"></app-navigation>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <form (submit)="save()" [formGroup]="groupForm">
+    <form (submit)="save()" [formGroup]="sizeForm">
       <mat-grid-list cols="2" rowHeight="100px">
         <mat-grid-tile>
           <mat-form-field rows:1 cols:1 class="example-full-width" rowHeight="100px">
-            <mat-label>Nombre</mat-label>
-            <input matInput #name maxlength="256" placeholder="Nombre" formControlName="name">
+            <mat-label>Código</mat-label>
+            <input matInput #name maxlength="256" placeholder="Código" formControlName="code">
             <mat-hint align="end">{{name.value.length}} / 25</mat-hint>
           </mat-form-field>
         </mat-grid-tile>
@@ -24,7 +24,7 @@
       </mat-grid-list>
       <mat-card-footer>
         <mat-card-actions>
-          <button mat-raised-button color="primary" [disabled]="groupForm.invalid">Registrar</button>
+          <button mat-raised-button color="primary" [disabled]="sizeForm.invalid">Registrar</button>
           <button mat-raised-button color="primary" (click)="close()">Cancelar</button>
         </mat-card-actions>
       </mat-card-footer>

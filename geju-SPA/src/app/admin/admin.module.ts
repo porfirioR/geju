@@ -16,6 +16,8 @@ import { BrandsComponent } from './components/brands/brands.component';
 import { UpsertBrandComponent } from './components/brands/upsert-brand/upsert-brand.component';
 import { GroupsComponent } from './components/groups/groups.component';
 import { UpsertGroupComponent } from './components/groups/upsert-group/upsert-group.component';
+import { SizesComponent } from './components/sizes/sizes.component';
+import { UpsertSizeComponent } from './components/sizes/upsert-size/upsert-size.component';
 
 @NgModule({
   imports: [
@@ -36,7 +38,9 @@ import { UpsertGroupComponent } from './components/groups/upsert-group/upsert-gr
     ConfigurationComponent,
     NavigationComponent,
     GroupsComponent,
-    UpsertGroupComponent
+    UpsertGroupComponent,
+    SizesComponent,
+    UpsertSizeComponent
   ]
 })
 export class AdminModule { }

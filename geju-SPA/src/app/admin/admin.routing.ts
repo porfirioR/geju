@@ -7,6 +7,8 @@ import { UserUpsertComponent } from './users/user-upsert/user-upsert.component';
 import { UpsertBrandComponent } from './components/brands/upsert-brand/upsert-brand.component';
 import { GroupsComponent } from './components/groups/groups.component';
 import { UpsertGroupComponent } from './components/groups/upsert-group/upsert-group.component';
+import { SizesComponent } from './components/sizes/sizes.component';
+import { UpsertSizeComponent } from './components/sizes/upsert-size/upsert-size.component';
 
 export const AdminRoutes: Routes = [
   {
@@ -23,6 +25,9 @@ export const AdminRoutes: Routes = [
       { path: 'grupos/crear', component: UpsertGroupComponent },
       { path: 'grupos/modificar/:id', component: UpsertGroupComponent },
       { path: 'usuarios', component: UsersComponent },
+      { path: 'tamaños', component: SizesComponent },
+      { path: 'tamaños/crear', component: UpsertSizeComponent },
+      { path: 'tamaños/modificar/:id', component: UpsertSizeComponent },
       { path: 'productos', component: ProductsComponent }
     ]
   },
