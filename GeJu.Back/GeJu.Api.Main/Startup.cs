@@ -36,9 +36,9 @@ namespace GeJu.Api.Main
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
-                mc.AddProfile(new Services.Admin.Mapper.UserProfiles());
-                mc.AddProfile(new Services.Admin.Mapper.BrandProfiles());
-                mc.AddProfile(new Services.Admin.Mapper.SizeProfiles());
+                mc.AddProfile(new Services.Admin.Mapper.UserProfile());
+                mc.AddProfile(new Services.Admin.Mapper.BrandProfile());
+                mc.AddProfile(new Services.Admin.Mapper.SizeProfile());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);

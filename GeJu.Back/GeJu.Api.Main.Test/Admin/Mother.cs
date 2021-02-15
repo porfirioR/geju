@@ -1,5 +1,5 @@
-﻿using GeJu.Common;
-using GeJu.Common.DTO.Users;
+﻿using GeJu.Common.DTO.Users;
+using GeJu.Common.Enums;
 using System;
 
 namespace GeJu.Api.Main.Test.Admin
@@ -11,7 +11,7 @@ namespace GeJu.Api.Main.Test.Admin
             Name = "Prueba",
             LastName = "Prueba",
             Email = "prueba@prueba.com",
-            Country = Country.Paraguay,
+            Country = CountryType.Paraguay,
             Birthdate = DateTime.Now,
         };
 
@@ -20,7 +20,7 @@ namespace GeJu.Api.Main.Test.Admin
             Name = "PruebaEdicion",
             LastName = "Prueba",
             Email = "prueba@prueba.com",
-            Country = Country.Paraguay,
+            Country = CountryType.Paraguay,
             Birthdate = DateTime.Now,
         };
     }

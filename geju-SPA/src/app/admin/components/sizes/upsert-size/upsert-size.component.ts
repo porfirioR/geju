@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SizeModel } from 'src/app/core/models/size-model';
 import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
@@ -18,11 +18,10 @@ export class UpsertSizeComponent implements OnInit {
   private sizeId: string;
 
   constructor(
-    private fb: FormBuilder,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
     public singleton: SingletonService,
-    private readonly groupService: SizeService
+    private readonly sizeService: SizeService
   ) {}
 
   ngOnInit(): void {
@@ -30,13 +29,14 @@ export class UpsertSizeComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.sizeId = params.id;
       if (this.sizeId) {
-        this.groupService.getById(this.sizeId).subscribe(
+        this.sizeService.getById(this.sizeId).subscribe(
           (response) => {
             this.size = response;
             this.sizeForm.patchValue({ code: this.size.code });
             this.sizeForm.patchValue({ description: this.size.description });
             this.positionName = 'Modificar';
-            this.sizeForm.get('code').disable();
+            this.sizeForm.controls.code.disable();
+            // const ele = this.sizeForm.value;
           },
           (error) => {
             Swal.fire('Error...', 'Marca no encontrada.', 'error');
@@ -48,17 +48,17 @@ export class UpsertSizeComponent implements OnInit {
   }
 
   private createSizeForm = () => {
-    this.sizeForm = this.fb.group({
-      code: ['', [Validators.required, Validators.maxLength(25)]],
-      description: ['', [Validators.required, Validators.maxLength(100)]]
+    this.sizeForm = new FormGroup({
+      code:  new FormControl('', [Validators.required, Validators.maxLength(25)]),
+      description: new FormControl('', [Validators.required, Validators.maxLength(100)])
     });
   }
 
   save = () => {
+    this.size = this.valueChanged();
     if (this.sizeId) {
-      this.size = this.valueChanged();
       this.size.id = this.sizeId;
-      this.groupService.update(this.size).subscribe(
+      this.sizeService.update(this.size).subscribe(
         (response) => {
           Swal.fire({ icon: 'success', title: 'Marca actualizada con éxito' });
           this.close();
@@ -67,8 +67,7 @@ export class UpsertSizeComponent implements OnInit {
         }
       );
     } else {
-      this.size = this.valueChanged();
-      this.groupService.create(this.size).subscribe(
+      this.sizeService.create(this.size).subscribe(
         (response) => {
           Swal.fire({ icon: 'success', title: 'Marca registrada con éxito' });
           this.close();
@@ -80,7 +79,7 @@ export class UpsertSizeComponent implements OnInit {
     }
   }
 
-  valueChanged = (): SizeModel => Object.assign( new SizeModel(), this.sizeForm.value);
+  valueChanged = (): SizeModel => Object.assign( new SizeModel(), this.sizeForm.getRawValue());
 
   close = () => {
     this.router.navigate(['administracion/tamaños']);

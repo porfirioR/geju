@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AccessServicesModel.Users
+namespace GeJu.DALModels.Users
 {
     public class UpdateUser : CreateUser
     {

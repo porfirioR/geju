@@ -1,4 +1,4 @@
-﻿namespace GeJu.AccessServicesModel.Sizes
+﻿namespace GeJu.DALModels.Sizes
 {
     public class CreateSize
     {

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using DAL.Interfaces;
-using GeJu.AccessServicesModel.Sizes;
-using GeJu.Common.DTO.Size;
+using GeJu.DALModels.Sizes;
 using GeJu.Services.Admin.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,46 +11,44 @@ namespace DAL
     internal class SizeDAL : ISizeDAL
     {
         private readonly IMapper _mapper;
-        private readonly ISizesServices _sizesServices;
-        public SizeDAL(IMapper mapper, ISizesServices sizesServices)
+        private readonly ISizeService _sizesServices;
+        public SizeDAL(IMapper mapper, ISizeService sizesServices)
         {
             _mapper = mapper;
             _sizesServices = sizesServices;
         }
 
-        public async Task<SizeApi> CreateAsync(CreateSizeDTO sizeDTO)
+        public async Task<Size> Create(CreateSize request)
         {
-            var brandCreate = _mapper.Map<CreateSize>(sizeDTO);
-            var entity = await _sizesServices.CreateAsync(brandCreate);
-            var model = _mapper.Map<SizeApi>(entity);
+            var entity = await _sizesServices.CreateAsync(request);
+            var model = _mapper.Map<Size>(entity);
             return model;
         }
 
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task<bool> Delete(Guid id)
         {
             return await _sizesServices.DeleteAsync(id);
         }
 
-        public IEnumerable<SizeApi> GetAll()
+        public IEnumerable<Size> GetAll()
         {
-            var brands = _sizesServices.GetAll();
-            var brandApi = _mapper.Map<IEnumerable<SizeApi>>(brands);
-            return brandApi;
+            var sizeList = _sizesServices.GetAll();
+            var sizeResponseList = _mapper.Map<IEnumerable<Size>>(sizeList);
+            return sizeResponseList;
         }
 
-        public SizeApi GetById(Guid id)
+        public Size GetById(Guid id)
         {
-            var brand = _sizesServices.GetById(id);
-            var brandApi = _mapper.Map<SizeApi>(brand);
-            return brandApi;
+            var model = _sizesServices.GetById(id);
+            var modelResponse = _mapper.Map<Size>(model);
+            return modelResponse;
         }
 
-        public async Task<SizeApi> UpdateAsync(UpdateSizeDTO sizeDTO)
+        public async Task<Size> UpdateAsync(UpdateSize request)
         {
-            var sizeUpdate = _mapper.Map<UpdateSize>(sizeDTO);
-            var entity = await _sizesServices.UpdateAsync(sizeUpdate);
-            var brandApi = _mapper.Map<SizeApi>(entity);
-            return brandApi;
+            var model = await _sizesServices.UpdateAsync(request);
+            var response = _mapper.Map<Size>(model);
+            return response;
         }
     }
 }

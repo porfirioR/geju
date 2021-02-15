@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using DAL.Interfaces;
-using GeJu.AccessServicesModel.Brands;
-using GeJu.Common.DTO.Brands;
+using GeJu.DALModels.Brands;
 using GeJu.Services.Admin.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,18 +11,17 @@ namespace DAL
     internal class BrandDAL : IBrandDAL
     {
         private readonly IMapper _mapper;
-        private readonly IBrandsServices _brandsServices;
-        public BrandDAL(IMapper mapper, IBrandsServices BrandsServices)
+        private readonly IBrandService _brandsServices;
+        public BrandDAL(IMapper mapper, IBrandService BrandsServices)
         {
             _brandsServices = BrandsServices;
             _mapper = mapper;
         }
 
-        public async Task<BrandApi> CreateAsync(CreateBrandDTO BrandDTO)
+        public async Task<Brand> CreateAsync(CreateBrand request)
         {
-            var brandCreate = _mapper.Map<CreateBrand>(BrandDTO);
-            var entity = await _brandsServices.CreateAsync(brandCreate);
-            var model = _mapper.Map<BrandApi>(entity);
+            var entity = await _brandsServices.CreateAsync(request);
+            var model = _mapper.Map<Brand>(entity);
             return model;
         }
 
@@ -32,25 +30,24 @@ namespace DAL
             return await _brandsServices.DeleteAsync(id);
         }
 
-        public IEnumerable<BrandApi> GetAll()
+        public IEnumerable<Brand> GetAll()
         {
             var brands = _brandsServices.GetAll();
-            var brandApi = _mapper.Map<IEnumerable<BrandApi>>(brands);
+            var brandApi = _mapper.Map<IEnumerable<Brand>>(brands);
             return brandApi;
         }
 
-        public BrandApi GetById(Guid id)
+        public Brand GetById(Guid id)
         {
             var brand = _brandsServices.GetById(id);
-            var brandApi = _mapper.Map<BrandApi>(brand);
+            var brandApi = _mapper.Map<Brand>(brand);
             return brandApi;
         }
 
-        public async Task<BrandApi> UpdateAsync(UpdateBrandDTO brandDTO)
+        public async Task<Brand> UpdateAsync(UpdateBrand request)
         {
-            var brandUpdate = _mapper.Map<UpdateBrand>(brandDTO);
-            var entity = await _brandsServices.UpdateAsync(brandUpdate);
-            var brandApi = _mapper.Map<BrandApi>(entity);
+            var entity = await _brandsServices.UpdateAsync(request);
+            var brandApi = _mapper.Map<Brand>(entity);
             return brandApi;
         }
     }

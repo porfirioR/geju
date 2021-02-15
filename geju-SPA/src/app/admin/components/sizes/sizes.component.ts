@@ -59,7 +59,7 @@ export class SizesComponent implements OnInit {
 
   public remove = () => {
     Swal.fire({
-      title: 'Estas seguro que desea eliminar la marca',
+      title: 'Estas seguro que desea eliminar el tamaño',
       text: 'Estos cambios es permanente',
       icon: 'warning',
       showCancelButton: true,
@@ -68,7 +68,7 @@ export class SizesComponent implements OnInit {
       }).then(result => {
       if (result.isConfirmed) {
         this.groupService.delete(this.selectedRow.id).subscribe(response => {
-          Swal.fire('Exito', 'Marca borrada con éxito', 'success');
+          Swal.fire('Exito', 'Tamaño borrado con éxito', 'success');
           this.getAll();
         }, err => {
           Swal.fire('Error', 'Error al borrar la marca', 'error');

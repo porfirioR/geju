@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GeJu.AccessServicesModel.Sizes
+namespace GeJu.DALModels.Sizes
 {
     public class UpdateSize : CreateSize
     {

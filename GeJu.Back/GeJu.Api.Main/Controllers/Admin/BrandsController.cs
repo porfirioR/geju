@@ -1,5 +1,7 @@
-﻿using DAL.Interfaces;
-using GeJu.Common.DTO.Brands;
+﻿using AutoMapper;
+using DAL.Interfaces;
+using GeJu.DALModels.Brands;
+using GeJu.Api.Main.DTO.Brands;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -11,9 +13,11 @@ namespace GeJu.Api.Main.Controllers.Admin
     public class BrandsController : ControllerBase
     {
         private readonly IBrandDAL _brandDAL;
-        public BrandsController(IBrandDAL brandDAL)
+        private readonly IMapper _mapper;
+        public BrandsController(IBrandDAL brandDAL, IMapper mapper)
         {
             _brandDAL = brandDAL;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -33,14 +37,16 @@ namespace GeJu.Api.Main.Controllers.Admin
         [HttpPost]
         public async Task<IActionResult> CreateBrandAsync(CreateBrandDTO brandDTO)
         {
-            var response = await _brandDAL.CreateAsync(brandDTO);
+            var model = _mapper.Map<CreateBrand>(brandDTO);
+            var response = await _brandDAL.CreateAsync(model);
             return Ok(response);
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateBrandAsync(UpdateBrandDTO brandDTO)
         {
-            var response = await _brandDAL.UpdateAsync(brandDTO);
+            var model = _mapper.Map<UpdateBrand>(brandDTO);
+            var response = await _brandDAL.UpdateAsync(model);
             return Ok(response);
         }
 

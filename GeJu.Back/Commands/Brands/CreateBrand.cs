@@ -1,4 +1,4 @@
-﻿namespace GeJu.AccessServicesModel.Brands
+﻿namespace GeJu.DALModels.Brands
 {
     public class CreateBrand
     {

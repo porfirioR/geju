@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeJu.Api.Main.Test", "GeJu.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeJu.Sql", "GeJu.Storage.Sql\GeJu.Sql.csproj", "{581E1B49-F978-49F0-96EE-64A68A48534C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeJu.AccessServicesModel", "Commands\GeJu.AccessServicesModel.csproj", "{1410920B-85FD-43F5-B18C-2EF63236DA93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeJu.DALModels", "Commands\GeJu.DALModels.csproj", "{1410920B-85FD-43F5-B18C-2EF63236DA93}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeJu.Common", "GeJu.Common\GeJu.Common.csproj", "{5CA42562-6A0A-4F37-847F-C7952E795FC6}"
 EndProject
@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{84
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeJu.Services.Admin", "GeJu.Services.Admin\GeJu.Services.Admin.csproj", "{EB818B77-F691-4792-8570-C35A3E092B44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{5D3BF754-355B-418B-B628-EE439086D79E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Geju.DAL", "DAL\Geju.DAL.csproj", "{5D3BF754-355B-418B-B628-EE439086D79E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

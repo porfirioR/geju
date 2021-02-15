@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Commands\GeJu.AccessServicesModel.csproj" />
-    <ProjectReference Include="..\DAL\DAL.csproj" />
+    <ProjectReference Include="..\Commands\GeJu.DALModels.csproj" />
+    <ProjectReference Include="..\DAL\Geju.DAL.csproj" />
     <ProjectReference Include="..\GeJu.Common\GeJu.Common.csproj" />
     <ProjectReference Include="..\GeJu.Services.Admin\GeJu.Services.Admin.csproj" />
     <ProjectReference Include="..\GeJu.Storage.Sql\GeJu.Sql.csproj" />

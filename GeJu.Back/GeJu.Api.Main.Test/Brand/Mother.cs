@@ -1,4 +1,4 @@
-﻿using GeJu.Common.DTO.Brands;
+﻿using GeJu.Api.Main.DTO.Brands;
 
 namespace GeJu.Api.Main.Test.Brand
 {

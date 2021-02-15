@@ -18,6 +18,7 @@ import { GroupsComponent } from './components/groups/groups.component';
 import { UpsertGroupComponent } from './components/groups/upsert-group/upsert-group.component';
 import { SizesComponent } from './components/sizes/sizes.component';
 import { UpsertSizeComponent } from './components/sizes/upsert-size/upsert-size.component';
+import { ColorsComponent } from './components/colors/colors.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { UpsertSizeComponent } from './components/sizes/upsert-size/upsert-size.
     GroupsComponent,
     UpsertGroupComponent,
     SizesComponent,
-    UpsertSizeComponent
+    UpsertSizeComponent,
+    ColorsComponent
   ]
 })
 export class AdminModule { }

@@ -59,7 +59,7 @@ export class GroupsComponent implements OnInit {
 
   remove = () => {
     Swal.fire({
-      title: 'Estas seguro que desea eliminar la marca',
+      title: 'Estas seguro que desea eliminar el grupo',
       text: 'Estos cambios es permanente',
       icon: 'warning',
       showCancelButton: true,
@@ -68,10 +68,10 @@ export class GroupsComponent implements OnInit {
       }).then(result => {
       if (result.isConfirmed) {
         this.groupService.delete(this.selectedRow.id).subscribe(response => {
-          Swal.fire('Exito', 'Marca borrada con éxito', 'success');
+          Swal.fire('Exito', 'Grupo borrado con éxito', 'success');
           this.getAll();
         }, err => {
-          Swal.fire('Error', 'Error al borrar la marca', 'error');
+          Swal.fire('Error', 'Error al borrar el grupo', 'error');
         });
       }
     });

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GeJu.AccessServicesModel.Brands
+namespace GeJu.DALModels.Brands
 {
     public class UpdateBrand : CreateBrand
     {

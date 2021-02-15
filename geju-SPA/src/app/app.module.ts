@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { AdmincomponentscolorsComponent } from './admincomponentscolors/admincomponentscolors.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdmincomponentscolorsComponent
   ],
   imports: [
     BrowserModule,
