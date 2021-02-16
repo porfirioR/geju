@@ -21,15 +21,13 @@ namespace GeJu.Services.Admin.Mapper
                 .ForMember(dest => dest.FechaModificado,
                     opt => opt.MapFrom(src => DateTime.UtcNow));
 
-            //CreateMap<CreateBrandDTO, CreateBrand>();
-            //CreateMap<UpdateBrandDTO, UpdateBrand>()
-            //    .ForMember(dest => dest.Id,
-            //        opt => opt.MapFrom(src => new Guid(src.Id)));
-            //CreateMap<Marca, BrandApi>()
-            //    .ForMember(dest => dest.Name,
-            //        opt => opt.MapFrom(src => src.Nombre))
-            //    .ForMember(dest => dest.Description,
-            //        opt => opt.MapFrom(src => src.Descripcion));
+            CreateMap<Marca, Brand>()
+                .ForMember(dest => dest.Id,
+                    opt => opt.MapFrom(src => src.Id.ToString()))
+                .ForMember(dest => dest.Name,
+                    opt => opt.MapFrom(src => src.Nombre))
+                .ForMember(dest => dest.Description,
+                    opt => opt.MapFrom(src => src.Descripcion));
         }
     }
 }

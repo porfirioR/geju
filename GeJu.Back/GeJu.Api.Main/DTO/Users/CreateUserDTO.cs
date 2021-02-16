@@ -13,8 +13,11 @@ namespace GeJu.Common.DTO.Users
         [Required]
         public string Email { get; set; }
         [Required]
+        public string Document { get; set; }
+        [Required]
         public CountryType Country { get; set; }
         [Required]
         public DateTime Birthdate { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace DAL
             return _mapper.Map<User>(user);
         }
 
-        public async Task<bool> Delete(Guid id)
+        public async Task<bool> Delete(string id)
         {
             return await _userService.DeleteAsync(id);
         }
@@ -40,11 +40,11 @@ namespace DAL
         public IEnumerable<User> GetAll()
         {
             var users = _userService.GetAll();
-            var usersCommands = users.ProjectTo<User>(_mapper.ConfigurationProvider);
-            return usersCommands;
+            var user = users.ProjectTo<User>(_mapper.ConfigurationProvider);
+            return user;
         }
 
-        public User GetById(Guid id)
+        public User GetById(string id)
         {
             var user = _userService.GetById(id);
             return _mapper.Map<User>(user);

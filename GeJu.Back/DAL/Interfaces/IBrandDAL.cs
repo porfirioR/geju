@@ -7,10 +7,10 @@ namespace DAL.Interfaces
 {
     public interface IBrandDAL
     {
-        Task<Brand> CreateAsync(CreateBrand userDTO);
-        Task<Brand> UpdateAsync(UpdateBrand userDTO);
+        Task<Brand> Create(CreateBrand userDTO);
+        Task<Brand> Update(UpdateBrand userDTO);
+        Brand GetById(string id);
         IEnumerable<Brand> GetAll();
-        Brand GetById(Guid id);
-        Task<bool> DeleteAsync(Guid id);
+        Task<bool> Delete(string id);
     }
 }

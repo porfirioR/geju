@@ -1,5 +1,3 @@
-using AutoMapper;
-using GeJu.Services.Admin;
 using GeJu.Sql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,9 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 namespace GeJu.Api.Main
 {
-    public class Startup
+    public partial class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -22,9 +21,6 @@ namespace GeJu.Api.Main
         {
             services.AddControllers();
 
-            ServiceInjection.ConfigureServices(services);
-            DAL.ServiceInjection.ConfigureServices(services);
-
             services.AddCors(options =>
             {
                 options.AddPolicy(name: "MyAllowSpecificOrigins",
@@ -34,22 +30,21 @@ namespace GeJu.Api.Main
                                   });
             });
 
-            var mappingConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new Services.Admin.Mapper.UserProfile());
-                mc.AddProfile(new Services.Admin.Mapper.BrandProfile());
-                mc.AddProfile(new Services.Admin.Mapper.SizeProfile());
-            });
-            IMapper mapper = mappingConfig.CreateMapper();
-            services.AddSingleton(mapper);
-            services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
-            );
+            // partial startup
+            ConfigureMappings(services);
+            InjectServices(services);
+
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Geju API");
+            //});
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

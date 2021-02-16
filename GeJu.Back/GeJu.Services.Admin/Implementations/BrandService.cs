@@ -26,7 +26,7 @@ namespace GeJu.Services.Admin.Implementations
             return await _context.SaveChangesAsync() > 0 ? entity : null;
         }
 
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task<bool> DeleteAsync(string id)
         {
             var entity = GetById(id);
             entity.Activo = false;
@@ -39,9 +39,9 @@ namespace GeJu.Services.Admin.Implementations
             return _context.Set<Marca>().Where(m => m.Activo).AsQueryable();
         }
 
-        public Marca GetById(Guid id)
+        public Marca GetById(string id)
         {
-            return _context.Set<Marca>().SingleOrDefault(x => x.Id == id);
+            return _context.Set<Marca>().SingleOrDefault(x => x.Id == new Guid(id));
         }
 
         public async Task<Marca> UpdateAsync(UpdateBrand model)

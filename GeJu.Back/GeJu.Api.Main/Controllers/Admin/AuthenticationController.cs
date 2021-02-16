@@ -5,6 +5,7 @@ using GeJu.Common.DTO.Users;
 using GeJu.DALModels.Authentication;
 using GeJu.DALModels.Users;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Controllers.Admin
@@ -21,8 +22,8 @@ namespace GeJu.Api.Main.Controllers.Admin
             _userDAL = userDAL;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<UserAuthApi>> Register(CreateUserDTO createUserDTO)
+        [HttpPost("register")]
+        public async Task<ActionResult<UserAuthApi>> Register([FromBody] CreateUserDTO createUserDTO)
         {
             var registerUser = _mapper.Map<CreateUser>(createUserDTO);
             var model = await _userDAL.Register(registerUser);
@@ -30,11 +31,15 @@ namespace GeJu.Api.Main.Controllers.Admin
             return modelApi;
         }
 
-        [HttpPost]
-        public ActionResult<UserAuthApi> Login(LoginDTO loginDTO)
+        [HttpPost("login")]
+        public ActionResult<UserAuthApi> Login([FromBody] LoginDTO loginDTO)
         {
             var login = _mapper.Map<Login>(loginDTO);
             var model = _userDAL.Login(login);
+            if (model is null)
+            {
+                new KeyNotFoundException("Correo o contraseña es incorrecto");
+            }
             var modelApi = _mapper.Map<UserAuthApi>(model);
             return Ok(modelApi);
         }

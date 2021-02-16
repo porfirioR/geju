@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace GeJu.DALModels.Brands
+﻿namespace GeJu.DALModels.Brands
 {
     public class UpdateBrand : CreateBrand
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

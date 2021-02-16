@@ -26,7 +26,7 @@ namespace GeJu.Api.Main.Controllers.Admin
         {
             var model = _sizeDAL.GetAll();
             var apiModel = _mapper.Map<IEnumerable<SizeApi>>(model);
-            return Ok(model);
+            return Ok(apiModel);
         }
         
         [HttpGet("{id}")]

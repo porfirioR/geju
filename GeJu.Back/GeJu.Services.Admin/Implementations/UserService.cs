@@ -28,12 +28,9 @@ namespace GeJu.Services.Admin.Implementations
             return await _context.SaveChangesAsync() > 0 ? user : null;
         }
 
-        public async Task<bool> DeleteAsync(Guid id)
+        public Usuario GetById(string id)
         {
-            var userToDelete = _context.Set<Usuario>().SingleOrDefault(x => x.Id == id);
-            userToDelete.Activo = false;
-            _context.Update(userToDelete);
-            return await _context.SaveChangesAsync() > 0;
+            return _context.Set<Usuario>().SingleOrDefault(x => x.Id == new Guid(id));
         }
 
         public IQueryable<Usuario> GetAll()
@@ -41,16 +38,19 @@ namespace GeJu.Services.Admin.Implementations
             return _context.Set<Usuario>().Where(u => u.Activo).AsQueryable();
         }
 
-        public Usuario GetById(Guid id)
-        {
-            return _context.Set<Usuario>().SingleOrDefault(x => x.Id == id);
-        }
-
         public async Task<Usuario> UpdateAsync(UpdateUser updateUser)
         {
             var entity = GetById(updateUser.Id);
             var user = _mapper.Map(updateUser, entity);
             return await _context.SaveChangesAsync() > 0 ? user : null;
+        }
+
+        public async Task<bool> DeleteAsync(string id)
+        {
+            var userToDelete = _context.Set<Usuario>().SingleOrDefault(x => x.Id == new Guid(id));
+            userToDelete.Activo = false;
+            _context.Update(userToDelete);
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public async Task<Usuario> RegisterAsync(CreateUser createUser)

@@ -30,30 +30,32 @@ namespace GeJu.Api.Main.Controllers.Admin
         [HttpGet("{id}")]
         public IActionResult GetBrand(string id)
         {
-            var brand = _brandDAL.GetById(new Guid(id));
+            var brand = _brandDAL.GetById(id);
             return Ok(brand);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBrandAsync(CreateBrandDTO brandDTO)
+        public async Task<ActionResult<BrandApi>> CreateBrand(CreateBrandDTO brandDTO)
         {
             var model = _mapper.Map<CreateBrand>(brandDTO);
-            var response = await _brandDAL.CreateAsync(model);
-            return Ok(response);
+            var response = await _brandDAL.Create(model);
+            var modelApi = _mapper.Map<BrandApi>(response);
+            return Ok(modelApi);
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateBrandAsync(UpdateBrandDTO brandDTO)
+        public async Task<ActionResult<BrandApi>> UpdateBrand(UpdateBrandDTO brandDTO)
         {
             var model = _mapper.Map<UpdateBrand>(brandDTO);
-            var response = await _brandDAL.UpdateAsync(model);
-            return Ok(response);
+            var response = await _brandDAL.Update(model);
+            var modelApi = _mapper.Map<BrandApi>(response);
+            return Ok(modelApi);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(string id)
+        public async Task<ActionResult<bool>> Delete(string id)
         {
-            return Ok(await _brandDAL.DeleteAsync(new Guid(id)));
+            return Ok(await _brandDAL.Delete(id));
         }
     }
 }
