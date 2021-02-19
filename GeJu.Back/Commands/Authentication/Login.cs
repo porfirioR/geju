@@ -1,4 +1,4 @@
-﻿namespace GeJu.DALModels.Authentication
+﻿namespace Contract.Authentication
 {
     public class Login
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GeJu.DALModels.Sizes
+namespace Contract.Sizes
 {
     public class UpdateSize : CreateSize
     {

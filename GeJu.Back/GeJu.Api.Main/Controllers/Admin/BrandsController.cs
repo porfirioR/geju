@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using DAL.Interfaces;
-using GeJu.DALModels.Brands;
-using GeJu.Api.Main.DTO.Brands;
+using Contract.Brands;
+using GeJu.Api.Main.Models.Brands;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Controllers.Admin
@@ -12,42 +10,42 @@ namespace GeJu.Api.Main.Controllers.Admin
     [ApiController]
     public class BrandsController : ControllerBase
     {
-        private readonly IBrandDAL _brandDAL;
+        private readonly IBrandManager _brandManager;
         private readonly IMapper _mapper;
-        public BrandsController(IBrandDAL brandDAL, IMapper mapper)
+        public BrandsController(IMapper mapper, IBrandManager brandManager)
         {
-            _brandDAL = brandDAL;
             _mapper = mapper;
+            _brandManager = brandManager;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var brands = _brandDAL.GetAll();
+            var brands = _brandManager.GetAll();
             return Ok(brands);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetBrand(string id)
         {
-            var brand = _brandDAL.GetById(id);
+            var brand = _brandManager.GetById(id);
             return Ok(brand);
         }
 
         [HttpPost]
-        public async Task<ActionResult<BrandApi>> CreateBrand(CreateBrandDTO brandDTO)
+        public async Task<ActionResult<BrandApi>> CreateBrand(CreateBrandApiRequest brandDTO)
         {
             var model = _mapper.Map<CreateBrand>(brandDTO);
-            var response = await _brandDAL.Create(model);
+            var response = await _brandManager.Create(model);
             var modelApi = _mapper.Map<BrandApi>(response);
             return Ok(modelApi);
         }
 
         [HttpPut]
-        public async Task<ActionResult<BrandApi>> UpdateBrand(UpdateBrandDTO brandDTO)
+        public async Task<ActionResult<BrandApi>> UpdateBrand(UpdateBrandApiRequest brandDTO)
         {
             var model = _mapper.Map<UpdateBrand>(brandDTO);
-            var response = await _brandDAL.Update(model);
+            var response = await _brandManager.Update(model);
             var modelApi = _mapper.Map<BrandApi>(response);
             return Ok(modelApi);
         }
@@ -55,7 +53,7 @@ namespace GeJu.Api.Main.Controllers.Admin
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(string id)
         {
-            return Ok(await _brandDAL.Delete(id));
+            return Ok(await _brandManager.Delete(id));
         }
     }
 }

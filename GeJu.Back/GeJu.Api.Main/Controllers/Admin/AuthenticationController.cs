@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using DAL.Interfaces;
-using GeJu.Common.DTO.Authentication;
-using GeJu.Common.DTO.Users;
-using GeJu.DALModels.Authentication;
-using GeJu.DALModels.Users;
+using Contract.Authentication;
+using Contract.Users;
+using GeJu.Api.Main.Models.Authentication;
+using GeJu.Api.Main.Models.Users;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,26 +14,26 @@ namespace GeJu.Api.Main.Controllers.Admin
     public class AuthenticationController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IUserDAL _userDAL;
-        public AuthenticationController(IMapper mapper, IUserDAL userDAL)
+        private readonly IUserManager _userDAL;
+        public AuthenticationController(IMapper mapper, IUserManager userDAL)
         {
             _mapper = mapper;
             _userDAL = userDAL;
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<UserAuthApi>> Register([FromBody] CreateUserDTO createUserDTO)
+        public async Task<ActionResult<UserAuthApi>> Register([FromBody] CreateUserApiRequest request)
         {
-            var registerUser = _mapper.Map<CreateUser>(createUserDTO);
+            var registerUser = _mapper.Map<CreateUser>(request);
             var model = await _userDAL.Register(registerUser);
             var modelApi = _mapper.Map<UserAuthApi>(model);
             return modelApi;
         }
 
         [HttpPost("login")]
-        public ActionResult<UserAuthApi> Login([FromBody] LoginDTO loginDTO)
+        public ActionResult<UserAuthApi> Login([FromBody] LoginApiRequest loginRequest)
         {
-            var login = _mapper.Map<Login>(loginDTO);
+            var login = _mapper.Map<Login>(loginRequest);
             var model = _userDAL.Login(login);
             if (model is null)
             {

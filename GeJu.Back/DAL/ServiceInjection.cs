@@ -1,15 +1,19 @@
-﻿using DAL.Interfaces;
+﻿using Contract.Brands;
+using Contract.Users;
+using Manager.Admin.Brands;
+using Manager.Admin.Sizes;
+using Manager.Admin.Users;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DAL
+namespace Manager.Admin
 {
     public class ServiceInjection
     {
         public static void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IBrandDAL, BrandDAL>();
-            services.AddTransient<IUserDAL, UserDAL>();
-            services.AddTransient<ISizeDAL, SizeDAL>();
+            services.AddTransient<IBrandManager, BrandManager>();
+            services.AddTransient<IUserManager, UserManager>();
+            services.AddTransient<ISizeManager, SizeManager>();
         }
     }
 }

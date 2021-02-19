@@ -1,10 +1,10 @@
-﻿using GeJu.DALModels.Sizes;
+﻿using Contract.Sizes;
 using GeJu.Sql.Entities;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GeJu.Services.Admin.Interfaces
+namespace Admin.Interfaces
 {
     public interface ISizeService
     {

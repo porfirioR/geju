@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GeJu.Common.DTO.Users;
-using GeJu.DALModels.Users;
+using Contract.Users;
+using GeJu.Api.Main.Models.Users;
 
 namespace GeJu.Api.Main.Mapping
 {
@@ -8,8 +8,8 @@ namespace GeJu.Api.Main.Mapping
     {
         public UserProfile()
         {
-            CreateMap<CreateUserDTO, CreateUser>();
-            CreateMap<UpdateUserDTO, UpdateUser>();
+            CreateMap<CreateUserApiRequest, CreateUser>();
+            CreateMap<UpdateUserApiRequest, UpdateUser>();
             
             CreateMap<User, UserApi>();
         }

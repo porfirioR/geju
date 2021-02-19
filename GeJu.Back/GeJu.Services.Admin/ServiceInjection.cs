@@ -1,8 +1,7 @@
-﻿using GeJu.Services.Admin.Implementations;
-using GeJu.Services.Admin.Interfaces;
+﻿using Admin.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GeJu.Services.Admin
+namespace Admin
 {
     public class ServiceInjection
     {

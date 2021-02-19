@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GeJu.Common.DTO.Authentication;
-using GeJu.DALModels.Authentication;
+using GeJu.Api.Main.Models.Authentication;
+using Contract.Authentication;
 
 namespace GeJu.Api.Main.Mapping
 {
@@ -8,7 +8,7 @@ namespace GeJu.Api.Main.Mapping
     {
         public AuthProfile()
         {
-            CreateMap<LoginDTO, Login>();
+            CreateMap<LoginApiRequest, Login>();
 
             CreateMap<UserAuth, UserAuthApi>();
         }

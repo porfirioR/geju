@@ -1,7 +1,7 @@
-﻿using GeJu.Common.Enums;
+﻿using GeJu.Utilities.Enums;
 using System;
 
-namespace GeJu.DALModels.Users
+namespace Contract.Users
 {
     public class CreateUser
     {

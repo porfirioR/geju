@@ -1,4 +1,4 @@
-﻿namespace GeJu.DALModels.Brands
+﻿namespace Contract.Brands
 {
     public class UpdateBrand : CreateBrand
     {

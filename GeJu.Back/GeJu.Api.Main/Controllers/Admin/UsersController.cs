@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using DAL.Interfaces;
-using GeJu.Common.DTO.Users;
-using GeJu.DALModels.Users;
+using Contract.Users;
+using GeJu.Api.Main.Models.Users;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,16 +11,16 @@ namespace GeJu.Api.Main.Controllers.Admin
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUserDAL _userDAL;
+        private readonly IUserManager _userDAL;
         private readonly IMapper _mapper;
-        public UsersController(IUserDAL usersDAL, IMapper mapper)
+        public UsersController(IUserManager usersDAL, IMapper mapper)
         {
             _userDAL = usersDAL;
             _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<ActionResult<UserApi>> Create([FromBody] CreateUserDTO request)
+        public async Task<ActionResult<UserApi>> Create([FromBody] CreateUserApiRequest request)
         {
             var user = _mapper.Map<CreateUser>(request);
             var model = await _userDAL.Create(user);
@@ -30,7 +29,7 @@ namespace GeJu.Api.Main.Controllers.Admin
         }
 
         [HttpPut]
-        public async Task<ActionResult<UserApi>> Update(UpdateUserDTO userDTO)
+        public async Task<ActionResult<UserApi>> Update(UpdateUserApiRequest userDTO)
         {
             var user = _mapper.Map<UpdateUser>(userDTO);
             var model = await _userDAL.Update(user);

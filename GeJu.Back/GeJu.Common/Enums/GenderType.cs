@@ -1,4 +1,4 @@
-﻿namespace GeJu.Common.Enums
+﻿namespace GeJu.Utilities.Enums
 {
     public enum Gender
     {

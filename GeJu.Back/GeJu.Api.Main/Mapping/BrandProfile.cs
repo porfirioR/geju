@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GeJu.Api.Main.DTO.Brands;
-using GeJu.DALModels.Brands;
+using GeJu.Api.Main.Models.Brands;
+using Contract.Brands;
 
 namespace GeJu.Api.Main.Mapping
 {
@@ -8,9 +8,9 @@ namespace GeJu.Api.Main.Mapping
     {
         public BrandProfile()
         {
-            CreateMap<CreateBrandDTO, CreateBrand>();
+            CreateMap<CreateBrandApiRequest, CreateBrand>();
             
-            CreateMap<UpdateBrandDTO, UpdateBrand>();
+            CreateMap<UpdateBrandApiRequest, UpdateBrand>();
 
             CreateMap<Brand, BrandApi>();
         }

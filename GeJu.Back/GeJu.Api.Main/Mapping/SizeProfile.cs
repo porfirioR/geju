@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GeJu.Api.Main.DTO.Sizes;
-using GeJu.DALModels.Sizes;
+using Contract.Sizes;
+using GeJu.Api.Main.Models.Sizes;
 using System;
 
 namespace GeJu.Api.Main.Mapping
@@ -9,9 +9,9 @@ namespace GeJu.Api.Main.Mapping
     {
         public SizeProfile()
         {
-            CreateMap<CreateSizeDTO, CreateSize>();
+            CreateMap<CreateSizeApiRequest, CreateSize>();
             
-            CreateMap<UpdateSizeDTO, UpdateSize>()
+            CreateMap<UpdateSizeApiRequest, UpdateSize>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => new Guid(src.Id)));
             
             CreateMap<Size, SizeApi>();

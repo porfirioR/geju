@@ -1,12 +1,12 @@
-﻿using GeJu.Common.DTO.Users;
-using GeJu.Common.Enums;
+﻿using GeJu.Api.Main.Models.Users;
+using GeJu.Utilities.Enums;
 using System;
 
 namespace GeJu.Api.Main.Test.Admin
 {
     internal static class Mother
     {
-        public static CreateUserDTO NewUser => new CreateUserDTO
+        public static CreateUserApiRequest NewUser => new CreateUserApiRequest
         {
             Name = "Prueba",
             LastName = "Prueba",
@@ -15,7 +15,7 @@ namespace GeJu.Api.Main.Test.Admin
             Birthdate = DateTime.Now,
         };
 
-        public static UpdateUserDTO UpdateUser => new UpdateUserDTO
+        public static UpdateUserApiRequest UpdateUser => new UpdateUserApiRequest
         {
             Name = "PruebaEdicion",
             LastName = "Prueba",

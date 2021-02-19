@@ -1,9 +1,9 @@
-﻿using GeJu.DALModels.Brands;
+﻿using Contract.Brands;
 using GeJu.Sql.Entities;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GeJu.Services.Admin.Interfaces
+namespace Admin.Interfaces
 {
     public interface IBrandService
     {

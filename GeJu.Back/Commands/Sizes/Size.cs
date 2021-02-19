@@ -1,4 +1,4 @@
-﻿namespace GeJu.DALModels.Sizes
+﻿namespace Contract.Sizes
 {
     public class Size
     {

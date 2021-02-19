@@ -1,4 +1,4 @@
-﻿namespace GeJu.DALModels.Users
+﻿namespace Contract.Users
 {
     public class UpdateUser : CreateUser
     {

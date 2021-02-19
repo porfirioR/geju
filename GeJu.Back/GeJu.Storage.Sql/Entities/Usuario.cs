@@ -1,5 +1,4 @@
-﻿using GeJu.Common;
-using GeJu.Common.Enums;
+﻿using GeJu.Utilities.Enums;
 using System;
 using System.Collections.Generic;
 

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using DAL.Interfaces;
-using GeJu.Api.Main.DTO.Sizes;
-using GeJu.DALModels.Sizes;
+using Contract.Sizes;
+using Contract.Users;
+using GeJu.Api.Main.Models.Sizes;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,9 +13,9 @@ namespace GeJu.Api.Main.Controllers.Admin
     [ApiController]
     public class SizesController : Controller
     {
-        private readonly ISizeDAL _sizeDAL;
+        private readonly ISizeManager _sizeDAL;
         private readonly IMapper _mapper;
-        public SizesController(ISizeDAL sizeDAL, IMapper mapper)
+        public SizesController(ISizeManager sizeDAL, IMapper mapper)
         {
             _sizeDAL = sizeDAL;
             _mapper = mapper;
@@ -38,7 +38,7 @@ namespace GeJu.Api.Main.Controllers.Admin
         }
 
         [HttpPost]
-        public async Task<ActionResult<SizeApi>> CreateAsync(CreateSizeDTO sizeDTO)
+        public async Task<ActionResult<SizeApi>> CreateAsync(CreateSizeApiRequest sizeDTO)
         {
             var request = _mapper.Map<CreateSize>(sizeDTO);
             var model = await _sizeDAL.Create(request);
@@ -47,7 +47,7 @@ namespace GeJu.Api.Main.Controllers.Admin
         }
 
         [HttpPut]
-        public async Task<ActionResult<SizeApi>> UpdateAsync(UpdateSizeDTO sizeDTO)
+        public async Task<ActionResult<SizeApi>> UpdateAsync(UpdateSizeApiRequest sizeDTO)
         {
             var request = _mapper.Map<UpdateSize>(sizeDTO);
             var model = await _sizeDAL.UpdateAsync(request);

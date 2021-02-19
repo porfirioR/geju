@@ -1,4 +1,4 @@
-﻿using GeJu.Api.Main.DTO.Brands;
+﻿using GeJu.Api.Main.Models.Brands;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using System.Collections.Generic;

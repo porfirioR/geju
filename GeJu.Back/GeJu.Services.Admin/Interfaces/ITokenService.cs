@@ -1,6 +1,6 @@
 ﻿using GeJu.Sql.Entities;
 
-namespace GeJu.Services.Admin.Interfaces
+namespace Admin.Interfaces
 {
     public interface ITokenService
     {
