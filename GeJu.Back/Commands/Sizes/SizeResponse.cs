@@ -1,6 +1,6 @@
-﻿namespace Contract.Sizes
+﻿namespace Resources.Contract.Sizes
 {
-    public class Size
+    public class SizeResponse
     {
         public string Id { get; set; }
         public string Description { get; set; }

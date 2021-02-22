@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Contract.Brands;
 using GeJu.Sql.Entities;
+using Resources.Contract.Brands;
 using System;
 
 namespace GeJu.Services.Admin.Mapper
@@ -21,7 +21,7 @@ namespace GeJu.Services.Admin.Mapper
                 .ForMember(dest => dest.FechaModificado,
                     opt => opt.MapFrom(src => DateTime.UtcNow));
 
-            CreateMap<Marca, Brand>()
+            CreateMap<Marca, BrandResponse>()
                 .ForMember(dest => dest.Id,
                     opt => opt.MapFrom(src => src.Id.ToString()))
                 .ForMember(dest => dest.Name,

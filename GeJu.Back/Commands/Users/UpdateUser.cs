@@ -1,4 +1,4 @@
-﻿namespace Contract.Users
+﻿namespace Resources.Contract.Users
 {
     public class UpdateUser : CreateUser
     {

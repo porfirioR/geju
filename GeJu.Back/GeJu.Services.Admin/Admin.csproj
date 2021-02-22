@@ -9,7 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Commands\Contract.csproj" />
+    <ProjectReference Include="..\Access.Contract\Access.Contract.csproj" />
+    <ProjectReference Include="..\Commands\Resources.Contract.csproj" />
     <ProjectReference Include="..\GeJu.Storage.Sql\Sql.csproj" />
   </ItemGroup>
 

@@ -1,16 +1,15 @@
-﻿using Contract.Sizes;
-using System;
+﻿using Resources.Contract.Sizes;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Contract.Users
+namespace Resources.Contract.Sizes
 {
     public interface ISizeManager
     {
-        Task<Size> Create(CreateSize sizeDTO);
-        Task<Size> UpdateAsync(UpdateSize sizeDTO);
-        IEnumerable<Size> GetAll();
-        Size GetById(Guid id);
-        Task<bool> Delete(Guid id);
+        Task<SizeResponse> Create(CreateSize request);
+        Task<IEnumerable<SizeResponse>> GetAll();
+        Task<SizeResponse> GetById(string id);
+        Task<SizeResponse> Update(UpdateSize request);
+        Task<SizeResponse> Delete(string id);
     }
 }

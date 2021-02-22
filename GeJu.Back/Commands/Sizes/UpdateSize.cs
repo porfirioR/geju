@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Contract.Sizes
+namespace Resources.Contract.Sizes
 {
     public class UpdateSize : CreateSize
     {

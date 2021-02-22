@@ -1,4 +1,4 @@
-﻿namespace Contract.Sizes
+﻿namespace Resources.Contract.Sizes
 {
     public class CreateSize
     {

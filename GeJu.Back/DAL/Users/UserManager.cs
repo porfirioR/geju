@@ -1,8 +1,8 @@
-﻿using Admin.Interfaces;
+﻿using Access.Contract.Request;
+using Admin.Interfaces;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Contract.Authentication;
-using Contract.Users;
+using Resources.Contract.Authentication;
+using Resources.Contract.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,87 +15,74 @@ namespace Manager.Admin.Users
     internal class UserManager : IUserManager
     {
         private readonly IMapper _mapper;
-        private readonly IUserService _userService;
-        private readonly ITokenService _tokenService;
+        private readonly IUserDataAccess _userDataAccess;
+        private readonly IAuthDataAccess _tokenDataAccess;
 
-        public UserManager(IUserService userService, IMapper mapper, ITokenService tokenService)
+        public UserManager(IUserDataAccess userDataAccess, IMapper mapper, IAuthDataAccess tokenDataAccess)
         {
-            _userService = userService;
+            _userDataAccess = userDataAccess;
             _mapper = mapper;
-            _tokenService = tokenService;
+            _tokenDataAccess = tokenDataAccess;
         }
 
-        public async Task<User> Create(CreateUser request)
+        public async Task<UserResponse> Create(CreateUser request)
         {
-            var user = await _userService.CreateAsync(request);
-            return _mapper.Map<User>(user);
+            var requestAccess = _mapper.Map<UserAccess>(request);
+            var user = await _userDataAccess.CreateAsync(requestAccess);
+            return _mapper.Map<UserResponse>(user);
         }
 
-        public async Task<bool> Delete(string id)
+        public async Task<UserResponse> Update(UpdateUser request)
         {
-            return await _userService.DeleteAsync(id);
+            var requestManager = _mapper.Map<UserAccess>(request);
+            var user = await _userDataAccess.UpdateAsync(requestManager);
+            return _mapper.Map<UserResponse>(user);
         }
 
-        public IEnumerable<User> GetAll()
+        public async Task<IEnumerable<UserResponse>> GetAll()
         {
-            var users = _userService.GetAll();
-            var user = users.ProjectTo<User>(_mapper.ConfigurationProvider);
-            return user;
+            var users = await _userDataAccess.GetAllAsync();
+            var userResponse = _mapper.Map<IEnumerable<UserResponse>>(users);
+            return userResponse;
         }
 
-        public User GetById(string id)
+        public async Task<UserResponse> GetById(string id)
         {
-            var user = _userService.GetById(id);
-            return _mapper.Map<User>(user);
+            var user = await _userDataAccess.GetByIdAsync(id);
+            return _mapper.Map<UserResponse>(user);
         }
 
-        public async Task<User> Update(UpdateUser request)
+        public async Task<UserResponse> Delete(string id)
         {
-            var user = await _userService.UpdateAsync(request);
-            return _mapper.Map<User>(user);
+            var user = await _userDataAccess.DeleteAsync(id);
+            return _mapper.Map<UserResponse>(user);
         }
 
-        public async Task<UserAuth> Register(CreateUser createUser)
+        public async Task<UserAuth> Register(CreateUser request)
         {
-            if (CheckUserExists(createUser))
+            if (await CheckUserExistsAsync(request))
             {
                 new Exception("Ya existe un usuario con ese mismo documento.");
             }
-            var user = await _userService.RegisterAsync(createUser);
+            var requestAccess = _mapper.Map<UserAccess>(request);
+            var user = await _userDataAccess.RegisterAsync(requestAccess);
             var userApi = _mapper.Map<UserAuth>(user);
-            userApi.Token = _tokenService.CreateToken(user);
+            userApi.Token = _tokenDataAccess.CreateToken(requestAccess);
             return userApi;
         }
 
-        public UserAuth Login(Login login)
+        public async Task<UserAuth> LoginAsync(Login login)
         {
-            var users = _userService.GetAll();
-            var user = users.Where(x => x.Correo == login.Email).FirstOrDefault();
-            if (user is null)
-            {
-                return null;
-            }
-
-            using var hmac = new HMACSHA512(user.ContraseñaSalt);
-            var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(login.Password));
-
-            for (int i = 0; i < computedHash.Length; i++)
-            {
-                if (computedHash[i] != user.ContraseñaHash[i])
-                {
-                    return null;
-                }
-            }
-
-            var userApi = _mapper.Map<UserAuth>(user);
-            userApi.Token = _tokenService.CreateToken(user);
+            var loginAccess = _mapper.Map<LoginAccess>(login);
+            var auth = await _tokenDataAccess.Login(loginAccess);
+            var userApi = _mapper.Map<UserAuth>(auth);
             return userApi;
         }
 
-        private bool CheckUserExists(CreateUser createUser)
+        private async Task<bool> CheckUserExistsAsync(CreateUser createUser)
         {
-            var users = _userService.GetAll()
-                .Where(x => x.Documento == createUser.Document || x.Correo == createUser.Email);
+            var users = await _userDataAccess.GetAllAsync();
+            var result = users.Where(x => x.Document == createUser.Document || x.Email == createUser.Email);
             return users.Any();
         }
     }

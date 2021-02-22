@@ -1,8 +1,7 @@
-﻿using Admin.Interfaces;
+﻿using Access.Contract.Request;
+using Admin.Interfaces;
 using AutoMapper;
-using Contract.Sizes;
-using Contract.Users;
-using System;
+using Resources.Contract.Sizes;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,44 +10,47 @@ namespace Manager.Admin.Sizes
     internal class SizeManager : ISizeManager
     {
         private readonly IMapper _mapper;
-        private readonly ISizeService _sizesServices;
-        public SizeManager(IMapper mapper, ISizeService sizesServices)
+        private readonly ISizeDataAccess _sizeDataAccess;
+        public SizeManager(IMapper mapper, ISizeDataAccess sizeDataAccess)
         {
             _mapper = mapper;
-            _sizesServices = sizesServices;
+            _sizeDataAccess = sizeDataAccess;
         }
 
-        public async Task<Size> Create(CreateSize request)
+        public async Task<SizeResponse> Create(CreateSize request)
         {
-            var entity = await _sizesServices.CreateAsync(request);
-            var model = _mapper.Map<Size>(entity);
-            return model;
-        }
-
-        public async Task<bool> Delete(Guid id)
-        {
-            return await _sizesServices.DeleteAsync(id);
-        }
-
-        public IEnumerable<Size> GetAll()
-        {
-            var sizeList = _sizesServices.GetAll();
-            var sizeResponseList = _mapper.Map<IEnumerable<Size>>(sizeList);
-            return sizeResponseList;
-        }
-
-        public Size GetById(Guid id)
-        {
-            var model = _sizesServices.GetById(id);
-            var modelResponse = _mapper.Map<Size>(model);
+            var sizeAccess = _mapper.Map<SizeAccess>(request);
+            var model = await _sizeDataAccess.CreateAsync(sizeAccess);
+            var modelResponse = _mapper.Map<SizeResponse>(model);
             return modelResponse;
         }
 
-        public async Task<Size> UpdateAsync(UpdateSize request)
+        public async Task<IEnumerable<SizeResponse>> GetAll()
         {
-            var model = await _sizesServices.UpdateAsync(request);
-            var response = _mapper.Map<Size>(model);
+            var model = await _sizeDataAccess.GetAllAsync();
+            var response = _mapper.Map<IEnumerable<SizeResponse>>(model);
             return response;
+        }
+
+        public async Task<SizeResponse> GetById(string id)
+        {
+            var model = await _sizeDataAccess.GetByIdAsync(id);
+            var modelResponse = _mapper.Map<SizeResponse>(model);
+            return modelResponse;
+        }
+
+        public async Task<SizeResponse> Update(UpdateSize request)
+        {
+            var requestAccess = _mapper.Map<SizeAccess>(request);
+            var model = await _sizeDataAccess.UpdateAsync(requestAccess);
+            var response = _mapper.Map<SizeResponse>(model);
+            return response;
+        }
+
+        public async Task<SizeResponse> Delete(string id)
+        {
+            var response = await _sizeDataAccess.DeleteAsync(id);
+            return _mapper.Map<SizeResponse>(response);
         }
     }
 }

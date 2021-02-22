@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using Contract.Authentication;
-using Contract.Users;
 using GeJu.Sql.Entities;
 using System;
 

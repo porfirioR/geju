@@ -1,6 +1,6 @@
-﻿namespace Resources.Contract.Authentication
+﻿namespace Access.Contract.Response
 {
-    public class UserAuth
+    public class AuthResponse
     {
         public string UserName { get; set; }
         public string Token { get; set; }

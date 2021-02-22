@@ -7,10 +7,10 @@ namespace Admin
     {
         public static void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IBrandService, BrandService>();
-            services.AddTransient<ISizeService, SizeService>();
-            services.AddScoped<ITokenService, TokenService>();
+            services.AddTransient<IUserDataAccess, UserDataAccess>();
+            services.AddTransient<IBrandDataAccess, BrandDataAccess>();
+            services.AddTransient<ISizeDataAccess, SizeDataAccess>();
+            services.AddScoped<IAuthDataAccess, AuthDataAccess>();
         }
     }
 }

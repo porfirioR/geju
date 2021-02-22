@@ -1,6 +1,6 @@
-﻿namespace Contract.Brands
+﻿namespace Resources.Contract.Brands
 {
-    public class Brand
+    public class BrandResponse
     {
         public string Id { get; set; }
         public string Description { get; set; }

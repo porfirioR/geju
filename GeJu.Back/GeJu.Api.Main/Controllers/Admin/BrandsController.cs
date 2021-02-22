@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using Contract.Brands;
 using GeJu.Api.Main.Models.Brands;
 using Microsoft.AspNetCore.Mvc;
+using Resources.Contract.Brands;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Controllers.Admin
@@ -18,42 +19,45 @@ namespace GeJu.Api.Main.Controllers.Admin
             _brandManager = brandManager;
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var brands = _brandManager.GetAll();
-            return Ok(brands);
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult GetBrand(string id)
-        {
-            var brand = _brandManager.GetById(id);
-            return Ok(brand);
-        }
-
         [HttpPost]
-        public async Task<ActionResult<BrandApi>> CreateBrand(CreateBrandApiRequest brandDTO)
+        public async Task<ActionResult<BrandApi>> Create(CreateBrandApiRequest request)
         {
-            var model = _mapper.Map<CreateBrand>(brandDTO);
+            var model = _mapper.Map<CreateBrand>(request);
             var response = await _brandManager.Create(model);
             var modelApi = _mapper.Map<BrandApi>(response);
             return Ok(modelApi);
         }
 
         [HttpPut]
-        public async Task<ActionResult<BrandApi>> UpdateBrand(UpdateBrandApiRequest brandDTO)
+        public async Task<ActionResult<BrandApi>> Update(UpdateBrandApiRequest request)
         {
-            var model = _mapper.Map<UpdateBrand>(brandDTO);
+            var model = _mapper.Map<UpdateBrand>(request);
             var response = await _brandManager.Update(model);
             var modelApi = _mapper.Map<BrandApi>(response);
             return Ok(modelApi);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<bool>> Delete(string id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BrandApi>> GetById(string id)
         {
-            return Ok(await _brandManager.Delete(id));
+            var brand = await _brandManager.GetById(id);
+            var brandApi = _mapper.Map<BrandApi>(brand);
+            return Ok(brandApi);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<BrandApi>>> GetAll()
+        {
+            var brands = await _brandManager.GetAll();
+            var response = _mapper.Map<IEnumerable<BrandApi>>(brands);
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<BrandApi>> Delete(string id)
+        {
+            var brand = await _brandManager.Delete(id);
+            return Ok(_mapper.Map<BrandApi>(brand));
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Contract.Sizes;
 using GeJu.Sql.Entities;
 
 namespace GeJu.Services.Admin.Mapper

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Contract.Brands
+namespace Resources.Contract.Brands
 {
     public interface IBrandManager
     {
-        Task<Brand> Create(CreateBrand userDTO);
-        Task<Brand> Update(UpdateBrand userDTO);
-        Brand GetById(string id);
-        IEnumerable<Brand> GetAll();
-        Task<bool> Delete(string id);
+        Task<BrandResponse> Create(CreateBrand userDTO);
+        Task<BrandResponse> Update(UpdateBrand userDTO);
+        Task<BrandResponse> GetById(string id);
+        Task<IEnumerable<BrandResponse>> GetAll();
+        Task<BrandResponse> Delete(string id);
     }
 }

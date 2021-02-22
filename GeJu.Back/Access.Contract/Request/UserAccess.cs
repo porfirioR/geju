@@ -1,10 +1,11 @@
 ﻿using GeJu.Utilities.Enums;
 using System;
 
-namespace Resources.Contract.Users
+namespace Access.Contract.Request
 {
-    public class CreateUser
+    public class UserAccess
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

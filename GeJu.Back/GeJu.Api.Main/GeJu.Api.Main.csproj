@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Commands\Contract.csproj" />
+    <ProjectReference Include="..\Commands\Resources.Contract.csproj" />
     <ProjectReference Include="..\DAL\Manager.Admin.csproj" />
     <ProjectReference Include="..\GeJu.Common\GeJu.Utilities.csproj" />
     <ProjectReference Include="..\GeJu.Storage.Sql\Sql.csproj" />

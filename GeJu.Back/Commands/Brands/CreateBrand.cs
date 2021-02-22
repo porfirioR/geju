@@ -1,4 +1,4 @@
-﻿namespace Contract.Brands
+﻿namespace Resources.Contract.Brands
 {
     public class CreateBrand
     {

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Commands\Contract.csproj" />
+    <ProjectReference Include="..\Commands\Resources.Contract.csproj" />
     <ProjectReference Include="..\GeJu.Common\GeJu.Utilities.csproj" />
     <ProjectReference Include="..\GeJu.Services.Admin\Admin.csproj" />
   </ItemGroup>

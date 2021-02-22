@@ -1,9 +1,9 @@
 ﻿using GeJu.Utilities.Enums;
 using System;
 
-namespace Contract.Users
+namespace Resources.Contract.Users
 {
-    public class User
+    public class UserResponse
     {
         public string Id { get; set; }
         public string Name { get; set; }

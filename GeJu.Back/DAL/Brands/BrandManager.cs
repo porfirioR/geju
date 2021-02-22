@@ -1,6 +1,7 @@
-﻿using Admin.Interfaces;
+﻿using Access.Contract.Request;
+using Admin.Interfaces;
 using AutoMapper;
-using Contract.Brands;
+using Resources.Contract.Brands;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,44 +10,47 @@ namespace Manager.Admin.Brands
     internal class BrandManager : IBrandManager
     {
         private readonly IMapper _mapper;
-        private readonly IBrandService _brandsServices;
-        public BrandManager(IMapper mapper, IBrandService BrandsServices)
+        private readonly IBrandDataAccess _brandDataAccess;
+        public BrandManager(IMapper mapper, IBrandDataAccess brandDataAccess)
         {
-            _brandsServices = BrandsServices;
+            _brandDataAccess = brandDataAccess;
             _mapper = mapper;
         }
 
-        public async Task<Brand> Create(CreateBrand request)
+        public async Task<BrandResponse> Create(CreateBrand request)
         {
-            var entity = await _brandsServices.CreateAsync(request);
-            var model = _mapper.Map<Brand>(entity);
+            var requestDataAccess = _mapper.Map<BrandAccess>(request);
+            var entity = await _brandDataAccess.CreateAsync(requestDataAccess);
+            var model = _mapper.Map<BrandResponse>(entity);
             return model;
         }
 
-        public async Task<Brand> Update(UpdateBrand request)
+        public async Task<BrandResponse> Update(UpdateBrand request)
         {
-            var entity = await _brandsServices.UpdateAsync(request);
-            var brandApi = _mapper.Map<Brand>(entity);
-            return brandApi;
+            var requestDataAccess = _mapper.Map<BrandAccess>(request);
+            var entity = await _brandDataAccess.UpdateAsync(requestDataAccess);
+            var brandResponse = _mapper.Map<BrandResponse>(entity);
+            return brandResponse;
         }
 
-        public Brand GetById(string id)
+        public async Task<BrandResponse> GetById(string id)
         {
-            var brand = _brandsServices.GetById(id);
-            var brandApi = _mapper.Map<Brand>(brand);
-            return brandApi;
+            var brand = await _brandDataAccess.GetByIdAsync(id);
+            var brandResponse = _mapper.Map<BrandResponse>(brand);
+            return brandResponse;
         }
         
-        public IEnumerable<Brand> GetAll()
+        public async Task<IEnumerable<BrandResponse>> GetAll()
         {
-            var brands = _brandsServices.GetAll();
-            var brandApi = _mapper.Map<IEnumerable<Brand>>(brands);
-            return brandApi;
+            var brands = await _brandDataAccess.GetAllAsync();
+            var brandsResponse = _mapper.Map<IEnumerable<BrandResponse>>(brands);
+            return brandsResponse;
         }
         
-        public async Task<bool> Delete(string id)
+        public async Task<BrandResponse> Delete(string id)
         {
-            return await _brandsServices.DeleteAsync(id);
+            var response = await _brandDataAccess.DeleteAsync(id);
+            return _mapper.Map<BrandResponse>(response);
         }
     }
 }

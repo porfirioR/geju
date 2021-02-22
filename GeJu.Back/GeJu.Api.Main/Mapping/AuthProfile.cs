@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GeJu.Api.Main.Models.Authentication;
 using Contract.Authentication;
+using Resources.Contract.Authentication;
 
 namespace GeJu.Api.Main.Mapping
 {
