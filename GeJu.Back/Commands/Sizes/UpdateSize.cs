@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace Resources.Contract.Sizes
+﻿namespace Resources.Contract.Sizes
 {
     public class UpdateSize : CreateSize
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

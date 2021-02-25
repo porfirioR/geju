@@ -12,6 +12,6 @@ namespace Resources.Contract.Users
         Task<UserResponse> GetById(string id);
         Task<UserResponse> Delete(string id);
         Task<UserAuth> Register(CreateUser createUser);
-        Task<UserAuth> LoginAsync(Login login);
+        Task<UserAuth> Login(Login login);
     }
 }

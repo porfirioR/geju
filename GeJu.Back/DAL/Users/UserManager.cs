@@ -71,7 +71,7 @@ namespace Manager.Admin.Users
             return userApi;
         }
 
-        public async Task<UserAuth> LoginAsync(Login login)
+        public async Task<UserAuth> Login(Login login)
         {
             var loginAccess = _mapper.Map<LoginAccess>(login);
             var auth = await _tokenDataAccess.Login(loginAccess);

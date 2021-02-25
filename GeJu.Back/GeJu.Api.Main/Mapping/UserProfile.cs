@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Contract.Users;
 using GeJu.Api.Main.Models.Users;
+using Resources.Contract.Users;
 
 namespace GeJu.Api.Main.Mapping
 {
@@ -11,7 +11,7 @@ namespace GeJu.Api.Main.Mapping
             CreateMap<CreateUserApiRequest, CreateUser>();
             CreateMap<UpdateUserApiRequest, UpdateUser>();
             
-            CreateMap<User, UserApi>();
+            CreateMap<UserResponse, UserApi>();
         }
     }
 }

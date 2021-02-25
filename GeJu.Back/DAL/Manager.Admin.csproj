@@ -10,8 +10,4 @@
     <ProjectReference Include="..\GeJu.Services.Admin\Admin.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Mapping\" />
-  </ItemGroup>
-
 </Project>

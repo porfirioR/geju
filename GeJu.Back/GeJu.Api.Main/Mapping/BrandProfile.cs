@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GeJu.Api.Main.Models.Brands;
-using Contract.Brands;
+using Resources.Contract.Brands;
 
 namespace GeJu.Api.Main.Mapping
 {
@@ -12,7 +12,7 @@ namespace GeJu.Api.Main.Mapping
             
             CreateMap<UpdateBrandApiRequest, UpdateBrand>();
 
-            CreateMap<Brand, BrandApi>();
+            CreateMap<BrandResponse, BrandApi>();
         }
     }
 }

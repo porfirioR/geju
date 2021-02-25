@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Access.Contract.Request;
+using AutoMapper;
 using GeJu.Sql.Entities;
 using Resources.Contract.Brands;
 using System;
@@ -9,9 +10,9 @@ namespace GeJu.Services.Admin.Mapper
     {
         public BrandProfile()
         {
-            CreateMap<CreateBrand, Marca>()
+            CreateMap<BrandAccess, Marca>()
                 .ForMember(dest => dest.Activo,
-                    opt => opt.MapFrom(src => true))
+                    opt => opt.MapFrom(src => src.Active))
                 .ForMember(dest => dest.Descripcion,
                     opt => opt.MapFrom(src => src.Description))
                 .ForMember(dest => dest.Nombre,

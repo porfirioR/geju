@@ -1,9 +1,10 @@
-﻿using Contract.Brands;
-using Contract.Users;
-using Manager.Admin.Brands;
+﻿using Manager.Admin.Brands;
 using Manager.Admin.Sizes;
 using Manager.Admin.Users;
 using Microsoft.Extensions.DependencyInjection;
+using Resources.Contract.Brands;
+using Resources.Contract.Sizes;
+using Resources.Contract.Users;
 
 namespace Manager.Admin
 {

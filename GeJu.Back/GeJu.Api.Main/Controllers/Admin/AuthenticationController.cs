@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Contract.Authentication;
-using Contract.Users;
 using GeJu.Api.Main.Models.Authentication;
 using GeJu.Api.Main.Models.Users;
 using Microsoft.AspNetCore.Mvc;
+using Resources.Contract.Authentication;
+using Resources.Contract.Users;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

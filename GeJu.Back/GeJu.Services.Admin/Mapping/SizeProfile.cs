@@ -1,5 +1,7 @@
-﻿using AutoMapper;
+﻿using Access.Contract.Request;
+using AutoMapper;
 using GeJu.Sql.Entities;
+using Resources.Contract.Sizes;
 
 namespace GeJu.Services.Admin.Mapper
 {
@@ -7,7 +9,7 @@ namespace GeJu.Services.Admin.Mapper
     {
         public SizeProfile()
         {
-            CreateMap<CreateSize, Tamaño>()
+            CreateMap<SizeAccess, Tamaño>()
                 .ForMember(dest => dest.Activo,
                     opt => opt.MapFrom(src => true))
                 .ForMember(dest => dest.Descripcion,
@@ -15,13 +17,9 @@ namespace GeJu.Services.Admin.Mapper
                 .ForMember(dest => dest.Codigo,
                     opt => opt.MapFrom(src => src.Code));
 
-            //CreateMap<CreateSizeDTO, CreateSize>();
-
-            //CreateMap<UpdateSizeDTO, UpdateSize>()
-            //    .ForMember(dest => dest.Id,
-            //        opt => opt.MapFrom(src => new Guid(src.Id)));
-
-            CreateMap<Tamaño, Size>()
+            CreateMap<Tamaño, SizeResponse>()
+                .ForMember(dest => dest.Id,
+                    opt => opt.MapFrom(src => src.Id.ToString()))
                 .ForMember(dest => dest.Code,
                     opt => opt.MapFrom(src => src.Codigo))
                 .ForMember(dest => dest.Description,
