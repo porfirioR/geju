@@ -9,6 +9,7 @@ namespace GeJu.Api.Main.Mapping
         public UserProfile()
         {
             CreateMap<CreateUserApiRequest, CreateUser>();
+
             CreateMap<UpdateUserApiRequest, UpdateUser>();
             
             CreateMap<UserResponse, UserApi>();

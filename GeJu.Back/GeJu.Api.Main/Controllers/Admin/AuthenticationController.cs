@@ -14,18 +14,18 @@ namespace GeJu.Api.Main.Controllers.Admin
     public class AuthenticationController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IUserManager _userDAL;
+        private readonly IUserManager _userManager;
         public AuthenticationController(IMapper mapper, IUserManager userDAL)
         {
             _mapper = mapper;
-            _userDAL = userDAL;
+            _userManager = userDAL;
         }
 
         [HttpPost("register")]
         public async Task<ActionResult<UserAuthApi>> Register([FromBody] CreateUserApiRequest request)
         {
             var registerUser = _mapper.Map<CreateUser>(request);
-            var model = await _userDAL.Register(registerUser);
+            var model = await _userManager.Register(registerUser);
             var modelApi = _mapper.Map<UserAuthApi>(model);
             return modelApi;
         }
@@ -34,7 +34,7 @@ namespace GeJu.Api.Main.Controllers.Admin
         public ActionResult<UserAuthApi> Login([FromBody] LoginApiRequest loginRequest)
         {
             var login = _mapper.Map<Login>(loginRequest);
-            var model = _userDAL.Login(login);
+            var model = _userManager.Login(login);
             if (model is null)
             {
                 new KeyNotFoundException("Correo o contraseña es incorrecto");

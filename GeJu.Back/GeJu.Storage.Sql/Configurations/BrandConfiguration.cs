@@ -9,15 +9,19 @@ namespace GeJu.Sql.Configurations
         public void Configure(EntityTypeBuilder<Marca> builder)
         {
             builder.HasKey(u => u.Id);
+
             builder
                 .Property(d => d.FechaCreado)
                 .HasDefaultValueSql("GetUtcDate()");
+
             builder
                 .Property(d => d.FechaModificado)
                 .HasDefaultValueSql("GetUtcDate()");
+
             builder
                 .Property(m => m.Descripcion)
                 .HasMaxLength(100);
+
             builder
                 .Property(m => m.Nombre)
                 .HasMaxLength(25)

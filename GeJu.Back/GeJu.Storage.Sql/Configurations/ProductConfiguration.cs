@@ -61,10 +61,13 @@ namespace GeJu.Storage.Sql.Configurations
             builder.HasOne(pc => pc.Producto)
                 .WithMany(p => p.ProductoTamaños)
                 .HasForeignKey(pc => pc.ProductoId);
+
             builder.HasOne(ps => ps.Tamaño)
                 .WithMany(c => c.ProductoTamaños)
                 .HasForeignKey(pc => pc.TamañoId);
+
             builder.HasKey(pc => new { pc.ProductoId, pc.TamañoId });
+
             builder.Property(pt => pt.Cantidad).HasDefaultValue(0);
         }
     }

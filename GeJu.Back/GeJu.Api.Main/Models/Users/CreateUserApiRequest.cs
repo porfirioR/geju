@@ -1,10 +1,11 @@
 ﻿using GeJu.Utilities.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GeJu.Api.Main.Models.Users
 {
-    public class CreateUserApiRequest
+    public class CreateUserApiRequest : IValidatableObject
     {
         [Required]
         public string Name { get; set; }
@@ -19,5 +20,15 @@ namespace GeJu.Api.Main.Models.Users
         [Required]
         public DateTime Birthdate { get; set; }
         public string Password { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var results = new List<ValidationResult>();
+            if (!Enum.IsDefined(typeof(CountryType), Country))
+            {
+                results.Add(new ValidationResult($"Pais {Country} es invalido."));
+            }
+            return results;
+        }
     }
 }
