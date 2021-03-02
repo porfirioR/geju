@@ -3,7 +3,7 @@ using AutoMapper;
 using GeJu.Sql.Entities;
 using Resources.Contract.Sizes;
 
-namespace GeJu.Services.Admin.Mapper
+namespace Admin.Mapping
 {
     public class SizeProfile : Profile
     {

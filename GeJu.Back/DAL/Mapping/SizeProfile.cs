@@ -4,7 +4,7 @@ using Resources.Contract.Sizes;
 
 namespace Manager.Admin.Mapping
 {
-    public class SizeProfile: Profile
+    public class SizeProfile : Profile
     {
         public SizeProfile()
         {

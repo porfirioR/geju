@@ -6,8 +6,6 @@ using Resources.Contract.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Manager.Admin.Users
@@ -16,13 +14,13 @@ namespace Manager.Admin.Users
     {
         private readonly IMapper _mapper;
         private readonly IUserDataAccess _userDataAccess;
-        private readonly IAuthDataAccess _tokenDataAccess;
+        private readonly IAuthDataAccess _authDataAccess;
 
-        public UserManager(IUserDataAccess userDataAccess, IMapper mapper, IAuthDataAccess tokenDataAccess)
+        public UserManager(IMapper mapper, IUserDataAccess userDataAccess, IAuthDataAccess authDataAccess)
         {
-            _userDataAccess = userDataAccess;
             _mapper = mapper;
-            _tokenDataAccess = tokenDataAccess;
+            _userDataAccess = userDataAccess;
+            _authDataAccess = authDataAccess;
         }
 
         public async Task<UserResponse> Create(CreateUser request)
@@ -67,14 +65,14 @@ namespace Manager.Admin.Users
             var requestAccess = _mapper.Map<UserAccess>(request);
             var user = await _userDataAccess.RegisterAsync(requestAccess);
             var userApi = _mapper.Map<UserAuth>(user);
-            userApi.Token = _tokenDataAccess.CreateToken(requestAccess);
+            userApi.Token = _authDataAccess.CreateToken(requestAccess.Name);
             return userApi;
         }
 
         public async Task<UserAuth> Login(Login login)
         {
             var loginAccess = _mapper.Map<LoginAccess>(login);
-            var auth = await _tokenDataAccess.Login(loginAccess);
+            var auth = await _authDataAccess.Login(loginAccess);
             var userApi = _mapper.Map<UserAuth>(auth);
             return userApi;
         }

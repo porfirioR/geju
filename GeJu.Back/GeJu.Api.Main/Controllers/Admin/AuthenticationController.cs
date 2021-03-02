@@ -31,14 +31,10 @@ namespace GeJu.Api.Main.Controllers.Admin
         }
 
         [HttpPost("login")]
-        public ActionResult<UserAuthApi> Login([FromBody] LoginApiRequest loginRequest)
+        public async Task<ActionResult<UserAuthApi>> Login([FromBody] LoginApiRequest loginRequest)
         {
             var login = _mapper.Map<Login>(loginRequest);
-            var model = _userManager.Login(login);
-            if (model is null)
-            {
-                new KeyNotFoundException("Correo o contraseña es incorrecto");
-            }
+            var model = await _userManager.Login(login);
             var modelApi = _mapper.Map<UserAuthApi>(model);
             return Ok(modelApi);
         }

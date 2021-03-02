@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GeJu.Api.Main.Models.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Resources.Contract.Users;
 using System.Collections.Generic;
@@ -37,6 +38,7 @@ namespace GeJu.Api.Main.Controllers.Admin
             return Ok(modelApi);
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult<IEnumerable<UserApi>> GetAll()
         {
@@ -45,6 +47,7 @@ namespace GeJu.Api.Main.Controllers.Admin
             return Ok(modelApi);
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public ActionResult<UserApi> GetById(string id)
         {

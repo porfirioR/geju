@@ -4,7 +4,7 @@ using GeJu.Sql.Entities;
 using Resources.Contract.Brands;
 using System;
 
-namespace GeJu.Services.Admin.Mapper
+namespace Admin.Mapping
 {
     public class BrandProfile : Profile
     {

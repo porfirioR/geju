@@ -6,7 +6,7 @@ namespace Admin.Interfaces
 {
     public interface IAuthDataAccess
     {
-        string CreateToken(UserAccess model);
+        string CreateToken(string name);
         Task<AuthResponse> Login(LoginAccess loginAccess);
     }
 }

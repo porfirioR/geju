@@ -10,7 +10,6 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -31,11 +30,11 @@ namespace Admin
             _context = context;
         }
 
-        public string CreateToken(UserAccess model)
+        public string CreateToken(string name)
         {
             var claims = new List<Claim>()
             {
-                new Claim(JwtRegisteredClaimNames.NameId, model.Name)
+                new Claim(JwtRegisteredClaimNames.NameId, name)
             };
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -53,10 +52,10 @@ namespace Admin
 
         public async Task<AuthResponse> Login(LoginAccess loginAccess)
         {
-            var user = await _context.Usuarios.Where(x => x.Correo == loginAccess.Email).FirstOrDefaultAsync();
+            var user = await _context.Usuarios.FirstAsync(x => x.Correo == loginAccess.Email);
             if (user is null)
             {
-                return null;
+                new KeyNotFoundException("Correo o contraseña es incorrecto");
             }
 
             using var hmac = new HMACSHA512(user.ContraseñaSalt);
@@ -66,13 +65,11 @@ namespace Admin
             {
                 if (computedHash[i] != user.ContraseñaHash[i])
                 {
-                    return null;
+                    new KeyNotFoundException("Correo o contraseña es incorrecto");
                 }
             }
-            var userAccess = _mapper.Map<UserAccess>(user);
-            var token = CreateToken(_mapper.Map<UserAccess>(user));
-            var userResponse = _mapper.Map<AuthResponse>(user);
-            userResponse.Token = token;
+            var token = CreateToken(user.Nombre);
+            var userResponse = new AuthResponse { Name = user.Nombre, Token = token };
             return userResponse;
         }
     }

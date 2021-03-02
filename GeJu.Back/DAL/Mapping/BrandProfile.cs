@@ -4,7 +4,7 @@ using Resources.Contract.Brands;
 
 namespace Manager.Admin.Mapping
 {
-    public class BrandProfile: Profile
+    public class BrandProfile : Profile
     {
         public BrandProfile()
         {
