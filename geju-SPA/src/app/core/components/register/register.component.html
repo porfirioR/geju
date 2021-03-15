@@ -1,0 +1,109 @@
+<mat-toolbar>
+  <span>Geju Autenticación</span>
+</mat-toolbar>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="col-1">Registrar</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <mat-error *ngIf="registerInvalid">
+        Error al intentar registrar usuario.
+      </mat-error>
+      <mat-grid-list cols="2" rowHeight="100px">
+        <mat-grid-tile>
+          <mat-form-field rows:1 cols:1 rowHeight="100px">
+            <mat-label>Nombre</mat-label>
+            <input matInput #name maxlength="256" placeholder="Nombre" formControlName="name">
+            <mat-hint align="end">{{name.value.length}} / 256</mat-hint>
+            <mat-error>
+              Porfavor ingrese un nombre válido.
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field rows:1 cols:2 rowHeight="100px">
+            <mat-label>Apellido</mat-label>
+            <input matInput #lastname maxlength="256" placeholder="Apellido" formControlName="lastName">
+            <mat-hint align="end">{{lastname.value.length}} / 256</mat-hint>
+            <mat-error>
+              Porfavor ingrese un apellido válido.
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile rows:2 cols:1>
+          <mat-form-field rows:2 cols:1 rowHeight="100px">
+            <mat-label>Correo</mat-label>
+            <input matInput maxlength="100" placeholder="xxx@xxx.com" formControlName="email">
+            <mat-error>
+              Porfavor ingrese un correo válido.
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile rows:2 cols:2>
+          <mat-form-field rows:2 cols:2 rowHeight="100px">
+            <mat-label>País</mat-label>
+              <mat-select multiple="false" formControlName="country">
+                <mat-option disabled>Seleccione una opción</mat-option>
+                <mat-option value="1">Paraguay</mat-option>
+                <mat-option value="2">Argentina</mat-option>
+              </mat-select>
+              <mat-error>
+                Porfavor ingrese un país.
+              </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile rows:3 cols:1>
+          <mat-form-field rows:2 cols:1 rowHeight="100px">
+            <mat-label>Documento</mat-label>
+            <input matInput #document maxlength="256" placeholder="Documento" formControlName="document">
+            <mat-error>
+              Porfavor ingrese un documento válido.
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile rows:3 cols:2 rowHeight="100px">
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha Nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birthdate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field rows:4 cols:1 rowHeight="100px">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" #password maxlength="16" placeholder="Contraseña" formControlName="password">
+            <mat-hint align="end">{{password.value.length}} / 16</mat-hint>
+            <mat-error *ngIf="registerForm.get('password').hasError('required')">
+              Contraseña es <strong>requerida</strong>.
+            </mat-error>
+            <mat-error *ngIf="registerForm.get('password').hasError('minlength')">
+              Contraseña debe tener como minimo 4 valores.
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field rows:4 cols:2 rowHeight="100px">
+            <mat-label>Confirmar Contraseña</mat-label>
+            <input matInput type="password" #confirmPassword maxlength="16" placeholder="Confirmar Contraseña" formControlName="confirmPassword">
+            <mat-hint align="end">{{confirmPassword.value.length}} / 16</mat-hint>
+            <mat-error *ngIf="registerForm.get('confirmPassword').hasError('minlength')">
+              Contraseña debe tener como minimo 4 valores.
+            </mat-error>
+            <mat-error *ngIf="registerForm.errors?.mismatch">
+              Contraseñas no coinciden.
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-card-footer>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" [disabled]="registerForm.invalid">Registrar</button>
+          <button mat-raised-button color="primary" (click)="close()">Cancelar</button>
+        </mat-card-actions>
+      </mat-card-footer>
+    </form>
+  </mat-card-content>
+</mat-card>

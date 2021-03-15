@@ -1,53 +1,65 @@
-﻿using DAL.Interfaces;
-using GeJu.Common.DTO.Brands;
+﻿using AutoMapper;
+using GeJu.Api.Main.Models.Brands;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Resources.Contract.Brands;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Controllers.Admin
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class BrandsController : ControllerBase
     {
-        private readonly IBrandDAL _brandDAL;
-        public BrandsController(IBrandDAL brandDAL)
+        private readonly IBrandManager _brandManager;
+        private readonly IMapper _mapper;
+        public BrandsController(IMapper mapper, IBrandManager brandManager)
         {
-            _brandDAL = brandDAL;
-        }
-
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var brands = _brandDAL.GetAll();
-            return Ok(brands);
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult GetBrand(string id)
-        {
-            var brand = _brandDAL.GetById(new Guid(id));
-            return Ok(brand);
+            _mapper = mapper;
+            _brandManager = brandManager;
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBrandAsync(CreateBrandDTO brandDTO)
+        public async Task<ActionResult<BrandApi>> Create(CreateBrandApiRequest request)
         {
-            var response = await _brandDAL.CreateAsync(brandDTO);
-            return Ok(response);
+            var model = _mapper.Map<CreateBrand>(request);
+            var response = await _brandManager.Create(model);
+            var modelApi = _mapper.Map<BrandApi>(response);
+            return Ok(modelApi);
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateBrandAsync(UpdateBrandDTO brandDTO)
+        public async Task<ActionResult<BrandApi>> Update(UpdateBrandApiRequest request)
         {
-            var response = await _brandDAL.UpdateAsync(brandDTO);
+            var model = _mapper.Map<UpdateBrand>(request);
+            var response = await _brandManager.Update(model);
+            var modelApi = _mapper.Map<BrandApi>(response);
+            return Ok(modelApi);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BrandApi>> GetById(string id)
+        {
+            var brand = await _brandManager.GetById(id);
+            var brandApi = _mapper.Map<BrandApi>(brand);
+            return Ok(brandApi);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<BrandApi>>> GetAll()
+        {
+            var brands = await _brandManager.GetAll();
+            var response = _mapper.Map<IEnumerable<BrandApi>>(brands);
             return Ok(response);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(string id)
+        public async Task<ActionResult<BrandApi>> Delete(string id)
         {
-            return Ok(await _brandDAL.DeleteAsync(new Guid(id)));
+            var brand = await _brandManager.Delete(id);
+            return Ok(_mapper.Map<BrandApi>(brand));
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿using GeJu.Common.DTO.Brands;
+﻿using GeJu.Api.Main.Models.Brands;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;

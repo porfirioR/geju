@@ -1,0 +1,26 @@
+<mat-toolbar>
+  <span>Geju Autenticación</span>
+</mat-toolbar>
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2>Log In</h2>
+      <mat-error *ngIf="loginInvalid">
+        El correo o la contraseña no son validos.
+      </mat-error>
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="Email" formControlName="email" required>
+        <mat-error>
+          Porfavor ingrese un correo válido.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <input matInput type="password" placeholder="Password" formControlName="password" required>
+        <mat-error>
+          Porfavor ingrese una contraseña válida.
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary">Iniciar</button>
+    </form>
+  </mat-card-content>
+</mat-card>

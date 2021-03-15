@@ -1,11 +1,18 @@
 <mat-card>
-  <mat-card-header class="row">
-    <mat-card-title class="col-1">Productos</mat-card-title>
-    <app-navigation class="col-lg-6" [navigation]="singleton.getAdminPath()" [actualPosition]="'productos'"></app-navigation>
-    <mat-card-actions class="col-auto">
-      <button mat-raised-button color="primary" routerLink="crear">Agregar</button>
-      <button mat-raised-button color="accent" [routerLink]="['modificar', selectedRow ? selectedRow.id: '']" [disabled]="!selectedRow">Modificar</button>
-      <button mat-raised-button color="warn" [disabled]="!selectedRow"(click)="remove()">Eliminar</button>
+  <mat-card-header>
+    <mat-card-title>Productos</mat-card-title>
+    <app-navigation [navigation]="singleton.getAdminPath()" [actualPosition]="'Productos'"></app-navigation>
+    <span class="spacer"></span>
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" routerLink="crear">
+        <mat-icon class="fas fa-plus" inline="true">Agregar</mat-icon>
+      </button>
+      <button mat-stroked-button color="primary" [routerLink]="['modificar', selectedRow ? selectedRow.id: '']" [disabled]="!selectedRow">
+        <mat-icon class="fas fa-edit" inline="true">Modificar</mat-icon>
+      </button>
+      <button mat-stroked-button color="primary" [disabled]="!selectedRow"(click)="remove()">
+        <mat-icon class="fas fa-trash" inline="true">Eliminar</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card-header>
   <mat-divider></mat-divider>

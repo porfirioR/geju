@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace GeJu.AccessServicesModel.Brands
+﻿namespace Resources.Contract.Brands
 {
     public class UpdateBrand : CreateBrand
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

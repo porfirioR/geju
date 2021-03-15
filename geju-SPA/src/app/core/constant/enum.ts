@@ -1,6 +1,6 @@
 export enum Country {
-    Paraguay,
-    Argentina
+    Paraguay = 1,
+    Argentina = 2
 }
 
 export enum Gender {

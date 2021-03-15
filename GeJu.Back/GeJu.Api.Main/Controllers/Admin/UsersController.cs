@@ -1,7 +1,9 @@
-﻿using DAL.Interfaces;
-using GeJu.Common.DTO.Users;
+﻿using AutoMapper;
+using GeJu.Api.Main.Models.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Resources.Contract.Users;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Controllers.Admin
@@ -10,51 +12,54 @@ namespace GeJu.Api.Main.Controllers.Admin
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUserDAL _usersDAL;
-        public UsersController(IUserDAL usersDAL)
+        private readonly IUserManager _userManager;
+        private readonly IMapper _mapper;
+        public UsersController(IUserManager userManager, IMapper mapper)
         {
-            _usersDAL = usersDAL;
-        }
-
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var users = _usersDAL.GetAll();
-            return Ok(users);
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult GetUser(string id)
-        {
-            var user = _usersDAL.GetById(new Guid(id));
-            return Ok(user);
+            _userManager = userManager;
+            _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<ActionResult<UserApi>> CreateUserAsync([FromBody] CreateUserDTO userDTO)
+        public async Task<ActionResult<UserApi>> Create([FromBody] CreateUserApiRequest request)
         {
-            var response = await _usersDAL.CreateAsync(userDTO);
-            return Ok(response);
+            var user = _mapper.Map<CreateUser>(request);
+            var model = await _userManager.Create(user);
+            var modelApi = _mapper.Map<UserApi>(model);
+            return Ok(modelApi);
         }
 
         [HttpPut]
-        public async Task<ActionResult<UserApi>> UpdateUserAsync(UpdateUserDTO userDTO)
+        public async Task<ActionResult<UserApi>> Update(UpdateUserApiRequest userDTO)
         {
-            var response = await _usersDAL.UpdateAsync(userDTO);
-            return Ok(response);
+            var user = _mapper.Map<UpdateUser>(userDTO);
+            var model = await _userManager.Update(user);
+            var modelApi = _mapper.Map<UserApi>(model);
+            return Ok(modelApi);
         }
 
-        //[HttpPatch("id")]
-        //public IActionResult ActiveUser(string id, [FromBody] UpdateUserDTO userDTO)
-        //{
-        //    var response = _usersWorkflow.UpdateAsync(userDTO);
-        //    return Ok(response);
-        //}
+        [Authorize]
+        [HttpGet]
+        public ActionResult<IEnumerable<UserApi>> GetAll()
+        {
+            var model = _userManager.GetAll();
+            var modelApi = _mapper.Map<IEnumerable<UserApi>>(model);
+            return Ok(modelApi);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("{id}")]
+        public ActionResult<UserApi> GetById(string id)
+        {
+            var user = _userManager.GetById(id);
+            var modelApi = _mapper.Map<UserApi>(user);
+            return Ok(modelApi);
+        }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<bool>> DeleteAsync(string id)
+        public async Task<ActionResult<bool>> Delete(string id)
         {
-            return Ok(await _usersDAL.DeleteAsync(new Guid(id)));
+            return Ok(await _userManager.Delete(id));
         }
     }
 }

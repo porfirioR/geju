@@ -1,4 +1,4 @@
-﻿namespace GeJu.AccessServicesModel.Brands
+﻿namespace Resources.Contract.Brands
 {
     public class CreateBrand
     {

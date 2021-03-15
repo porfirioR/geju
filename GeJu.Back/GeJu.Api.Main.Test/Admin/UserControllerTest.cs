@@ -1,4 +1,4 @@
-﻿using GeJu.Common.DTO.Users;
+﻿using GeJu.Api.Main.Models.Users;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using System.Collections.Generic;

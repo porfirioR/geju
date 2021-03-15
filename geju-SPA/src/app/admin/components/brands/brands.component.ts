@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 import { SingletonService } from '../../../core/services/singleton/singleton.service';
 import { BrandModel } from '../../../core/models/brand-model';
-import { BrandService } from '../../../core/services/brand.service';
+import { BrandService } from '../../services/api/brand.service';
 
 
 @Component({
@@ -61,7 +61,7 @@ export class BrandsComponent implements OnInit {
 
   remove = () => {
     Swal.fire({
-      title: 'Estas seguro que desea eliminar el usuario',
+      title: 'Estas seguro que desea eliminar la marca',
       text: 'Estos cambios es permanente',
       icon: 'warning',
       showCancelButton: true,
@@ -70,12 +70,13 @@ export class BrandsComponent implements OnInit {
       }).then(result => {
       if (result.isConfirmed) {
         this.brandService.delete(this.selectedRow.id).subscribe(response => {
-          Swal.fire('Exito', 'Usuario borrado con exito', 'success');
+          Swal.fire('Exito', 'Marca borrada con éxito', 'success');
           this.getAll();
         }, err => {
-          Swal.fire('Error', 'Error al borrar usuario', 'error');
+          Swal.fire('Error', 'Error al borrar la marca', 'error');
         });
       }
     });
   }
+
 }

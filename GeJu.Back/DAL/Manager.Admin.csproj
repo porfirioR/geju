@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Commands\Resources.Contract.csproj" />
+    <ProjectReference Include="..\GeJu.Common\GeJu.Utilities.csproj" />
+    <ProjectReference Include="..\GeJu.Services.Admin\Admin.csproj" />
+  </ItemGroup>
+
+</Project>

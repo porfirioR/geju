@@ -1,15 +1,15 @@
-﻿using GeJu.Common.DTO.Brands;
+﻿using GeJu.Api.Main.Models.Brands;
 
 namespace GeJu.Api.Main.Test.Brand
 {
     internal static class Mother
     {
-        public static CreateBrandDTO NewBrand => new CreateBrandDTO
+        public static CreateBrandApiRequest NewBrand => new CreateBrandApiRequest
         {
             Description = "Test",
             Name = "test"
         };
-        public static UpdateBrandDTO UpdateBrand => new UpdateBrandDTO
+        public static UpdateBrandApiRequest UpdateBrand => new UpdateBrandApiRequest
         {
             Description = "Test2",
             Name = "test"

@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-header class="row">
+    <mat-card-title class="col-2">Tamaños</mat-card-title>
+    <app-navigation class="col-lg-6" [navigation]="singleton.getAdminPath()" [actualPosition]="'Tamaños'"></app-navigation>
+    <mat-card-actions class="col-auto">
+      <button mat-stroked-button color="primary" routerLink="crear">
+        <mat-icon class="fas fa-plus" inline="true">Agregar</mat-icon>
+      </button>
+      <button mat-stroked-button color="primary" [routerLink]="['modificar', selectedRow ? selectedRow.id: '']" [disabled]="!selectedRow">
+        <mat-icon class="fas fa-edit" inline="true">Modificar</mat-icon>
+      </button>
+      <button mat-stroked-button color="primary" [disabled]="!selectedRow"(click)="remove()">
+        <mat-icon class="fas fa-trash" inline="true">Eliminar</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <ag-grid-angular style="width: 100%; height: 755px; min-height: 500px" class="ag-theme-alpine"
+      [rowData]="rowData" [columnDefs]="columnDefs" [columnTypes]="columnTypes" [pagination]="true"
+      [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged()" (gridReady)="onGridReady($event)"
+      [enableCellChangeFlash]="true" [getRowNodeId]="getRowNodeId">
+    </ag-grid-angular>
+  </mat-card-content>
+</mat-card>
