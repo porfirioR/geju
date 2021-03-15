@@ -101,6 +101,11 @@ a:hover {
 .mat-card-footer > .mat-card-actions {
   text-align: center;
 }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
 /* 
 .mat-raised-button.mat-accent {
   background-color: $primaryColor;

@@ -2,9 +2,11 @@ using GeJu.Sql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Converters;
 
 namespace GeJu.Api.Main
 {
@@ -19,14 +21,17 @@ namespace GeJu.Api.Main
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.Converters.Add(new StringEnumConverter());
+            }); ;
 
             services.AddCors(options =>
             {
                 options.AddPolicy(name: "MyAllowSpecificOrigins",
                                   builder =>
                                   {
-                                      builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200");
+                                      builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200");
                                   });
             });
 

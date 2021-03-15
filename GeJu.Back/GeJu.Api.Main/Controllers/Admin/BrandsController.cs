@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GeJu.Api.Main.Models.Brands;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Resources.Contract.Brands;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Controllers.Admin
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class BrandsController : ControllerBase

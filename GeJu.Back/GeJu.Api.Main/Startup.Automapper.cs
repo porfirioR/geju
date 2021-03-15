@@ -9,8 +9,8 @@ namespace GeJu.Api.Main
         {
             services.AddAutoMapper(
                 typeof(UserProfile),
-                typeof(Admin.Mapping.UserProfile),
-                typeof(Manager.Admin.Mapping.UserProfile)
+                typeof(Manager.Admin.Mapping.UserProfile),
+                typeof(Admin.Mapping.UserProfile)
             );
         }
     }

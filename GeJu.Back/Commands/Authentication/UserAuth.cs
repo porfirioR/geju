@@ -1,8 +1,10 @@
-﻿namespace Resources.Contract.Authentication
+﻿using Resources.Contract.Users;
+
+namespace Resources.Contract.Authentication
 {
     public class UserAuth
     {
-        public string Name { get; set; }
+        public UserResponse User { get; set; }
         public string Token { get; set; }
     }
 }

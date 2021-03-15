@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 import { SingletonService } from '../../../core/services/singleton/singleton.service';
 import { BrandModel } from '../../../core/models/brand-model';
-import { BrandService } from '../../../core/services/brand.service';
+import { BrandService } from '../../services/api/brand.service';
 
 
 @Component({

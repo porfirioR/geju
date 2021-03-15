@@ -9,8 +9,6 @@ namespace GeJu.Api.Main.Mapping
         public AuthProfile()
         {
             CreateMap<LoginApiRequest, Login>();
-
-            CreateMap<UserAuth, UserAuthApi>();
         }
     }
 }

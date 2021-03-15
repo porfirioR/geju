@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community';
 import { ColorModel } from 'src/app/core/models/color-model';
-import { ColorService } from 'src/app/core/services/color.service';
+import { ColorService } from 'src/app/admin/services/api/color.service';
 import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
 import Swal from 'sweetalert2';
 

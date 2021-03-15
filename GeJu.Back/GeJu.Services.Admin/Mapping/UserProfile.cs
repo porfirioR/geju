@@ -28,14 +28,6 @@ namespace Admin.Mapping
                 .ForMember(dest => dest.Pais,
                     opt => opt.MapFrom(src => src.Country));
 
-            //CreateMap<UpdateUser, Usuario>()
-            //    .ForMember(dest => dest.Id,
-            //        opt => opt.MapFrom(src => new Guid(src.Id)));
-
-            //CreateMap<Usuario, UserAuth>()
-            //    .ForMember(dest => dest.UserName,
-            //        opt => opt.MapFrom(src => src.Nombre));
-
             CreateMap<Usuario, UserAccessResponse>()
                 .ForMember(dest => dest.Id,
                     opt => opt.MapFrom(src => src.Id.ToString()))
@@ -53,6 +45,9 @@ namespace Admin.Mapping
                     opt => opt.MapFrom(src => src.UltimoInicio))
                 .ForMember(dest => dest.Country,
                     opt => opt.MapFrom(src => src.Pais));
+
+            CreateMap<Usuario, AuthResponse>()
+                .ForMember(dest => dest.User, opt => opt.MapFrom(src => src));
         }
     }
 }

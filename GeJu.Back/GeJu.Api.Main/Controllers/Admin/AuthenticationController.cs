@@ -4,6 +4,7 @@ using GeJu.Api.Main.Models.Users;
 using Microsoft.AspNetCore.Mvc;
 using Resources.Contract.Authentication;
 using Resources.Contract.Users;
+using System;
 using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Controllers.Admin
@@ -21,21 +22,26 @@ namespace GeJu.Api.Main.Controllers.Admin
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<UserAuthApi>> Register([FromBody] CreateUserApiRequest request)
+        public async Task<ActionResult<UserAuth>> Register([FromBody] CreateUserApiRequest request)
         {
             var registerUser = _mapper.Map<CreateUser>(request);
             var model = await _userManager.Register(registerUser);
-            var modelApi = _mapper.Map<UserAuthApi>(model);
-            return modelApi;
+            return model;
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserAuthApi>> Login([FromBody] LoginApiRequest loginRequest)
+        public async Task<ActionResult<UserAuth>> Login([FromBody] LoginApiRequest loginRequest)
         {
-            var login = _mapper.Map<Login>(loginRequest);
-            var model = await _userManager.Login(login);
-            var modelApi = _mapper.Map<UserAuthApi>(model);
-            return Ok(modelApi);
+            try
+            {
+                var login = _mapper.Map<Login>(loginRequest);
+                var model = await _userManager.Login(login);
+                return model;
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(ex.Message);
+            }
         }
     }
 }

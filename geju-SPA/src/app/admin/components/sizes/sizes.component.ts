@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community';
 import { SizeModel } from 'src/app/core/models/size-model';
 import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
-import { SizeService } from 'src/app/core/services/size.service';
+import { SizeService } from 'src/app/admin/services/api/size.service';
 import Swal from 'sweetalert2';
 
 @Component({

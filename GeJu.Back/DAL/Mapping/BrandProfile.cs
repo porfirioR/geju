@@ -1,4 +1,5 @@
 ﻿using Access.Contract.Request;
+using Access.Contract.Response;
 using AutoMapper;
 using Resources.Contract.Brands;
 
@@ -13,6 +14,8 @@ namespace Manager.Admin.Mapping
 
             CreateMap<UpdateBrand, BrandAccess>()
                 .ForMember(dest => dest.Active, opt => opt.MapFrom(src => true));
+
+            CreateMap<BrandAccessResponse, BrandResponse>();
         }
     }
 }

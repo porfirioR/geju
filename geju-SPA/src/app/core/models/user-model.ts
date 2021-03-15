@@ -5,9 +5,10 @@ export class UserModel {
     name: string;
     lastName: string;
     email: string;
-    active: boolean;
+    document: string;
+    country: Country;
     birthdate: Date;
     creationDate: Date;
     lastActive: Date;
-    country: Country;
+    active: boolean;
 }

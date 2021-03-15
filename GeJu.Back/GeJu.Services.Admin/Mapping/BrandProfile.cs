@@ -1,4 +1,5 @@
 ﻿using Access.Contract.Request;
+using Access.Contract.Response;
 using AutoMapper;
 using GeJu.Sql.Entities;
 using Resources.Contract.Brands;
@@ -22,7 +23,7 @@ namespace Admin.Mapping
                 .ForMember(dest => dest.FechaModificado,
                     opt => opt.MapFrom(src => DateTime.UtcNow));
 
-            CreateMap<Marca, BrandResponse>()
+            CreateMap<Marca, BrandAccessResponse>()
                 .ForMember(dest => dest.Id,
                     opt => opt.MapFrom(src => src.Id.ToString()))
                 .ForMember(dest => dest.Name,

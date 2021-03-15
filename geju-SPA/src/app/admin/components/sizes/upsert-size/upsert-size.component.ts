@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SizeModel } from 'src/app/core/models/size-model';
 import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
-import { SizeService } from 'src/app/core/services/size.service';
+import { SizeService } from 'src/app/admin/services/api/size.service';
 import Swal from 'sweetalert2';
 
 @Component({

@@ -3,7 +3,6 @@ using Access.Contract.Response;
 using Admin.Interfaces;
 using AutoMapper;
 using GeJu.Sql;
-using GeJu.Sql.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -55,7 +54,7 @@ namespace Admin
             var user = await _context.Usuarios.FirstAsync(x => x.Correo == loginAccess.Email);
             if (user is null)
             {
-                new KeyNotFoundException("Correo o contraseña es incorrecto");
+                throw new KeyNotFoundException("Correo o contraseña es incorrecta");
             }
 
             using var hmac = new HMACSHA512(user.ContraseñaSalt);
@@ -65,11 +64,12 @@ namespace Admin
             {
                 if (computedHash[i] != user.ContraseñaHash[i])
                 {
-                    new KeyNotFoundException("Correo o contraseña es incorrecto");
+                    throw new KeyNotFoundException("Correo o contraseña es incorrecta");
                 }
             }
             var token = CreateToken(user.Nombre);
-            var userResponse = new AuthResponse { Name = user.Nombre, Token = token };
+            var userResponse = _mapper.Map<AuthResponse>(user);
+            userResponse.Token = token;
             return userResponse;
         }
     }

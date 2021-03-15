@@ -1,8 +1,9 @@
 <mat-card>
-  <mat-card-header class="row">
-    <mat-card-title class="col-2">Grupos</mat-card-title>
-    <app-navigation class="col-lg-6" [navigation]="singleton.getAdminPath()" [actualPosition]="'grupos'"></app-navigation>
-    <mat-card-actions class="col-auto">
+  <mat-card-header>
+    <mat-card-title>Grupos</mat-card-title>
+    <app-navigation [navigation]="singleton.getAdminPath()" [actualPosition]="'Grupos'"></app-navigation>
+    <span class="spacer"></span>
+    <mat-card-actions>
       <button mat-stroked-button color="primary" routerLink="crear">
         <mat-icon class="fas fa-plus" inline="true">Agregar</mat-icon>
       </button>

@@ -1,8 +1,9 @@
 <mat-card>
-  <mat-card-header class="row">
-    <mat-card-title class="col-2">Productos</mat-card-title>
-    <app-navigation class="col-lg-6" [navigation]="singleton.getAdminPath()" [actualPosition]="'productos'"></app-navigation>
-    <mat-card-actions class="col-auto">
+  <mat-card-header>
+    <mat-card-title>Productos</mat-card-title>
+    <app-navigation [navigation]="singleton.getAdminPath()" [actualPosition]="'Productos'"></app-navigation>
+    <span class="spacer"></span>
+    <mat-card-actions>
       <button mat-stroked-button color="primary" routerLink="crear">
         <mat-icon class="fas fa-plus" inline="true">Agregar</mat-icon>
       </button>

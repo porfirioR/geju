@@ -16,7 +16,8 @@ namespace Manager.Admin.Mapping
 
             CreateMap<Login, LoginAccess>();
             
-            CreateMap<UserAccessResponse, UserAuth>();
+            CreateMap<UserAccessResponse, UserAuth>()
+                .ForMember(dest => dest.User, opt => opt.MapFrom(src => src));
 
             CreateMap<AuthResponse, UserAuth>();
         }
