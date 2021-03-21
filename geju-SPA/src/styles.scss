@@ -19,9 +19,11 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
 .mat-toolbar {
   background-color: white;
 }
+
 .footer {
   position: absolute;
   bottom: 0px;
@@ -67,28 +69,33 @@ body {
 .mat-raised-button.mat-primary {
   background-color: $primaryColor;
 }
+
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
 /*   background-color: #3f51b5;
  */  background-color: $primaryColor;
 }
+
 .mat-input-element {
   caret-color: $primaryColor;
 }
+
 .mat-form-field.mat-focused .mat-form-field-label {
   color: $primaryColor;
 }
+
 .mat-form-field.mat-focused .mat-form-field-ripple {
   background-color: $primaryColor;
 
 }
+
 .mat-calendar-body-selected {
   background-color: $primaryColor;
   color: white;
 }
+
 .mat-datepicker-toggle-active {
   color: $primaryColor;
 }
-
 
 .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
   color: $primaryColor;
@@ -106,6 +113,17 @@ a:hover {
   flex: 1 1 auto;
 }
 
+.mat-progress-bar-fill::after {
+  background-color: $primaryColor;
+}
+
+button:focus {
+  outline-color: $backgroundColor;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: $primaryColor !important;
+}
 /* 
 .mat-raised-button.mat-accent {
   background-color: $primaryColor;

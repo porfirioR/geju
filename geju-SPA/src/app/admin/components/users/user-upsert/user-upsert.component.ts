@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from 'src/app/core/models/user-model';
-import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
+import { PathService } from 'src/app/core/services/others/path.service';
 import { UserService } from 'src/app/admin/services/api/user.service';
 import swal from 'sweetalert2';
 
@@ -16,10 +16,11 @@ export class UserUpsertComponent implements OnInit {
   user: UserModel;
   userId: string;
   positionName = 'Crear';
+
   constructor(private fb: FormBuilder,
               private readonly router: Router,
               private readonly activatedRoute: ActivatedRoute,
-              public singleton: SingletonService,
+              public singleton: PathService,
               private readonly userService: UserService) { }
 
   ngOnInit(): void {

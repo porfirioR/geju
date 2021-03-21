@@ -1,87 +1,83 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrandModel } from 'src/app/core/models/brand-model';
 import { BrandService } from 'src/app/admin/services/api/brand.service';
-import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
+import { PathService } from 'src/app/core/services/others/path.service';
 import swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-upsert-brand',
   templateUrl: './upsert-brand.component.html',
   styleUrls: ['./upsert-brand.component.css'],
 })
-export class UpsertBrandComponent implements OnInit {
-  brandForm: FormGroup;
-  brand: BrandModel;
-  brandId: string;
-  positionName = 'Crear';
+export class UpsertBrandComponent implements OnInit, OnDestroy {
+  public brandForm: FormGroup;
+  public positionName = 'Crear';
+  public loading = true;
+
+  private brand: BrandModel;
+  private brandId: string;
+  private subscriptions: Subscription[] = [];
 
   constructor(
-    private fb: FormBuilder,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
-    public singleton: SingletonService,
+    public readonly pathService: PathService,
     private readonly brandService: BrandService
   ) {}
 
   ngOnInit(): void {
-    this.createBrandForm();
-    this.activatedRoute.params.subscribe((params) => {
-      this.brandId = params.id;
-      if (this.brandId) {
-        this.brandService.getById(this.brandId).subscribe(
-          (response) => {
-            this.brand = response;
-            this.brandForm.patchValue({ name: this.brand.name });
-            this.brandForm.patchValue({ description: this.brand.description });
-            this.positionName = 'Modificar';
-          },
-          (error) => {
-            swal.fire('Error...', 'Marca no encontrada.', 'error');
-            this.close();
-          }
-        );
-      }
-    });
+    this.initialValues();
   }
 
-  createBrandForm = () => {
-    this.brandForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(25)]],
-      description: ['', [Validators.required, Validators.maxLength(100)]]
-    });
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(x => x.unsubscribe());
   }
 
-  save = () => {
+  public save = (): void => {
+    this.brand = this.valueChanged();
     if (this.brandId) {
-      this.brand = this.valueChanged();
       this.brand.id = this.brandId;
-      this.brandService.update(this.brand).subscribe(
-        (response) => {
-          swal.fire({ icon: 'success', title: 'Marca actualizada con éxito' });
-          this.close();
-        }, (err) => {
-          swal.fire({ icon: 'error', title: 'Error...', text: 'Error al actualizar la marca.' });
-        }
-      );
+      this.subscriptions.push(this.brandService.update(this.brand).subscribe(() => this.close()));
     } else {
-      this.brand = this.valueChanged();
-      this.brandService.create(this.brand).subscribe(
-        (response) => {
-          swal.fire({ icon: 'success', title: 'Marca registrada con éxito' });
-          this.close();
-        },
-        (err) => {
-          swal.fire({ icon: 'error', title: 'Error...', text: 'Error al guardar.' });
-        }
-      );
+      this.subscriptions.push(this.brandService.create(this.brand).subscribe(() => this.close()));
     }
   }
 
-  valueChanged = (): BrandModel => Object.assign( new BrandModel(), this.brandForm.value);
-
-  close = () => {
+  public close = (): void => {
     this.router.navigate(['administracion/marcas']);
   }
+
+  private initialValues = (): void => {
+    this.subscriptions.push(
+      this.activatedRoute.params.subscribe((params) => {
+        this.brandId = params.id;
+        if (this.brandId) {
+          this.brandService.getById(this.brandId).subscribe(
+            (response) => {
+              this.brand = response;
+              this.positionName = 'Modificar';
+              this.loading = false;
+            },
+            () => this.close()
+          );
+        } else {
+          this.valuesForm();
+          this.loading = false;
+        }
+      })
+    );
+  }
+
+  private valuesForm = () => {
+    this.brandForm = new FormGroup({
+      name: new FormControl(this.brand ? this.brand.name : '', [Validators.required, Validators.maxLength(25)]),
+      description: new FormControl(this.brand ? this.brand.description : '', [Validators.required, Validators.maxLength(100)])
+    });
+  }
+
+  private valueChanged = (): BrandModel => Object.assign( new BrandModel(), this.brandForm.value);
+
 }

@@ -4,14 +4,14 @@ import { NavegationModel } from '../../models/navegation-model';
 @Injectable({
   providedIn: 'root'
 })
-export class SingletonService {
+export class PathService {
   private adminPath: Array<NavegationModel> = [
     { name: 'Administración', route: '/administracion' }
   ];
 
   constructor() { }
 
-  getUserPath = (): Array<NavegationModel> =>  {
+  public getUserPath = (): Array<NavegationModel> =>  {
     const user = Object.assign([], this.adminPath );
     const userNav = new NavegationModel();
     userNav.name = 'Usuarios';
@@ -20,7 +20,7 @@ export class SingletonService {
     return user;
   }
 
-  getBrandPath = (): Array<NavegationModel> =>  {
+  public getBrandPath = (): Array<NavegationModel> =>  {
     const user = Object.assign([], this.adminPath );
     const userNav = new NavegationModel();
     userNav.name = 'Marcas';
@@ -29,7 +29,7 @@ export class SingletonService {
     return user;
   }
 
-  getGroupPath = (): Array<NavegationModel> =>  {
+  public getGroupPath = (): Array<NavegationModel> =>  {
     const user = Object.assign([], this.adminPath );
     const userNav = new NavegationModel();
     userNav.name = 'Marcas';
@@ -38,7 +38,7 @@ export class SingletonService {
     return user;
   }
 
-  getSizePath = (): Array<NavegationModel> =>  {
+  public getSizePath = (): Array<NavegationModel> =>  {
     const user = Object.assign([], this.adminPath );
     const userNav = new NavegationModel();
     userNav.name = 'Tamaños';
@@ -47,6 +47,6 @@ export class SingletonService {
     return user;
   }
 
-  getAdminPath = (): Array<NavegationModel> => this.adminPath;
+  public getAdminPath = (): Array<NavegationModel> => this.adminPath;
 
 }

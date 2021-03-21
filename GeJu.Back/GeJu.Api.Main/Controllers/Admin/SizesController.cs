@@ -38,9 +38,9 @@ namespace GeJu.Api.Main.Controllers.Admin
         }
         
         [HttpGet("{id}")]
-        public ActionResult<SizeApi> GetById(string id)
+        public async Task<ActionResult<SizeApi>> GetByIdAsync(string id)
         {
-            var model = _sizeManager.GetById(id);
+            var model = await _sizeManager.GetById(id);
             var modelApi = _mapper.Map<SizeApi>(model);
             return Ok(modelApi);
         }

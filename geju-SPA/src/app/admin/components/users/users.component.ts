@@ -3,7 +3,7 @@ import { GridApi } from 'ag-grid-community/dist/lib/gridApi';
 import Swal from 'sweetalert2';
 
 import { UserModel } from 'src/app/core/models/user-model';
-import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
+import { PathService } from 'src/app/core/services/others/path.service';
 import { UserService } from '../../services/api/user.service';
 
 @Component({
@@ -46,7 +46,7 @@ export class UsersComponent implements OnInit {
       valueGetter(params) { return Number(params.data.year); }, cellRenderer: this.numberFormatter },
     { headerName: 'Formato', field: 'format', sortable: true, filter: true, resizable: true */
 
-  constructor(private readonly userService: UserService, public singleton: SingletonService) { }
+  constructor(private readonly userService: UserService, public singleton: PathService) { }
 
   ngOnInit(): void {
     this.getAll();

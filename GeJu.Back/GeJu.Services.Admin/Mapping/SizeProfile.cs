@@ -1,4 +1,5 @@
 ﻿using Access.Contract.Request;
+using Access.Contract.Response;
 using AutoMapper;
 using GeJu.Sql.Entities;
 using Resources.Contract.Sizes;
@@ -17,7 +18,7 @@ namespace Admin.Mapping
                 .ForMember(dest => dest.Codigo,
                     opt => opt.MapFrom(src => src.Code));
 
-            CreateMap<Tamaño, SizeResponse>()
+            CreateMap<Tamaño, SizeAccessResponse>()
                 .ForMember(dest => dest.Id,
                     opt => opt.MapFrom(src => src.Id.ToString()))
                 .ForMember(dest => dest.Code,

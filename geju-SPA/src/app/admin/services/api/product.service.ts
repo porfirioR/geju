@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, retry } from 'rxjs/operators';
+import { DisplayModalService } from 'src/app/core/services/others/display-modal.service';
 import { environment } from 'src/environments/environment';
 import { ProductModel } from '../../../core/models/product-model';
 
@@ -10,25 +12,59 @@ import { ProductModel } from '../../../core/models/product-model';
 export class ProductService {
   baseUrl = `${environment.apiUrl}productos`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private readonly displayModalService: DisplayModalService) { }
 
-  getAll = (): Observable<ProductModel[]> => {
-    return this.http.get<ProductModel[]>(this.baseUrl);
+  public getAll = (): Observable<ProductModel[]> => {
+    return this.http.get<ProductModel[]>(this.baseUrl).pipe(
+      retry(3),
+      catchError((e: HttpErrorResponse) => {
+        this.displayModalService.showErrorModal('Error al traer la lista de productos.', e);
+        return throwError(e);
+      })
+    );
   }
 
-  getById = (id: string): Observable<ProductModel> => {
-    return this.http.get<ProductModel>(`${this.baseUrl}/${id}`);
+  public getById = (id: string): Observable<ProductModel> => {
+    return this.http.get<ProductModel>(`${this.baseUrl}/${id}`).pipe(
+      retry(3),
+      catchError((e: HttpErrorResponse) => {
+        this.displayModalService.showErrorModal(`Producto no encontrado con id: ${id}.`, e);
+        return throwError(e);
+      })
+    );
   }
 
-  create = (user: ProductModel): Observable<ProductModel> => {
-    return this.http.post<ProductModel>(this.baseUrl, user);
+  public create = (user: ProductModel): Observable<ProductModel> => {
+    return this.http.post<ProductModel>(this.baseUrl, user).pipe(
+      retry(3),
+      map(x => { this.displayModalService.showSuccessModal('Producto registrado con éxito'); return x; }),
+      catchError((e: HttpErrorResponse) => {
+        this.displayModalService.showErrorModal('Error al crear producto.', e);
+        return throwError(e);
+      })
+    );
   }
 
-  update = (user: ProductModel): Observable<ProductModel> => {
-    return this.http.put<ProductModel>(this.baseUrl, user);
+  public update = (user: ProductModel): Observable<ProductModel> => {
+    return this.http.put<ProductModel>(this.baseUrl, user).pipe(
+      retry(3),
+      map(x => { this.displayModalService.showSuccessModal('Producto actualizado con éxito'); return x; }),
+      catchError((e: HttpErrorResponse) => {
+        this.displayModalService.showErrorModal('Error al actualizar producto.', e);
+        return throwError(e);
+      })
+    );
   }
 
-  delete = (id: string) => {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+  public delete = (id: string) => {
+    return this.http.delete(`${this.baseUrl}/${id}`).pipe(
+      retry(3),
+      catchError((e: HttpErrorResponse) => {
+        this.displayModalService.showErrorModal(`Error al borrar el producto con id: ${id}.`, e);
+        return throwError(e);
+      })
+    );
   }
+
 }

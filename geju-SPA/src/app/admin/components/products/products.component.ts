@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community/dist/lib/gridApi';
-import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
+import { PathService } from 'src/app/core/services/others/path.service';
 import { ProductModel } from './../../../core/models/product-model';
 import { ProductService } from '../../services/api/product.service';
 import Swal from 'sweetalert2';
@@ -42,7 +42,7 @@ export class ProductsComponent implements OnInit {
       type: 'dateColumn', cellRenderer: this.dateFormatter}
     ];
 
-  constructor(private readonly productService: ProductService, public singleton: SingletonService) { }
+  constructor(private readonly productService: ProductService, public singleton: PathService) { }
 
   ngOnInit(): void {
     this.getAll();

@@ -1,11 +1,12 @@
 <mat-card>
-  <mat-card-header>
-    <mat-card-title class="col-1">Grupos</mat-card-title>
-    <app-navigation class="col-lg-6" [navigation]="singleton.getGroupPath()" [actualPosition]="positionName"></app-navigation>
+  <mat-card-header cols="3">
+    <mat-card-title rows="1" cols="1">Grupos</mat-card-title>
+    <app-navigation rows="1" cols="2" [navigation]="pathService.getGroupPath()" [actualPosition]="positionName"></app-navigation>
   </mat-card-header>
   <mat-divider></mat-divider>
-  <mat-card-content>
-    <form (submit)="save()" [formGroup]="groupForm">
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <mat-card-content *ngIf="!loading">
+    <form (ngSubmit)="save()" [formGroup]="groupForm">
       <mat-grid-list cols="2" rowHeight="100px">
         <mat-grid-tile>
           <mat-form-field rows:1 cols:1 class="example-full-width" rowHeight="100px">
@@ -24,8 +25,8 @@
       </mat-grid-list>
       <mat-card-footer>
         <mat-card-actions>
-          <button mat-raised-button color="primary" [disabled]="groupForm.invalid">Registrar</button>
           <button mat-raised-button color="primary" (click)="close()">Cancelar</button>
+          <button mat-raised-button color="primary" [disabled]="groupForm.invalid">Registrar</button>
         </mat-card-actions>
       </mat-card-footer>
     </form>

@@ -1,4 +1,5 @@
 ﻿using Access.Contract.Request;
+using Access.Contract.Response;
 using AutoMapper;
 using Resources.Contract.Sizes;
 
@@ -11,6 +12,9 @@ namespace Manager.Admin.Mapping
             CreateMap<CreateSize, SizeAccess>();
 
             CreateMap<UpdateSize, SizeAccess>();
+            
+            CreateMap<SizeAccessResponse, SizeResponse>();
+
         }
     }
 }

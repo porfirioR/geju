@@ -1,88 +1,83 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { GroupModel } from 'src/app/core/models/group-model';
 import { GroupService } from 'src/app/admin/services/api/group.service';
-import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
-import Swal from 'sweetalert2';
+import { PathService } from 'src/app/core/services/others/path.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-upsert-group',
   templateUrl: './upsert-group.component.html',
   styleUrls: ['./upsert-group.component.css']
 })
-export class UpsertGroupComponent implements OnInit {
-  groupForm: FormGroup;
-  group: GroupModel;
-  groupId: string;
-  positionName = 'Crear';
+export class UpsertGroupComponent implements OnInit, OnDestroy {
+  public groupForm: FormGroup;
+  public positionName = 'Crear';
+  public loading = true;
+
+  private group: GroupModel;
+  private groupId: string;
+  private subscriptions: Subscription[] = [];
 
   constructor(
-    private fb: FormBuilder,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
-    public singleton: SingletonService,
+    public readonly pathService: PathService,
     private readonly groupService: GroupService
   ) {}
 
   ngOnInit(): void {
-    this.createGroupForm();
-    this.activatedRoute.params.subscribe((params) => {
-      this.groupId = params.id;
-      if (this.groupId) {
-        this.groupService.getById(this.groupId).subscribe(
-          (response) => {
-            this.group = response;
-            this.groupForm.patchValue({ name: this.group.name });
-            this.groupForm.patchValue({ description: this.group.description });
-            this.positionName = 'Modificar';
-          },
-          (error) => {
-            Swal.fire('Error...', 'Marca no encontrada.', 'error');
-            this.close();
-          }
-        );
-      }
-    });
+    this.initialValues();
   }
 
-  createGroupForm = () => {
-    this.groupForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(25)]],
-      description: ['', [Validators.required, Validators.maxLength(100)]]
-    });
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(x => x.unsubscribe());
   }
 
-  save = () => {
+  public save = (): void => {
+    this.group = this.valueChanged();
     if (this.groupId) {
-      this.group = this.valueChanged();
       this.group.id = this.groupId;
-      this.groupService.update(this.group).subscribe(
-        (response) => {
-          Swal.fire({ icon: 'success', title: 'Marca actualizada con éxito' });
-          this.close();
-        }, (err) => {
-          Swal.fire({ icon: 'error', title: 'Error...', text: 'Error al actualizar la marca.' });
-        }
-      );
+      this.subscriptions.push(this.groupService.update(this.group).subscribe(() => this.close()));
     } else {
-      this.group = this.valueChanged();
-      this.groupService.create(this.group).subscribe(
-        (response) => {
-          Swal.fire({ icon: 'success', title: 'Marca registrada con éxito' });
-          this.close();
-        },
-        (err) => {
-          Swal.fire({ icon: 'error', title: 'Error...', text: 'Error al guardar.' });
-        }
-      );
+      this.subscriptions.push(this.groupService.create(this.group).subscribe(() => this.close()));
     }
   }
 
-  valueChanged = (): GroupModel => Object.assign( new GroupModel(), this.groupForm.value);
-
-  close = () => {
+  public close = (): void => {
     this.router.navigate(['administracion/grupos']);
   }
+
+  private initialValues = (): void => {
+    this.subscriptions.push(
+      this.activatedRoute.params.subscribe((params: Params) => {
+        this.groupId = params.id;
+        if (this.groupId) {
+          this.groupService.getById(this.groupId).subscribe(
+            (response) => {
+              this.group = response;
+              this.valuesForm();
+              this.positionName = 'Modificar';
+              this.loading = false;
+            },
+            () => this.close()
+          );
+        } else {
+          this.valuesForm();
+          this.loading = false;
+        }
+      })
+    );
+  }
+
+  private valuesForm = () => {
+    this.groupForm = new FormGroup({
+      name: new FormControl(this.group ? this.group.name : '', [Validators.required, Validators.maxLength(25)]),
+      description: new FormControl(this.group ? this.group.description : '', [Validators.required, Validators.maxLength(100)])
+    });
+  }
+
+  private valueChanged = (): GroupModel => Object.assign( new GroupModel(), this.groupForm.value);
 
 }
