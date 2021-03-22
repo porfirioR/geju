@@ -1,4 +1,5 @@
 ﻿using GeJu.Utilities.Enums;
+using GeJu.Utilities.Extensions;
 using System;
 using System.Collections.Generic;
 
@@ -17,5 +18,10 @@ namespace GeJu.Sql.Entities
         public byte[] ContraseñaHash { get; set; }
         public byte[] ContraseñaSalt { get; set; }
         virtual public ICollection<UsuarioRol> UsuariosRoles { get; set; }
+
+        public int GetAge ()
+        {
+            return FechaNaciento.CalculateAge();
+        }
     }
 }
