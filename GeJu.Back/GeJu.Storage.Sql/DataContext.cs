@@ -2,6 +2,7 @@
 using GeJu.Sql.Entities;
 using GeJu.Storage.Sql.Configurations;
 using Microsoft.EntityFrameworkCore;
+using Sql.Configurations;
 
 namespace GeJu.Sql
 {
@@ -18,6 +19,7 @@ namespace GeJu.Sql
         public DbSet<Tamaño> Tamaños { get; set; }
         public DbSet<ProductoTamaño> ProductoTamaños { get; set; }
         public DbSet<Producto> Productos { get; set; }
+        public DbSet<Imagen> Imagenes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,8 +28,9 @@ namespace GeJu.Sql
             modelBuilder.ApplyConfiguration(new UsuarioRolConfiguracion());
             modelBuilder.ApplyConfiguration(new BrandConfiguration());
             modelBuilder.ApplyConfiguration(new SizeConfiguration());
-            //modelBuilder.ApplyConfiguration(new ProductoConfiguracion());
+            modelBuilder.ApplyConfiguration(new ProductoConfiguracion());
             modelBuilder.ApplyConfiguration(new ProductoTamañoConfiguracion());
+            modelBuilder.ApplyConfiguration(new ImageConfiguration());
         }
     }
 }

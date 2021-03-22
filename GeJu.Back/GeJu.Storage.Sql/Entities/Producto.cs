@@ -22,5 +22,6 @@ namespace GeJu.Sql.Entities
         //public ICollection<ProductoGrupo> ProductoGrupos { get; set; }
         //public ICollection<ProductoSeccion> ProductoSecciones { get; set; }
         public ICollection<ProductoTamaño> ProductoTamaños { get; set; }
+        public virtual IEnumerable<Imagen> Imagenes { get; set; }
     }
 }

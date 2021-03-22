@@ -4,13 +4,25 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GeJu.Storage.Sql.Configurations
 {
-    //internal class ProductoConfiguracion : IEntityTypeConfiguration<Producto>
-    //{
-    //    public void Configure(EntityTypeBuilder<Producto> builder)
-    //    {
-    //        throw new System.NotImplementedException();
-    //    }
-    //}
+    internal class ProductoConfiguracion : IEntityTypeConfiguration<Producto>
+    {
+        public void Configure(EntityTypeBuilder<Producto> builder)
+        {
+            builder.HasKey(p => p.Id);
+
+            builder
+                .Property(p => p.FechaCreado)
+                .HasDefaultValueSql("GetUtcDate()");
+
+            builder
+                .Property(p => p.FechaModificado)
+                .HasDefaultValueSql("GetUtcDate()");
+
+            builder.HasMany(p => p.Imagenes)
+                .WithOne(i => i.Producto)
+                .HasForeignKey(i => i.ProductoId);
+        }
+    }
 
     //public class ProductoGrupoConfiguracion : IEntityTypeConfiguration<ProductoGrupo>
     //{
