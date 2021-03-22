@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { UserModel } from '../../models/user-model';
 import { AccountService } from '../../services/api/account.service';
@@ -10,14 +11,19 @@ import { AccountService } from '../../services/api/account.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   public registerForm: FormGroup;
   public registerInvalid: boolean;
+  private subscriptions: Subscription[] = [];
 
   constructor(private readonly accountService: AccountService, private readonly router: Router) { }
 
   ngOnInit(): void {
     this.createRegisterForm();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(x => x.unsubscribe());
   }
 
   private createRegisterForm = () => {
@@ -38,19 +44,21 @@ export class RegisterComponent implements OnInit {
   }
 
   public onSubmit = () => {
-    if (this.registerForm.valid) {
       const loginRequest: UserModel = this.registerForm.value;
+      this.registerForm.disable();
+      this.subscriptions.push(
       this.accountService.register(loginRequest).pipe(
         map(x =>  this.router.navigate(['administracion'])),
         catchError(err => {
           this.registerInvalid = true;
+          this.registerForm.enable();
           return err.error.erros;
         })
-      ).subscribe();
-    }
+      ).subscribe()
+    );
   }
 
   public close = () => {
-
+    this.router.navigate(['']);
   }
 }

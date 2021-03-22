@@ -1,6 +1,3 @@
-<!-- <mat-tab-group animationDuration="0ms" [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-  <mat-tab *ngFor="let link of list; let i = index" [label]="[link]"></mat-tab>
-</mat-tab-group> -->
 <nav mat-tab-nav-bar animationDuration="0ms">
   <a mat-tab-link *ngFor="let link of navLinks"
     [routerLink]="link.path"

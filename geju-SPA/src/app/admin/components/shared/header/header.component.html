@@ -1,7 +1,9 @@
-<mat-toolbar class="row">
-  <div class="col-1 justify-content-center">
-    <a [routerLink]="'/administracion'"><img  mat-card-image src="./../../../../assets/logos/logo-geju.png"></a>
-  </div>
-  <app-taps class="col-10"></app-taps>
-  <app-configuration class="col-1"></app-configuration>
-</mat-toolbar>
+<header>
+  <mat-toolbar class="row">
+    <div class="col-1 justify-content-center">
+      <a [routerLink]="'/administracion'"><img  mat-card-image src="./../../../../assets/logos/logo-geju.png"></a>
+    </div>
+    <app-taps class="col"></app-taps>
+    <app-configuration></app-configuration>
+  </mat-toolbar>
+</header>

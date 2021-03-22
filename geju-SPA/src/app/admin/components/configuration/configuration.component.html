@@ -1,5 +1,5 @@
-<div style="text-align:center">
-  <i class="fa fa-user"></i>
-  <br>
-  <p>Administración</p>
-</div>
+<button mat-button [matMenuTriggerFor]="beforeMenu">usuario {{(user.name)}}</button>
+<mat-menu #beforeMenu="matMenu" xPosition="before">
+  <button mat-menu-item>Editar Perfil</button>
+  <button mat-menu-item (click)="logOut()">Salir</button>
+</mat-menu>

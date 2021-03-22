@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { LoginRequest } from '../../models/api/login-request';
@@ -11,10 +11,17 @@ import { UserModel } from '../../models/user-model';
   providedIn: 'root'
 })
 export class AccountService {
-  public currentUser: UserModel;
   private baseUrl = `${environment.apiUrl}authentication/`;
+  private currentUserSource = new ReplaySubject<UserAuthResponse>(1);
+  public currentUser$: Observable<UserAuthResponse> = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    const user: UserModel = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      const token: string = localStorage.getItem('token');
+      this.setCurrentUser({token, user});
+    }
+  }
 
   public login = (model: LoginRequest): Observable<UserAuthResponse> => {
     return this.http.post<UserAuthResponse>(this.baseUrl + 'login', model)
@@ -24,8 +31,9 @@ export class AccountService {
         if (user) {
           localStorage.setItem('token', user.token);
           localStorage.setItem('user', JSON.stringify(user.user));
+          this.currentUserSource.next(user);
           // this.decodedToken = this.jwtHelper.decodeToken(user.token);
-          this.currentUser = user.user;
+          // this.currentUser = user.user;
           // this.changeMemberPhoto(this.currentUser.photoUrl);
           return user;
         }
@@ -39,8 +47,9 @@ export class AccountService {
         if (response) {
           localStorage.setItem('token', response.token);
           localStorage.setItem('user', JSON.stringify(response.user));
+          this.setCurrentUser(response);
           // this.decodedToken = this.jwtHelper.decodeToken(user.token);
-          this.currentUser = response.user;
+          // this.currentUser = response.user;
           // this.changeMemberPhoto(this.currentUser.photoUrl);
           return response;
         }
@@ -48,9 +57,19 @@ export class AccountService {
     );
   }
 
+  public setCurrentUser = (user: UserAuthResponse) => {
+    this.currentUserSource.next(user);
+  }
+
   // public loggedIn = () => {
   //   const token = localStorage.getItem('token');
   //   return !this.jwtHelper.isTokenExpired(token);
   // }
+
+  public logOut = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    this.currentUserSource.next(null);
+  }
 
 }

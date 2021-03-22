@@ -8,7 +8,7 @@ import Swal, { SweetAlertResult } from 'sweetalert2';
 export class DisplayModalService {
   constructor() { }
 
-  public showErrorModal = (text: string = '', error: HttpErrorResponse) => {
+  public showErrorModal = (text: string = '', error: HttpErrorResponse = null) => {
     Swal.fire({
       icon: 'error',
       title: 'Error...',

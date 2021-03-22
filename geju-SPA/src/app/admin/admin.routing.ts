@@ -10,14 +10,16 @@ import { UpsertGroupComponent } from './components/groups/upsert-group/upsert-gr
 import { SizesComponent } from './components/sizes/sizes.component';
 import { UpsertSizeComponent } from './components/sizes/upsert-size/upsert-size.component';
 import { ColorsComponent } from './components/colors/colors.component';
+import { AuthGuard } from '../core/guard/auth.guard';
 
 export const AdminRoutes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
     children: [
-      { path: 'usuarios', component: UsersComponent },
+      { path: 'usuarios', component: UsersComponent},
       { path: 'usuarios/crear', component: UserUpsertComponent },
       { path: 'usuarios/modificar/:id', component: UserUpsertComponent },
       { path: 'marcas', component: BrandsComponent },

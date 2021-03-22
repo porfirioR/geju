@@ -8,6 +8,7 @@ import { PrincipalPageComponent } from './components/principal-page/principal-pa
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ServerErrorComponent } from './components/server-error/server-error.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { RegisterComponent } from './components/register/register.component';
     NotFoundComponent,
     PrincipalPageComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ServerErrorComponent
   ],
   providers: [PathService]
 })
