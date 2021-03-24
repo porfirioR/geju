@@ -1,3 +1,4 @@
+using GeJu.Api.Main.Middleware;
 using GeJu.Sql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,7 +25,7 @@ namespace GeJu.Api.Main
             services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.Converters.Add(new StringEnumConverter());
-            }); ;
+            });
 
             services.AddCors(options =>
             {
@@ -46,15 +47,7 @@ namespace GeJu.Api.Main
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //app.UseSwagger();
-            //app.UseSwaggerUI(c =>
-            //{
-            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Geju API");
-            //});
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseHttpsRedirection();
 
             //app.UseStaticFiles();
