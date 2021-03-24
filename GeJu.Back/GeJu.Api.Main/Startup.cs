@@ -48,6 +48,7 @@ namespace GeJu.Api.Main
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseMiddleware<ExceptionMiddleware>();
+
             app.UseHttpsRedirection();
 
             //app.UseStaticFiles();
