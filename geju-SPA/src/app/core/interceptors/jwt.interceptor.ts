@@ -7,17 +7,24 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { AccountService } from '../services/api/account.service';
+import { UserAuthResponse } from '../models/api/user-auth-response';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor(/* private accountService: AccountService */) {}
+  constructor(private accountService: AccountService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    // let currentUser: User;
-    // this.accountService.currentUsers.pipe(take(1)).subscribe();
-
-
+    let currentUser: UserAuthResponse;
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
+    if (currentUser) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${currentUser.token}`
+        }
+      });
+    }
     return next.handle(request);
   }
 }
