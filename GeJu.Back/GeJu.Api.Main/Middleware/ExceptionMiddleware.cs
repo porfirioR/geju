@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -31,13 +32,21 @@ namespace GeJu.Api.Main.Middleware
             }
             catch (Exception ex)
             {
+                ApiException response;
                 _logger.LogError(ex, ex.Message);
                 context.Response.ContentType = "application/json";
-                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                var response = _env.IsDevelopment()
-                    ? new ApiException(context.Response.StatusCode, ex.Message, ex.StackTrace?.ToString())
-                    : new ApiException(context.Response.StatusCode, "Error interno del servidor", ex.StackTrace?.ToString());
-
+                if (ex is KeyNotFoundException)
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                    response = new ApiException(context.Response.StatusCode, ex.Message);
+                }
+                else
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    response = _env.IsDevelopment()
+                        ? new ApiException(context.Response.StatusCode, ex.Message, ex.StackTrace?.ToString())
+                        : new ApiException(context.Response.StatusCode, "Error interno del servidor", ex.StackTrace?.ToString());
+                }
                 var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
                 var json = JsonSerializer.Serialize(response, options);
                 await context.Response.WriteAsync(json);

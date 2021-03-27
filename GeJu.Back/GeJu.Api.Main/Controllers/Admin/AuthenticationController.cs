@@ -32,16 +32,10 @@ namespace GeJu.Api.Main.Controllers.Admin
         [HttpPost("login")]
         public async Task<ActionResult<UserAuth>> Login([FromBody] LoginApiRequest loginRequest)
         {
-            try
-            {
-                var login = _mapper.Map<Login>(loginRequest);
-                var model = await _userManager.Login(login);
-                return model;
-            }
-            catch (Exception ex)
-            {
-                return Unauthorized(ex.Message);
-            }
+
+            var login = _mapper.Map<Login>(loginRequest);
+            var model = await _userManager.Login(login);
+            return model;
         }
     }
 }

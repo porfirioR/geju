@@ -51,7 +51,7 @@ namespace Admin
 
         public async Task<AuthResponse> Login(LoginAccess loginAccess)
         {
-            var user = await _context.Usuarios.FirstAsync(x => x.Correo == loginAccess.Email);
+            var user = await _context.Usuarios.FirstOrDefaultAsync(x => x.Correo == loginAccess.Email);
             if (user is null)
             {
                 throw new KeyNotFoundException("Correo o contraseña es incorrecta");

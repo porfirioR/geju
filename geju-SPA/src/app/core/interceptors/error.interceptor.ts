@@ -35,7 +35,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               }
               break;
             case 401:
-              this.displayModalService.showErrorModal(error.statusText, error.status);
+              this.displayModalService.showErrorModal(error.error.message, error.status);
               break;
             case 404:
               this.router.navigateByUrl('no-encontrado');

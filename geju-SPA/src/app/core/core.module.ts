@@ -14,6 +14,7 @@ import { ServerErrorComponent } from './components/server-error/server-error.com
   imports: [
     CommonModule,
     RouterModule.forChild(CoreRoutes),
+    SharedModule
   ],
   declarations: [
     NotFoundComponent,
