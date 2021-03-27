@@ -24,8 +24,8 @@ import { ColorsComponent } from './components/colors/colors.component';
   imports: [
     CommonModule,
     RouterModule.forChild(AdminRoutes),
-    SharedModule
-  ],
+    SharedModule,
+ ],
   declarations: [
     MainLayoutComponent,
     HeaderComponent,
@@ -43,6 +43,7 @@ import { ColorsComponent } from './components/colors/colors.component';
     SizesComponent,
     UpsertSizeComponent,
     ColorsComponent
-  ]
+  ],
+  exports: []
 })
 export class AdminModule { }

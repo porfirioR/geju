@@ -36,7 +36,6 @@ import {MatMenuModule} from '@angular/material/menu';
     MatProgressBarModule,
     MatMenuModule
   ],
-  declarations: [],
   exports: [
     AgGridModule,
     FormsModule,
@@ -56,7 +55,6 @@ import {MatMenuModule} from '@angular/material/menu';
     MatProgressBarModule,
     MatMenuModule
   ],
-  providers: [MatDatepickerModule]
 })
 export class SharedModule {
 

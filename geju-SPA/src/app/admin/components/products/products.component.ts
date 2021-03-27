@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community/dist/lib/gridApi';
-import { PathService } from 'src/app/core/services/others/path.service';
+import { PathService } from 'src/app/core/services/shared/path.service';
 import { ProductModel } from './../../../core/models/product-model';
 import { ProductService } from '../../services/api/product.service';
 import Swal from 'sweetalert2';

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { SizeModel } from 'src/app/core/models/size-model';
-import { PathService } from 'src/app/core/services/others/path.service';
+import { PathService } from 'src/app/core/services/shared/path.service';
 import { SizeService } from 'src/app/admin/services/api/size.service';
 import { Subscription } from 'rxjs';
 

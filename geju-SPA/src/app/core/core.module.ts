@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CoreRoutes } from './core.routing';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { PathService } from './services/others/path.service';
+import { PathService } from './services/shared/path.service';
 import { PrincipalPageComponent } from './components/principal-page/principal-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
@@ -14,7 +14,6 @@ import { ServerErrorComponent } from './components/server-error/server-error.com
   imports: [
     CommonModule,
     RouterModule.forChild(CoreRoutes),
-    SharedModule
   ],
   declarations: [
     NotFoundComponent,
@@ -23,6 +22,7 @@ import { ServerErrorComponent } from './components/server-error/server-error.com
     RegisterComponent,
     ServerErrorComponent
   ],
-  providers: [PathService]
+  providers: [PathService],
+  exports: [RouterModule]
 })
 export class CoreModule { }

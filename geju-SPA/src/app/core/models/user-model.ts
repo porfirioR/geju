@@ -1,4 +1,4 @@
-import { Country } from '../constant/enum';
+import { Country } from '../enums/country.enum';
 
 export class UserModel {
     id: string;

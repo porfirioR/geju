@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrandModel } from 'src/app/core/models/brand-model';
 import { BrandService } from 'src/app/admin/services/api/brand.service';
-import { PathService } from 'src/app/core/services/others/path.service';
+import { PathService } from 'src/app/core/services/shared/path.service';
 import swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
 

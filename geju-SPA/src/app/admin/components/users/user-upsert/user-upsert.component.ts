@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from 'src/app/core/models/user-model';
-import { PathService } from 'src/app/core/services/others/path.service';
+import { PathService } from 'src/app/core/services/shared/path.service';
 import { UserService } from 'src/app/admin/services/api/user.service';
 import swal from 'sweetalert2';
+import { FormControl } from '@angular/forms';
+import { DisplayModalService } from 'src/app/core/services/shared/display-modal.service';
 
 @Component({
   selector: 'app-user-upsert',
@@ -17,11 +19,11 @@ export class UserUpsertComponent implements OnInit {
   userId: string;
   positionName = 'Crear';
 
-  constructor(private fb: FormBuilder,
-              private readonly router: Router,
+  constructor(private readonly router: Router,
               private readonly activatedRoute: ActivatedRoute,
-              public singleton: PathService,
-              private readonly userService: UserService) { }
+              public readonly singleton: PathService,
+              private readonly userService: UserService,
+              private readonly displayModalService: DisplayModalService) { }
 
   ngOnInit(): void {
     this.createUserForm();
@@ -44,44 +46,39 @@ export class UserUpsertComponent implements OnInit {
     });
   }
 
-  createUserForm = () => {
-    this.userForm = this.fb.group({
-      name: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      country: ['', Validators.required],
-      birthdate: ['', Validators.required],
-      rol: [''],
+  private createUserForm = () => {
+    this.userForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      country: new FormControl('', Validators.required),
+      birthdate: new FormControl('', Validators.required),
+      rol: new FormControl('')
     });
   }
 
-  save = () => {
+  public save = () => {
     this.loadValueForm();
     if (this.userId) {
       this.user.id = this.userId;
       this.userService.update(this.user).subscribe(response => {
-        swal.fire({icon: 'success', title: 'Usuario actualizado con exito'});
+        this.displayModalService.showSuccessModal('Usuario registrado con éxito');
         this.close();
-      }, err => {
-        swal.fire({icon: 'error', title: 'Error...', text: 'Error al actualizar.'});
       });
     } else {
-      this.userService.create(this.user).subscribe(response => {
-        swal.fire({icon: 'success', title: 'Usuario Registrado con exito'});
+      this.userService.create(this.user).subscribe(() => {
+        this.displayModalService.showSuccessModal('Usuario actualizado con éxito');
         this.close();
-      }, err => {
-        swal.fire({icon: 'error', title: 'Error...', text: 'Error al guardar.'});
       });
     }
   }
 
-  loadValueForm = (): void => {
+  private loadValueForm = (): void => {
     this.user = Object.assign(new UserModel(), this.userForm.value);
     this.user.country = parseInt(this.userForm.get('country').value, 10);
   }
 
-
-  close = () => {
+  public close = () => {
     this.router.navigate(['administracion/usuarios']);
   }
 }

@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { NavigationExtras, Router } from '@angular/router';
-import { DisplayModalService } from '../services/others/display-modal.service';
+import { DisplayModalService } from '../services/shared/display-modal.service';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
