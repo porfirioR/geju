@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.push(
       this.accountService.currentUser$.pipe(
-        map((user) => {
+        map(user => {
           if (user) {
             this.router.navigate(['administracion']);
           }

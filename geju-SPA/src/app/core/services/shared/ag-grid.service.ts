@@ -8,7 +8,59 @@ export class AgGridService {
   private columnDef: ColDef[] = [
     { headerName: 'Id', field: 'id', sortable: true, filter: true, resizable: true, width: 500 }
   ];
-
+  private columnDefUser: ColDef[] = [
+    {
+      headerName: 'Nombre',
+      field: 'name',
+      sortable: true,
+      filter: true,
+      resizable: true,
+      width: 300,
+    },
+    {
+      headerName: 'Apellido',
+      field: 'lastName',
+      sortable: true,
+      resizable: true,
+      filter: true,
+      width: 300,
+    },
+    {
+      headerName: 'Correo',
+      field: 'email',
+      sortable: true,
+      resizable: true,
+      filter: true,
+      width: 325,
+    },
+    {
+      headerName: 'Activo',
+      field: 'active',
+      sortable: true,
+      filter: true,
+      resizable: true,
+      width: 100,
+      cellRenderer: this.activeFormatter,
+    },
+    {
+      headerName: 'Fecha de nacimiento',
+      field: 'birthdate',
+      sortable: true,
+      filter: 'agDateColumnFilter',
+      resizable: true,
+      type: 'dateColumn',
+      cellRenderer: this.dateFormatter,
+    },
+    {
+      headerName: 'Fecha de creación',
+      field: 'lastActive',
+      sortable: true,
+      filter: 'agDateColumnFilter',
+      resizable: true,
+      type: 'dateColumn',
+      cellRenderer: this.dateFormatter,
+    },
+  ];
   constructor() { }
 
   public getGridOptions = (): GridOptions => {
@@ -36,5 +88,23 @@ export class AgGridService {
       },
     };
     return gridOptions;
+  }
+
+
+  private activeFormatter(cell): string {
+    return cell.value ? 'Si' : 'No';
+  }
+
+  private numberFormatter(cell): any {
+    return cell.value ? Number(cell.value) : '';
+  }
+
+  private dateFormatter(data): string {
+    return data.value ? new Date(data.value).toLocaleDateString() : '';
+  }
+
+  get columnDefUserList(): ColDef[] {
+    this.columnDef[0].width = 300;
+    return this.columnDef.concat(this.columnDefUser);
   }
 }

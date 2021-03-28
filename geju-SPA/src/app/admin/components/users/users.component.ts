@@ -1,149 +1,62 @@
-import { Component, OnInit } from '@angular/core';
-import { GridApi } from 'ag-grid-community/dist/lib/gridApi';
-import Swal from 'sweetalert2';
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserModel } from 'src/app/core/models/user-model';
 import { PathService } from 'src/app/core/services/shared/path.service';
 import { UserService } from '../../services/api/user.service';
 import { DisplayModalService } from 'src/app/core/services/shared/display-modal.service';
+import { GridOptions } from 'ag-grid-community';
+import { Subscription } from 'rxjs';
+import { AgGridService } from 'src/app/core/services/shared/ag-grid.service';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
 })
-export class UsersComponent implements OnInit {
-  private gridApi: GridApi;
-  rowData: UserModel[];
-  selectedRow: UserModel;
-  rowSelection = 'single';
-  getRowNodeId;
-  columnTypes = {
-    dateColumn: {
-      filter: 'agDateColumnFilter',
-      filterParams: {
-        comparator(filterLocalDateAtMidnight, cellValue: string): number {
-          const cellDate = cellValue ? new Date(cellValue) : '';
-          if (cellDate < filterLocalDateAtMidnight) {
-            return -1;
-          } else if (cellDate > filterLocalDateAtMidnight) {
-            return 1;
-          } else {
-            return 0;
-          }
-        },
-      },
-    },
-  };
-  columnDefs = [
-    {
-      headerName: 'Id',
-      field: 'id',
-      sortable: true,
-      filter: true,
-      resizable: true,
-      width: 300,
-    },
-    {
-      headerName: 'Nombre',
-      field: 'name',
-      sortable: true,
-      filter: true,
-      resizable: true,
-      width: 300,
-    },
-    {
-      headerName: 'Apellido',
-      field: 'lastName',
-      sortable: true,
-      resizable: true,
-      filter: true,
-      width: 300,
-    },
-    {
-      headerName: 'Correo',
-      field: 'email',
-      sortable: true,
-      resizable: true,
-      filter: true,
-      width: 325,
-    },
-    {
-      headerName: 'Activo',
-      field: 'active',
-      sortable: true,
-      filter: true,
-      resizable: true,
-      width: 100,
-      cellRenderer: this.activeFormatter,
-    },
-    {
-      headerName: 'Fecha de nacimiento',
-      field: 'birthdate',
-      sortable: true,
-      filter: 'agDateColumnFilter',
-      resizable: true,
-      type: 'dateColumn',
-      cellRenderer: this.dateFormatter,
-    },
-    {
-      headerName: 'Fecha de creación',
-      field: 'lastActive',
-      sortable: true,
-      filter: 'agDateColumnFilter',
-      resizable: true,
-      type: 'dateColumn',
-      cellRenderer: this.dateFormatter,
-    },
-  ];
-  /* { headerName: 'Año', field: 'year', sortable: true, filter: 'agNumberColumnFilter', resizable: true, maxWidth: 140,
-      valueGetter(params) { return Number(params.data.year); }, cellRenderer: this.numberFormatter },
-    { headerName: 'Formato', field: 'format', sortable: true, filter: true, resizable: true */
+export class UsersComponent implements OnInit, OnDestroy {
+  public gridOptions: GridOptions;
+  public selectedRow: UserModel;
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private readonly userService: UserService,
-    public readonly singleton: PathService,
-    private readonly displayModalService: DisplayModalService
+    public readonly pathService: PathService,
+    private readonly displayModalService: DisplayModalService,
+    private readonly agGridService: AgGridService,
   ) {}
 
   ngOnInit(): void {
+    this.gridOptions = this.agGridService.getGridOptions();
+    this.gridOptions.columnDefs = this.agGridService.columnDefUserList;
     this.getAll();
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(x => x.unsubscribe());
+  }
+
   private getAll(): void {
-    this.userService.getAll().subscribe((response) => {
-      this.rowData = response;
-      this.selectedRow = undefined;
-    });
+    this.subscriptions.push(
+      this.userService.getAll().subscribe(response => {
+        this.gridOptions.api.setRowData(response);
+        this.selectedRow = undefined;
+        this.gridOptions.api.sizeColumnsToFit();
+      })
+    );
   }
 
-  onSelectionChanged(): void {
-    this.selectedRow = this.gridApi.getSelectedRows()[0];
-  }
-
-  onGridReady(params): void {
-    this.gridApi = params.api;
-  }
-
-  dateFormatter(data): string {
-    return data.value ? new Date(data.value).toLocaleDateString() : '';
-  }
-
-  numberFormatter(cell): any {
-    return cell.value ? Number(cell.value) : '';
-  }
-
-  activeFormatter(cell): string {
-    return cell.value ? 'Si' : 'No';
+  public onSelectionChanged = (): void => {
+    this.selectedRow = this.gridOptions.api.getSelectedRows()[0];
   }
 
   public remove = () => {
-    this.displayModalService.showQuestionModal('Estas seguro que desea eliminar el usuario').then((result) => {
+    this.displayModalService.showQuestionModal('Estas seguro que desea eliminar el usuario').then(result => {
       if (result.isConfirmed) {
-        this.userService.delete(this.selectedRow.id).subscribe(() => {
-          this.displayModalService.showSuccessModal(`Usuario borrado con éxito.`);
-          this.getAll();
-        });
+        this.subscriptions.push(
+          this.userService.delete(this.selectedRow.id).subscribe(() => {
+            this.displayModalService.showSuccessModal(`Usuario borrado con éxito.`);
+            this.getAll();
+          })
+        );
       }
     });
   }

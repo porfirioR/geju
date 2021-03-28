@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { GridOptions } from 'ag-grid-community';
+import { ColDef, GridOptions } from 'ag-grid-community';
 import { SizeModel } from 'src/app/core/models/size-model';
 import { PathService } from 'src/app/core/services/shared/path.service';
 import { SizeService } from 'src/app/admin/services/api/size.service';
@@ -15,7 +15,7 @@ import { DisplayModalService } from 'src/app/core/services/shared/display-modal.
 export class SizesComponent implements OnInit, OnDestroy {
   public gridOptions: GridOptions;
   public selectedRow: SizeModel;
-  private columnDefs = [
+  private columnDefs: ColDef[] = [
     { headerName: 'Código', field: 'code', sortable: true, filter: true, resizable: true, width: 600 },
     { headerName: 'Descripción', field: 'description', sortable: true, resizable: true, filter: true, width: 620 }
   ];

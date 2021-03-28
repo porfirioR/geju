@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { GridOptions } from 'ag-grid-community';
+import { ColDef, GridOptions } from 'ag-grid-community';
 import { ColorModel } from 'src/app/core/models/color-model';
 import { ColorService } from 'src/app/admin/services/api/color.service';
 import { PathService } from 'src/app/core/services/shared/path.service';
@@ -15,14 +15,14 @@ import { DisplayModalService } from 'src/app/core/services/shared/display-modal.
 export class ColorsComponent implements OnInit, OnDestroy {
   public gridOptions: GridOptions;
   public selectedRow: ColorModel;
-  private columnDefs = [
+  private columnDefs: ColDef[] = [
     { headerName: 'Código', field: 'code', sortable: true, filter: true, resizable: true, width: 600 },
     { headerName: 'Descripción', field: 'description', sortable: true, resizable: true, filter: true, width: 620 }
   ];
   private subscriptions: Subscription[] = [];
 
   constructor(private readonly colorService: ColorService,
-              public pathService: PathService,
+              public readonly pathService: PathService,
               private readonly agGridService: AgGridService,
               private readonly displayModalService: DisplayModalService) { }
 
@@ -43,7 +43,10 @@ export class ColorsComponent implements OnInit, OnDestroy {
   public remove = () => {
     this.displayModalService.showQuestionModal('Estas seguro que desea eliminar el color?').then(x => {
       if (x.isConfirmed) {
-        this.subscriptions.push(this.colorService.delete(this.selectedRow.id).subscribe(() => this.getAll()));
+        this.subscriptions.push(this.colorService.delete(this.selectedRow.id).subscribe(() => {
+          this.displayModalService.showSuccessModal(`Color borrado con éxito.`);
+          this.getAll();
+        }));
       }
     });
   }

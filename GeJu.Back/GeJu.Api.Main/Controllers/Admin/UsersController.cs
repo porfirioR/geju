@@ -40,18 +40,18 @@ namespace GeJu.Api.Main.Controllers.Admin
 
         [Authorize]
         [HttpGet]
-        public ActionResult<IEnumerable<UserApi>> GetAll()
+        public async Task<ActionResult<IEnumerable<UserApi>>> GetAll()
         {
-            var model = _userManager.GetAll();
+            var model = await _userManager.GetAll();
             var modelApi = _mapper.Map<IEnumerable<UserApi>>(model);
             return Ok(modelApi);
         }
 
         [AllowAnonymous]
         [HttpGet("{id}")]
-        public ActionResult<UserApi> GetById(string id)
+        public async Task<ActionResult<UserApi>> GetById(string id)
         {
-            var user = _userManager.GetById(id);
+            var user = await _userManager.GetById(id);
             var modelApi = _mapper.Map<UserApi>(user);
             return Ok(modelApi);
         }

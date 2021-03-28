@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PathService } from '../../../core/services/shared/path.service';
 import { BrandModel } from '../../../core/models/brand-model';
 import { BrandService } from '../../services/api/brand.service';
-import { GridOptions } from 'ag-grid-community';
+import { ColDef, GridOptions } from 'ag-grid-community';
 import { Subscription } from 'rxjs';
 import { AgGridService } from 'src/app/core/services/shared/ag-grid.service';
 import { DisplayModalService } from 'src/app/core/services/shared/display-modal.service';
@@ -15,7 +15,7 @@ import { DisplayModalService } from 'src/app/core/services/shared/display-modal.
 export class BrandsComponent implements OnInit, OnDestroy {
   public gridOptions: GridOptions;
   public selectedRow: BrandModel;
-  private columnDefs = [
+  private columnDefs: ColDef[] = [
     { headerName: 'Nombre', field: 'name', sortable: true, filter: true, resizable: true, width: 600 },
     { headerName: 'Descripción', field: 'description', sortable: true, resizable: true, filter: true, width: 620 }
   ];
@@ -43,7 +43,10 @@ export class BrandsComponent implements OnInit, OnDestroy {
   public remove = (): void => {
     this.displayModalService.showQuestionModal('¿Estas seguro que desea eliminar la marca?').then(x => {
       if (x.isConfirmed) {
-        this.subscriptions.push(this.brandService.delete(this.selectedRow.id).subscribe(() => this.getAll()));
+        this.subscriptions.push(this.brandService.delete(this.selectedRow.id).subscribe(() => {
+          this.displayModalService.showSuccessModal(`Marca borrada con éxito.`);
+          this.getAll();
+        }));
       }
     });
   }

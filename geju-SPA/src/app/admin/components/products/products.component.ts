@@ -4,6 +4,7 @@ import { PathService } from 'src/app/core/services/shared/path.service';
 import { ProductModel } from './../../../core/models/product-model';
 import { ProductService } from '../../services/api/product.service';
 import Swal from 'sweetalert2';
+import { ColDef } from 'ag-grid-community';
 
 @Component({
   selector: 'app-products',
@@ -30,7 +31,7 @@ export class ProductsComponent implements OnInit {
     }
   };
 
-  columnDefs = [
+  columnDefs: ColDef[] = [
     { headerName: 'Id', field: 'id', sortable: true, filter: true, resizable: true },
     { headerName: 'Nombre', field: 'name', sortable: true, filter: true, resizable: true },
     { headerName: 'Apellido', field: 'lastName', sortable: true, resizable: true, filter: true },
