@@ -23,15 +23,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.accountService.currentUser$
-        .pipe(
-          map((user) => {
-            if (user) {
-              this.router.navigate(['administracion']);
-            }
-          })
-        )
-        .subscribe()
+      this.accountService.currentUser$.pipe(
+        map((user) => {
+          if (user) {
+            this.router.navigate(['administracion']);
+          }
+        })
+      ).subscribe()
     );
     this.loginForm = new FormGroup({
       email: new FormControl('', Validators.email),
