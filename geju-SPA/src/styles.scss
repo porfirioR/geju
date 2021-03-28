@@ -1,18 +1,16 @@
 @import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-material.css";
 @import "../node_modules/bootstrap/scss/bootstrap";
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/solid';
-@import '~@fortawesome/fontawesome-free/scss/brands';
-@import '~@fortawesome/fontawesome-free/scss/regular';
-
-$primaryColor: #009846;
-$backgroundColor: #d2f694;
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "assets/styles/variables.scss";
 
 html,
 body {
   height: 100%;
-  background: #b5d7a8;
+  background: $bodyColor;
 }
 
 body {
@@ -32,7 +30,8 @@ body {
   height: 30px;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -70,9 +69,11 @@ body {
   background-color: $primaryColor;
 }
 
-.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-/*   background-color: #3f51b5;
- */  background-color: $primaryColor;
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  /*   background-color: #3f51b5;
+ */
+  background-color: $primaryColor;
 }
 
 .mat-input-element {
@@ -85,7 +86,6 @@ body {
 
 .mat-form-field.mat-focused .mat-form-field-ripple {
   background-color: $primaryColor;
-
 }
 
 .mat-calendar-body-selected {
@@ -97,7 +97,9 @@ body {
   color: $primaryColor;
 }
 
-.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+.mat-button.mat-primary,
+.mat-icon-button.mat-primary,
+.mat-stroked-button.mat-primary {
   color: $primaryColor;
 }
 
@@ -132,3 +134,10 @@ button:focus {
 /* $primaryColor principal
 #B5D7A8 fondo
 */
+.m-l-5 {
+  margin-left: 5px !important;
+}
+
+mat-card {
+  color: $primaryColor;
+}

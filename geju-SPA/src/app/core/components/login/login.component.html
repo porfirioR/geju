@@ -1,31 +1,50 @@
 <mat-toolbar>
   <span>Geju Autenticación</span>
 </mat-toolbar>
-<mat-card>
-  <mat-card-content>
+<img src="../../../../assets/svg/blob2.svg" class="login-svg2">
+<img src="../../../../assets/svg/blob1.svg" class="login-svg1">
+<div style="z-index: 5; position: relative;">
+  <mat-card>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <h2>Log In</h2>
-      <mat-error *ngIf="loginInvalid">
-        El correo o la contraseña no son validos.
-      </mat-error>
-      <mat-form-field class="full-width-input">
-        <input matInput placeholder="Email" formControlName="email" required>
-        <mat-error>
-          Porfavor ingrese un correo válido.
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon class="fas fa-user"></mat-icon>
+          <br>
+          <h2>
+            Iniciar sesión
+          </h2>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-error *ngIf="loginInvalid">
+          El correo o la contraseña no son validos.
         </mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width-input">
-        <input matInput type="password" placeholder="Password" formControlName="password" required>
-        <mat-error>
-          Porfavor ingrese una contraseña válida.
-        </mat-error>
-      </mat-form-field>
-      <h4>
-        No tienes cuenta, registrate
-      </h4>
-      <button mat-raised-button color="primary" type="reset" routerLink="'registrar'">Registrar</button>
-      <button mat-raised-button color="primary" type="reset" routerLink="''">Cancelar</button>
-      <button mat-raised-button color="primary" type="submit">Iniciar</button>
+        <mat-form-field class="full-width-input">
+          <input matInput placeholder="Email" formControlName="email" required>
+          <mat-error>
+            Porfavor ingrese un correo válido.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input matInput type="password" placeholder="Contraseña" formControlName="password" required>
+          <mat-error>
+            Porfavor ingrese una contraseña válida.
+          </mat-error>
+        </mat-form-field>
+        <h4>
+          ¿No tienes cuenta?, registrate
+          <a routerLink="/registrar">
+            <mat-icon class="fas fa-external-link-alt" inline="true">
+            </mat-icon>
+          </a>
+        </h4>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-card-actions>
+          <button mat-stroked-button color="primary" (click)="close()">Cancelar</button>
+          <button mat-stroked-button color="primary" type="submit" class="m-l-5">Iniciar</button>
+        </mat-card-actions>
+      </mat-card-footer>
     </form>
-  </mat-card-content>
-</mat-card>
+  </mat-card>
+</div>
