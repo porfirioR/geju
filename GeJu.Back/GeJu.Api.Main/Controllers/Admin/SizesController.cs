@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
 using GeJu.Api.Main.Models.Sizes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Resources.Contract.Sizes;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Controllers.Admin
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SizesController : Controller
@@ -36,7 +37,7 @@ namespace GeJu.Api.Main.Controllers.Admin
             var apiModel = _mapper.Map<IEnumerable<SizeApi>>(model);
             return Ok(apiModel);
         }
-        
+
         [HttpGet("{id}")]
         public async Task<ActionResult<SizeApi>> GetByIdAsync(string id)
         {

@@ -11,6 +11,7 @@ import { SizesComponent } from './components/sizes/sizes.component';
 import { UpsertSizeComponent } from './components/sizes/upsert-size/upsert-size.component';
 import { ColorsComponent } from './components/colors/colors.component';
 import { AuthGuard } from '../core/guard/auth.guard';
+import { UpsertColorComponent } from './components/colors/upsert-color/upsert-color.component';
 
 export const AdminRoutes: Routes = [
   {
@@ -32,8 +33,8 @@ export const AdminRoutes: Routes = [
       { path: 'tamaños/crear', component: UpsertSizeComponent },
       { path: 'tamaños/modificar/:id', component: UpsertSizeComponent },
       { path: 'colores', component: ColorsComponent },
-      { path: 'colores/crear', component: UpsertSizeComponent },
-      { path: 'colores/modificar/:id', component: UpsertSizeComponent },
+      { path: 'colores/crear', component: UpsertColorComponent },
+      { path: 'colores/modificar/:id', component: UpsertColorComponent },
       { path: 'productos', component: ProductsComponent }
     ]
   },

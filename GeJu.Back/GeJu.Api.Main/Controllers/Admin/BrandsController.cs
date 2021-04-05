@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Controllers.Admin
 {
-    [AllowAnonymous]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BrandsController : ControllerBase

@@ -20,6 +20,8 @@ namespace GeJu.Sql
         public DbSet<ProductoTamaño> ProductoTamaños { get; set; }
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Imagen> Imagenes { get; set; }
+        public DbSet<Color> Colores { get; set; }
+        public DbSet<ProductoColor> ProductosColores { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +33,8 @@ namespace GeJu.Sql
             modelBuilder.ApplyConfiguration(new ProductoConfiguracion());
             modelBuilder.ApplyConfiguration(new ProductoTamañoConfiguracion());
             modelBuilder.ApplyConfiguration(new ImageConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductoColorConfiguracion());
+            modelBuilder.ApplyConfiguration(new ColorConfiguration());
         }
     }
 }

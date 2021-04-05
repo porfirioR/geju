@@ -9,58 +9,28 @@ export class AgGridService {
     { headerName: 'Id', field: 'id', sortable: true, filter: true, resizable: true, width: 500 }
   ];
   private columnDefUser: ColDef[] = [
-    {
-      headerName: 'Nombre',
-      field: 'name',
-      sortable: true,
-      filter: true,
-      resizable: true,
-      width: 300,
-    },
-    {
-      headerName: 'Apellido',
-      field: 'lastName',
-      sortable: true,
-      resizable: true,
-      filter: true,
-      width: 300,
-    },
-    {
-      headerName: 'Correo',
-      field: 'email',
-      sortable: true,
-      resizable: true,
-      filter: true,
-      width: 325,
-    },
-    {
-      headerName: 'Activo',
-      field: 'active',
-      sortable: true,
-      filter: true,
-      resizable: true,
-      width: 100,
-      cellRenderer: this.activeFormatter,
-    },
-    {
-      headerName: 'Fecha de nacimiento',
-      field: 'birthdate',
-      sortable: true,
-      filter: 'agDateColumnFilter',
-      resizable: true,
-      type: 'dateColumn',
-      cellRenderer: this.dateFormatter,
-    },
-    {
-      headerName: 'Fecha de creación',
-      field: 'lastActive',
-      sortable: true,
-      filter: 'agDateColumnFilter',
-      resizable: true,
-      type: 'dateColumn',
-      cellRenderer: this.dateFormatter,
-    },
+    { headerName: 'Nombre', field: 'name', sortable: true, filter: true, resizable: true, width: 300 },
+    { headerName: 'Apellido', field: 'lastName', sortable: true, resizable: true, filter: true, width: 300 },
+    { headerName: 'Correo', field: 'email', sortable: true, resizable: true, filter: true, width: 325 },
+    { headerName: 'Activo', field: 'active', sortable: true, filter: true, resizable: true, width: 100,
+      cellRenderer: this.activeFormatter},
+    { headerName: 'Fecha de nacimiento', field: 'birthdate', sortable: true, filter: 'agDateColumnFilter', resizable: true,
+      type: 'dateColumn', cellRenderer: this.dateFormatter },
+    { headerName: 'Fecha de creación', field: 'lastActive', sortable: true, filter: 'agDateColumnFilter', resizable: true,
+      type: 'dateColumn', cellRenderer: this.dateFormatter },
   ];
+
+
+  private productColumnDefs: ColDef[] = [
+    { headerName: 'Nombre', field: 'name', sortable: true, filter: true, resizable: true, width: 300 },
+    { headerName: 'Cantidad', field: 'count', sortable: true, resizable: true, filter: true, width: 300,
+    type: 'numberColumn', cellRenderer: this.numberFormatter },
+    { headerName: 'Precio', field: 'price', sortable: true, filter: true, resizable: true, width: 300,
+    type: 'numberColumn', cellRenderer: this.numberFormatter },
+    { headerName: 'Existencia', field: 'existence', sortable: true, filter: true, resizable: true, width: 300,
+     cellRenderer: this.activeFormatter }
+  ];
+
   constructor() { }
 
   public getGridOptions = (): GridOptions => {
@@ -106,5 +76,10 @@ export class AgGridService {
   get columnDefUserList(): ColDef[] {
     this.columnDef[0].width = 300;
     return this.columnDef.concat(this.columnDefUser);
+  }
+
+  get columnDefProductList(): ColDef[] {
+    this.columnDef[0].width = 300;
+    return this.columnDef.concat(this.productColumnDefs);
   }
 }

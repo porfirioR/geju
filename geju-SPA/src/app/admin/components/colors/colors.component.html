@@ -7,8 +7,7 @@
       <button mat-stroked-button color="primary" routerLink="crear">
         <mat-icon class="fas fa-plus" inline="true">Agregar</mat-icon>
       </button>
-      <button mat-stroked-button color="primary" [routerLink]="['modificar', selectedRow ? selectedRow.id: '']"
-        [disabled]="!selectedRow">
+      <button mat-stroked-button color="primary" [routerLink]="['modificar', selectedRow ? selectedRow.id: '']" [disabled]="!selectedRow">
         <mat-icon class="fas fa-edit" inline="true">Modificar</mat-icon>
       </button>
       <button mat-stroked-button color="primary" [disabled]="!selectedRow" (click)="remove()">

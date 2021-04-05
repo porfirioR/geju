@@ -11,7 +11,7 @@ export class TapsComponent implements OnInit {
     {label: 'Usuarios', path: 'usuarios', icon: 'fas fa-users'},
     {label: 'Marcas', path: 'marcas', icon: 'fas fa-tags'},
     {label: 'Color', path: 'colores', icon: 'fas fa-palette'},
-    {label: 'Grupos', path: 'grupos', icon: 'far fa-object-group'},
+    {label: 'Grupos', path: 'grupos', icon: 'fas fa-object-group'},
     {label: 'Productos', path: 'productos', icon: 'fas fa-box-open'},
     {label: 'Sección', path: 'tamanio', icon: 'fas fa-puzzle-piece'},
     {label: 'Inventario', path: 'tamanio', icon: 'fas fa-archive'},

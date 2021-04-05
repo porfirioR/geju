@@ -1,4 +1,5 @@
-﻿using Admin.Interfaces;
+﻿using Access.Contract.Interfaces;
+using Admin.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Admin
@@ -11,6 +12,7 @@ namespace Admin
             services.AddTransient<IBrandDataAccess, BrandDataAccess>();
             services.AddTransient<ISizeDataAccess, SizeDataAccess>();
             services.AddScoped<IAuthDataAccess, AuthDataAccess>();
+            services.AddTransient<IColorDataAccess, ColorDataAccess>();
         }
     }
 }

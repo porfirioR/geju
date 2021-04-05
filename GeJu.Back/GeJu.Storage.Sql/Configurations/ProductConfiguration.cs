@@ -52,19 +52,19 @@ namespace GeJu.Storage.Sql.Configurations
     //    }
     //}
 
-    //public class ProductoColorConfiguracion : IEntityTypeConfiguration<ProductoColor>
-    //{
-    //    public void Configure(EntityTypeBuilder<ProductoColor> builder)
-    //    {
-    //        builder.HasOne(pc => pc.Producto)
-    //            .WithMany(p => p.ProductosColores)
-    //            .HasForeignKey(pc => pc.ProductoId);
-    //        builder.HasOne(ps => ps.Color)
-    //            .WithMany(c => c.ProductosColores)
-    //            .HasForeignKey(pc => pc.ColorId);
-    //        builder.HasKey(pc => new { pc.ProductoId, pc.ColorId });
-    //    }
-    //}
+    internal class ProductoColorConfiguracion : IEntityTypeConfiguration<ProductoColor>
+    {
+        public void Configure(EntityTypeBuilder<ProductoColor> builder)
+        {
+            builder.HasOne(pc => pc.Producto)
+                .WithMany(p => p.ProductosColores)
+                .HasForeignKey(pc => pc.ProductoId);
+            builder.HasOne(ps => ps.Color)
+                .WithMany(c => c.ProductosColores)
+                .HasForeignKey(pc => pc.ColorId);
+            builder.HasKey(pc => new { pc.ProductoId, pc.ColorId });
+        }
+    }
 
     public class ProductoTamañoConfiguracion : IEntityTypeConfiguration<ProductoTamaño>
     {

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Controllers.Admin
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -38,7 +39,6 @@ namespace GeJu.Api.Main.Controllers.Admin
             return Ok(modelApi);
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserApi>>> GetAll()
         {
@@ -47,7 +47,6 @@ namespace GeJu.Api.Main.Controllers.Admin
             return Ok(modelApi);
         }
 
-        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<UserApi>> GetById(string id)
         {

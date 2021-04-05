@@ -1,10 +1,12 @@
-﻿namespace GeJu.Sql.Entities
+﻿using System;
+
+namespace GeJu.Sql.Entities
 {
     public class ProductoColor
     {
-        public int ProductoId { get; set; }
-        public Producto Producto { get; set; }
-        public int ColorId { get; set; }
-        public Color Color { get; set; }
+        public Guid ProductoId { get; set; }
+        public virtual Producto Producto { get; set; }
+        public Guid ColorId { get; set; }
+        public virtual Color Color { get; set; }
     }
 }

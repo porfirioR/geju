@@ -28,6 +28,7 @@ mat-form-field {
   margin-right: 60px;
   margin-bottom: 10px;
   display: block;
+  width: auto;
 }
 
 mat-icon {
@@ -43,11 +44,7 @@ mat-card-title > mat-icon {
   height: auto;
   width: auto;
 }
-// .login-body {
-//   background-image: url(../../../../assets/svg/blob2.svg), url(../../../../assets/svg/blob1.svg);
-//   background-position: left center, right top;
-//   background-repeat: no-repeat;
-// }
+
 .mat-body {
   overflow-y: hidden !important;
 }
