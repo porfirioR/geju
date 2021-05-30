@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header cols="3">
     <mat-card-title rows="1" cols="1">Colores</mat-card-title>
-    <app-navigation rows="1" cols="2" [navigation]="pathService.getBrandPath()" [actualPosition]="positionName"></app-navigation>
+    <app-navigation rows="1" cols="2" [navigation]="pathService.getColorPath()" [actualPosition]="positionName"></app-navigation>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
@@ -25,7 +25,7 @@
       <mat-card-footer>
         <mat-card-actions>
           <button mat-raised-button color="primary" (click)="close()">Cancelar</button>
-          <button mat-raised-button color="primary" [disabled]="colorForm.invalid">Registrar</button>
+          <button mat-raised-button color="primary" [disabled]="colorForm.invalid">{{positionName}}</button>
         </mat-card-actions>
       </mat-card-footer>
     </form>

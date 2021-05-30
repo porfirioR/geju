@@ -29,10 +29,19 @@ export class PathService {
     return user;
   }
 
+  public getColorPath = (): Array<NavegationModel> =>  {
+    const user = Object.assign([], this.adminPath );
+    const userNav = new NavegationModel();
+    userNav.name = 'Colores';
+    userNav.route = '/administracion/colores';
+    user.push(userNav);
+    return user;
+  }
+
   public getGroupPath = (): Array<NavegationModel> =>  {
     const user = Object.assign([], this.adminPath );
     const userNav = new NavegationModel();
-    userNav.name = 'Marcas';
+    userNav.name = 'Grupos';
     userNav.route = '/administracion/grupos';
     user.push(userNav);
     return user;

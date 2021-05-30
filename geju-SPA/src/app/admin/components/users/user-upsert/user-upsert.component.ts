@@ -7,6 +7,7 @@ import { UserService } from 'src/app/admin/services/api/user.service';
 import swal from 'sweetalert2';
 import { FormControl } from '@angular/forms';
 import { DisplayModalService } from 'src/app/core/services/shared/display-modal.service';
+import { Country } from 'src/app/core/enums/country.enum';
 
 @Component({
   selector: 'app-user-upsert',
@@ -14,10 +15,11 @@ import { DisplayModalService } from 'src/app/core/services/shared/display-modal.
   styleUrls: ['./user-upsert.component.scss']
 })
 export class UserUpsertComponent implements OnInit {
-  userForm: FormGroup;
-  user: UserModel;
-  userId: string;
-  positionName = 'Crear';
+  public userForm: FormGroup;
+  public positionName = 'Crear';
+  public countryTypes = new Map<Country, string>();
+  private user: UserModel;
+  private userId: string;
 
   constructor(private readonly router: Router,
               private readonly activatedRoute: ActivatedRoute,
@@ -26,6 +28,7 @@ export class UserUpsertComponent implements OnInit {
               private readonly displayModalService: DisplayModalService) { }
 
   ngOnInit(): void {
+    Object.keys(Country).forEach(x => this.countryTypes.set(Country[x], x));
     this.createUserForm();
     this.activatedRoute.params.subscribe(params => {
       this.userId = params.id;
@@ -37,23 +40,13 @@ export class UserUpsertComponent implements OnInit {
           this.userForm.patchValue({ email: this.user.email });
           this.userForm.patchValue({ country: this.user.country});
           this.userForm.patchValue({ birthdate: this.user.birthdate});
+          this.userForm.patchValue({ document: this.user.document});
           this.positionName = 'Modificar';
-        }, error => {
+        }, () => {
           swal.fire('Error...', 'Usuario no encontrado.', 'error');
           this.close();
         });
       }
-    });
-  }
-
-  private createUserForm = () => {
-    this.userForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      country: new FormControl('', Validators.required),
-      birthdate: new FormControl('', Validators.required),
-      rol: new FormControl('')
     });
   }
 
@@ -73,12 +66,24 @@ export class UserUpsertComponent implements OnInit {
     }
   }
 
-  private loadValueForm = (): void => {
-    this.user = Object.assign(new UserModel(), this.userForm.value);
-    this.user.country = parseInt(this.userForm.get('country').value, 10);
-  }
-
   public close = () => {
     this.router.navigate(['administracion/usuarios']);
   }
+
+  private createUserForm = () => {
+    this.userForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      country: new FormControl('', Validators.required),
+      birthdate: new FormControl('', Validators.required),
+      document: new FormControl('', [Validators.required, Validators.maxLength(15)]),
+      rol: new FormControl('')
+    });
+  }
+
+  private loadValueForm = (): void => {
+    this.user = Object.assign(new UserModel(), this.userForm.value);
+  }
+
 }

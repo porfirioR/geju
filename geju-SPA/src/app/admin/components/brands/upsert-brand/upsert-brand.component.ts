@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrandModel } from 'src/app/core/models/brand-model';
 import { BrandService } from 'src/app/admin/services/api/brand.service';
 import { PathService } from 'src/app/core/services/shared/path.service';
-import swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -55,14 +54,12 @@ export class UpsertBrandComponent implements OnInit, OnDestroy {
       this.activatedRoute.params.subscribe((params) => {
         this.brandId = params.id;
         if (this.brandId) {
-          this.brandService.getById(this.brandId).subscribe(
-            (response) => {
-              this.brand = response;
-              this.positionName = 'Modificar';
-              this.loading = false;
-            },
-            () => this.close()
-          );
+          this.brandService.getById(this.brandId).subscribe((response) => {
+            this.brand = response;
+            this.valuesForm();
+            this.positionName = 'Modificar';
+            this.loading = false;
+          }, () => this.close());
         } else {
           this.valuesForm();
           this.loading = false;
@@ -78,6 +75,6 @@ export class UpsertBrandComponent implements OnInit, OnDestroy {
     });
   }
 
-  private valueChanged = (): BrandModel => Object.assign( new BrandModel(), this.brandForm.value);
+  private valueChanged = (): BrandModel => Object.assign(new BrandModel(), this.brandForm.value);
 
 }

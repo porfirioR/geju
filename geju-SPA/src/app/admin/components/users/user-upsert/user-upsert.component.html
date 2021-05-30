@@ -21,25 +21,21 @@
             <mat-hint align="end">{{lastname.value.length}} / 256</mat-hint>
           </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile rows:2 cols:1>
+        <mat-grid-tile>
           <mat-form-field rows:2 cols:1 class="example-full-width" rowHeight="100px">
             <mat-label>Correo</mat-label>
             <input matInput maxlength="100" placeholder="xxx@xxx.com" formControlName="email">
           </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile rows:2 cols:2>
+        <mat-grid-tile>
           <mat-form-field rows:2 cols:2 class="example-full-width" rowHeight="100px">
-            <mat-label>Pais</mat-label>
-              <mat-select multiple="false" formControlName="country">
-                <mat-option>Otro</mat-option>
-                <mat-option value="0">Paraguay</mat-option>
-                <mat-option value="1">Uruguay</mat-option>
-                <mat-option value="2">Argentina</mat-option>
-              </mat-select>
-            </mat-form-field>
+            <mat-label>Documento</mat-label>
+            <input matInput #document maxlength="15" placeholder="Documento" formControlName="document">
+            <mat-hint align="end">{{document.value.length}} / 15</mat-hint>
+          </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile rows:3 cols:1>
-          <mat-form-field rows:2 cols:1 class="example-full-width" rowHeight="100px">
+        <mat-grid-tile>
+          <mat-form-field rows:3 cols:1 class="example-full-width" rowHeight="100px">
             <mat-label>Roles</mat-label>
             <mat-select multiple formControlName="rol">
               <mat-option vallue="Admin">Administrador</mat-option>
@@ -47,19 +43,27 @@
             </mat-select>
           </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile rows:3 cols:2 class="example-full-width" rowHeight="100px">
-          <mat-form-field appearance="fill">
+        <mat-grid-tile>
+          <mat-form-field rows:3 cols:2 class="example-full-width" rowHeight="100px">
             <mat-label>Fecha Nacimiento</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="birthdate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field rows:4 cols:1 class="example-full-width" rowHeight="100px">
+            <mat-label>Pais</mat-label>
+            <mat-select multiple="false" formControlName="country">
+              <mat-option [value]="c.key" *ngFor="let c of countryTypes | keyvalue">{{c.value}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
       </mat-grid-list>
       <mat-card-footer>
         <mat-card-actions>
-          <button mat-raised-button color="primary" [disabled]="userForm.invalid">Registrar</button>
-          <button mat-raised-button color="warn" (click)="close()">Cancelar</button>
+          <button mat-raised-button color="primary" (click)="close()">Cancelar</button>
+          <button mat-raised-button color="primary" [disabled]="userForm.invalid">{{positionName}}</button>
         </mat-card-actions>
       </mat-card-footer>
     </form>

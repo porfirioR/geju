@@ -61,6 +61,7 @@ namespace Admin
                 throw new KeyNotFoundException($"id {entity.Id}");
             }
             entity = _mapper.Map(model, entity);
+            _context.Entry(entity).State = EntityState.Modified;
             return await _context.SaveChangesAsync() > 0 ? _mapper.Map<UserAccessResponse>(entity) : null;
         }
 

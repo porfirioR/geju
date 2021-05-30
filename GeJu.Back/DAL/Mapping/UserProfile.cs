@@ -13,6 +13,8 @@ namespace Manager.Admin.Mapping
             CreateMap<UserAccessResponse, UserResponse>();
             
             CreateMap<CreateUser, UserAccess>();
+            
+            CreateMap<UpdateUser, UserAccess>();
 
             CreateMap<Login, LoginAccess>();
             

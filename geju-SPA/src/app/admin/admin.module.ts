@@ -20,6 +20,7 @@ import { SizesComponent } from './components/sizes/sizes.component';
 import { UpsertSizeComponent } from './components/sizes/upsert-size/upsert-size.component';
 import { ColorsComponent } from './components/colors/colors.component';
 import { UpsertColorComponent } from './components/colors/upsert-color/upsert-color.component';
+import { PermissionsComponent } from './components/permissions/permissions.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { UpsertColorComponent } from './components/colors/upsert-color/upsert-co
     SizesComponent,
     UpsertSizeComponent,
     ColorsComponent,
-    UpsertColorComponent
+    UpsertColorComponent,
+    PermissionsComponent
   ],
   exports: []
 })
