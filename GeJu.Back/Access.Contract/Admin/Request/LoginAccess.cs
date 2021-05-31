@@ -1,4 +1,4 @@
-﻿namespace Access.Contract.Request
+﻿namespace Access.Contract.Admin.Request
 {
     public class LoginAccess
     {

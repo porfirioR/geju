@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid-community';
 import { ColorModel } from 'src/app/core/models/color-model';
 import { ColorService } from 'src/app/admin/services/api/color.service';
-import { PathService } from 'src/app/core/services/shared/path.service';
+import { PathService } from '../../../core/services/shared/path.service';
 import { Subscription } from 'rxjs';
-import { AgGridService } from 'src/app/core/services/shared/ag-grid.service';
-import { DisplayModalService } from 'src/app/core/services/shared/display-modal.service';
+import { AgGridService } from '../../../core/services/shared/ag-grid.service';
+import { DisplayModalService } from '../../../core/services/shared/display-modal.service';
 
 @Component({
   selector: 'app-colors',

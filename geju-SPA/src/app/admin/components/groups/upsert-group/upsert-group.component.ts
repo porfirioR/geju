@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { GroupModel } from 'src/app/core/models/group-model';
 import { GroupService } from 'src/app/admin/services/api/group.service';
-import { PathService } from 'src/app/core/services/shared/path.service';
+import { PathService } from '../../../../core/services/shared/path.service';
 import { Subscription } from 'rxjs';
 
 @Component({

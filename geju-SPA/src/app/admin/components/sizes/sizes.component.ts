@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid-community';
 import { SizeModel } from 'src/app/core/models/size-model';
-import { PathService } from 'src/app/core/services/shared/path.service';
-import { SizeService } from 'src/app/admin/services/api/size.service';
+import { PathService } from '../../../core/services/shared/path.service';
+import { SizeService } from '../../../admin/services/api/size.service';
 import { Subscription } from 'rxjs';
-import { AgGridService } from 'src/app/core/services/shared/ag-grid.service';
-import { DisplayModalService } from 'src/app/core/services/shared/display-modal.service';
+import { AgGridService } from '../../../core/services/shared/ag-grid.service';
+import { DisplayModalService } from '../../../core/services/shared/display-modal.service';
 
 @Component({
   selector: 'app-sizes',
@@ -41,7 +41,7 @@ export class SizesComponent implements OnInit, OnDestroy {
   }
 
   public remove = () => {
-    this.displayModalService.showQuestionModal('¿Estas seguro que desea eliminar el tamaño?').then(x => {
+    this.displayModalService.showQuestionModal('¿Estas seguro que desea eliminar el permiso?').then(x => {
       if (x.isConfirmed) {
         this.subscriptions.push(this.groupService.delete(this.selectedRow.id).subscribe(() => this.getAll()));
       }

@@ -120,6 +120,39 @@ namespace GeJu.Sql.Migrations
                     b.ToTable("Marcas");
                 });
 
+            modelBuilder.Entity("GeJu.Sql.Entities.Permiso", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("FechaCreado")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GetUtcDate()");
+
+                    b.Property<DateTime>("FechaModificado")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GetUtcDate()");
+
+                    b.Property<string>("Nombre")
+                        .HasMaxLength(25)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Permisos");
+                });
+
             modelBuilder.Entity("GeJu.Sql.Entities.Producto", b =>
                 {
                     b.Property<Guid>("Id")
@@ -227,17 +260,43 @@ namespace GeJu.Sql.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Descripcion")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("FechaCreado")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GetUtcDate()");
 
                     b.Property<DateTime>("FechaModificado")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GetUtcDate()");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("GeJu.Sql.Entities.RolPermiso", b =>
+                {
+                    b.Property<Guid>("PermisoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RolId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.HasKey("PermisoId", "RolId");
+
+                    b.HasIndex("RolId");
+
+                    b.ToTable("RolPermisos");
                 });
 
             modelBuilder.Entity("GeJu.Sql.Entities.Tamaño", b =>
@@ -406,6 +465,25 @@ namespace GeJu.Sql.Migrations
                     b.Navigation("Tamaño");
                 });
 
+            modelBuilder.Entity("GeJu.Sql.Entities.RolPermiso", b =>
+                {
+                    b.HasOne("GeJu.Sql.Entities.Permiso", "Permiso")
+                        .WithMany("RolPermisos")
+                        .HasForeignKey("PermisoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GeJu.Sql.Entities.Rol", "Rol")
+                        .WithMany("RolPermisos")
+                        .HasForeignKey("RolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Permiso");
+
+                    b.Navigation("Rol");
+                });
+
             modelBuilder.Entity("GeJu.Sql.Entities.UsuarioRol", b =>
                 {
                     b.HasOne("GeJu.Sql.Entities.Rol", "Rol")
@@ -430,6 +508,11 @@ namespace GeJu.Sql.Migrations
                     b.Navigation("ProductosColores");
                 });
 
+            modelBuilder.Entity("GeJu.Sql.Entities.Permiso", b =>
+                {
+                    b.Navigation("RolPermisos");
+                });
+
             modelBuilder.Entity("GeJu.Sql.Entities.Producto", b =>
                 {
                     b.Navigation("Imagenes");
@@ -441,6 +524,8 @@ namespace GeJu.Sql.Migrations
 
             modelBuilder.Entity("GeJu.Sql.Entities.Rol", b =>
                 {
+                    b.Navigation("RolPermisos");
+
                     b.Navigation("UsuariosRoles");
                 });
 

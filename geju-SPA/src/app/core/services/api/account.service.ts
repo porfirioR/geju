@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../../environments/environment';
 import { LoginRequest } from '../../models/api/login-request';
 import { UserAuthResponse } from '../../models/api/user-auth-response';
 import { UserModel } from '../../models/user-model';

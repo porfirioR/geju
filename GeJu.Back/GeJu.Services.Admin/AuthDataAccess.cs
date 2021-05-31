@@ -1,6 +1,6 @@
-﻿using Access.Contract.Request;
+﻿using Access.Contract.Admin.Interfaces;
+using Access.Contract.Admin.Request;
 using Access.Contract.Response;
-using Admin.Interfaces;
 using AutoMapper;
 using GeJu.Sql;
 using Microsoft.EntityFrameworkCore;

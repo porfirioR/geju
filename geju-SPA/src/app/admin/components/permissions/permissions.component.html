@@ -1,3 +1,28 @@
-<p>
-  permissions works!
-</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Permisos</mat-card-title>
+    <app-navigation [navigation]="pathService.getAdminPath()" [actualPosition]="'Permisos'"></app-navigation>
+    <span class="spacer"></span>
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" class="m-r-8"
+      [routerLink]="['modificar', selectedRow ? selectedRow.id: '']"
+      [disabled]="!selectedRow"
+      ngStyle>
+        <mat-icon class="fas fa-edit" inline="true">Modificar</mat-icon>
+      </button>
+      <button mat-stroked-button color="primary" *ngIf="selectedRow && !selectedRow.active" (click)="active()">
+        <mat-icon class="fas fa-plus" inline="true">Activar</mat-icon>
+      </button>
+      <button mat-stroked-button color="primary" *ngIf="selectedRow && selectedRow.active" (click)="remove()">
+        <mat-icon class="fas fa-trash" inline="true">Eliminar</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <ag-grid-angular class="ag-theme-material ag-grid"
+      [gridOptions]="gridOptions"
+      (selectionChanged)="onSelectionChanged()">
+    </ag-grid-angular>
+  </mat-card-content>
+</mat-card>

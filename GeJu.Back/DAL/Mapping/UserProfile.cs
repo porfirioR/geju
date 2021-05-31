@@ -1,4 +1,4 @@
-﻿using Access.Contract.Request;
+﻿using Access.Contract.Admin.Request;
 using Access.Contract.Response;
 using AutoMapper;
 using Resources.Contract.Authentication;
@@ -11,13 +11,13 @@ namespace Manager.Admin.Mapping
         public UserProfile()
         {
             CreateMap<UserAccessResponse, UserResponse>();
-            
+
             CreateMap<CreateUser, UserAccess>();
-            
+
             CreateMap<UpdateUser, UserAccess>();
 
             CreateMap<Login, LoginAccess>();
-            
+
             CreateMap<UserAccessResponse, UserAuth>()
                 .ForMember(dest => dest.User, opt => opt.MapFrom(src => src));
 

@@ -4,7 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ColorService } from 'src/app/admin/services/api/color.service';
 import { ColorModel } from 'src/app/core/models/color-model';
-import { PathService } from 'src/app/core/services/shared/path.service';
+import { PathService } from '../../../../core/services/shared/path.service';
 
 @Component({
   selector: 'app-upsert-color',

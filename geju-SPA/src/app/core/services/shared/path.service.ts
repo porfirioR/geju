@@ -12,7 +12,7 @@ export class PathService {
   constructor() { }
 
   public getUserPath = (): Array<NavegationModel> =>  {
-    const user = Object.assign([], this.adminPath );
+    const user = Object.assign([], this.adminPath);
     const userNav = new NavegationModel();
     userNav.name = 'Usuarios';
     userNav.route = '/administracion/usuarios';
@@ -21,7 +21,7 @@ export class PathService {
   }
 
   public getBrandPath = (): Array<NavegationModel> =>  {
-    const user = Object.assign([], this.adminPath );
+    const user = Object.assign([], this.adminPath);
     const userNav = new NavegationModel();
     userNav.name = 'Marcas';
     userNav.route = '/administracion/marcas';
@@ -30,7 +30,7 @@ export class PathService {
   }
 
   public getColorPath = (): Array<NavegationModel> =>  {
-    const user = Object.assign([], this.adminPath );
+    const user = Object.assign([], this.adminPath);
     const userNav = new NavegationModel();
     userNav.name = 'Colores';
     userNav.route = '/administracion/colores';
@@ -39,7 +39,7 @@ export class PathService {
   }
 
   public getGroupPath = (): Array<NavegationModel> =>  {
-    const user = Object.assign([], this.adminPath );
+    const user = Object.assign([], this.adminPath);
     const userNav = new NavegationModel();
     userNav.name = 'Grupos';
     userNav.route = '/administracion/grupos';
@@ -47,8 +47,17 @@ export class PathService {
     return user;
   }
 
+  public getPermissionPath = (): Array<NavegationModel> =>  {
+    const user = Object.assign([], this.adminPath);
+    const userNav = new NavegationModel();
+    userNav.name = 'Permisos';
+    userNav.route = '/administracion/permisos';
+    user.push(userNav);
+    return user;
+  }
+
   public getSizePath = (): Array<NavegationModel> =>  {
-    const user = Object.assign([], this.adminPath );
+    const user = Object.assign([], this.adminPath);
     const userNav = new NavegationModel();
     userNav.name = 'Tamaños';
     userNav.route = '/administracion/tamaños';

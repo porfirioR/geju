@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../../environments/environment';
 import { BrandModel } from '../../../core/models/brand-model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
-import { DisplayModalService } from 'src/app/core/services/shared/display-modal.service';
+import { DisplayModalService } from '../../../core/services/shared/display-modal.service';
 
 @Injectable({
   providedIn: 'root'

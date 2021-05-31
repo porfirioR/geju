@@ -12,7 +12,7 @@ export class DisplayModalService {
     Swal.fire({
       icon: 'error',
       title: 'Error...',
-      text: `${text} ${error.message}`,
+      text: `${text} ${error?.message}`,
     });
   }
 

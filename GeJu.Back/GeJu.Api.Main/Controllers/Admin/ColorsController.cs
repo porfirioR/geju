@@ -42,24 +42,24 @@ namespace GeJu.Api.Main.Controllers.Admin
         [HttpGet("{id}")]
         public async Task<ActionResult<ColorApi>> GetById(string id)
         {
-            var brand = await _colorManager.GetById(id);
-            var brandApi = _mapper.Map<ColorApi>(brand);
-            return Ok(brandApi);
+            var color = await _colorManager.GetById(id);
+            var colorApi = _mapper.Map<ColorApi>(color);
+            return Ok(colorApi);
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ColorApi>>> GetAll()
         {
-            var brands = await _colorManager.GetAll();
-            var response = _mapper.Map<IEnumerable<ColorApi>>(brands);
+            var colors = await _colorManager.GetAll();
+            var response = _mapper.Map<IEnumerable<ColorApi>>(colors);
             return Ok(response);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<ColorApi>> Delete(string id)
         {
-            var brand = await _colorManager.Delete(id);
-            return Ok(_mapper.Map<ColorApi>(brand));
+            var model = await _colorManager.Delete(id);
+            return Ok(_mapper.Map<ColorApi>(model));
         }
     }
 }

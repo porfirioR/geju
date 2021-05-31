@@ -12,6 +12,8 @@ import { UpsertSizeComponent } from './components/sizes/upsert-size/upsert-size.
 import { ColorsComponent } from './components/colors/colors.component';
 import { AuthGuard } from '../core/guard/auth.guard';
 import { UpsertColorComponent } from './components/colors/upsert-color/upsert-color.component';
+import { PermissionComponent } from './components/permissions/permissions.component';
+import { UpsertPermissionComponent } from './components/permissions/upsert-permission/upsert-permission.component';
 
 export const AdminRoutes: Routes = [
   {
@@ -35,7 +37,9 @@ export const AdminRoutes: Routes = [
       { path: 'colores', component: ColorsComponent },
       { path: 'colores/crear', component: UpsertColorComponent },
       { path: 'colores/modificar/:id', component: UpsertColorComponent },
-      { path: 'productos', component: ProductsComponent }
+      { path: 'productos', component: ProductsComponent },
+      { path: 'permisos', component: PermissionComponent },
+      { path: 'permisos/modificar/:id', component: UpsertPermissionComponent },
     ]
   },
 ];

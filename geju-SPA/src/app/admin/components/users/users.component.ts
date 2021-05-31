@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserModel } from 'src/app/core/models/user-model';
-import { PathService } from 'src/app/core/services/shared/path.service';
+import { PathService } from '../../../core/services/shared/path.service';
 import { UserService } from '../../services/api/user.service';
-import { DisplayModalService } from 'src/app/core/services/shared/display-modal.service';
+import { DisplayModalService } from '../../../core/services/shared/display-modal.service';
 import { GridOptions } from 'ag-grid-community';
 import { Subscription } from 'rxjs';
-import { AgGridService } from 'src/app/core/services/shared/ag-grid.service';
+import { AgGridService } from '../../../core/services/shared/ag-grid.service';
 
 @Component({
   selector: 'app-users',

@@ -16,7 +16,8 @@ export class TapsComponent implements OnInit {
     {label: 'Sección', path: 'tamanio', icon: 'fas fa-puzzle-piece'},
     {label: 'Inventario', path: 'tamanio', icon: 'fas fa-archive'},
     {label: 'Compras', path: 'tamanio', icon: 'fas fa-shopping-cart'},
-    {label: 'Roles', path: 'tamanio', icon: 'fas fa-expand-arrows-alt'},
+    {label: 'Roles', path: 'roles', icon: 'fas fa-expand-arrows-alt'},
+    {label: 'Permisos', path: 'permisos', icon: 'fas fa-key'},
     {label: 'Ventas', path: 'sell', icon: 'fas fa-comment-dollar'}
   ];
   constructor() { }

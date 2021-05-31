@@ -4,8 +4,8 @@ import { BrandModel } from '../../../core/models/brand-model';
 import { BrandService } from '../../services/api/brand.service';
 import { ColDef, GridOptions } from 'ag-grid-community';
 import { Subscription } from 'rxjs';
-import { AgGridService } from 'src/app/core/services/shared/ag-grid.service';
-import { DisplayModalService } from 'src/app/core/services/shared/display-modal.service';
+import { AgGridService } from '../../../core/services/shared/ag-grid.service';
+import { DisplayModalService } from '../../../core/services/shared/display-modal.service';
 
 @Component({
   selector: 'app-brands',

@@ -3,8 +3,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { UserModel } from '../../../core/models/user-model';
-import { DisplayModalService } from 'src/app/core/services/shared/display-modal.service';
-import { catchError, map, retry } from 'rxjs/operators';
+import { DisplayModalService } from '../../../core/services/shared/display-modal.service';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

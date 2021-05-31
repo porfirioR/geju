@@ -14,6 +14,8 @@ namespace GeJu.Sql
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Rol> Roles { get; set; }
+        public DbSet<Permiso> Permisos { get; set; }
+        public DbSet<RolPermiso> RolPermisos { get; set; }
         public DbSet<UsuarioRol> UsuariosRoles { get; set; }
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Tamaño> Tamaños { get; set; }
@@ -35,6 +37,9 @@ namespace GeJu.Sql
             modelBuilder.ApplyConfiguration(new ImageConfiguration());
             modelBuilder.ApplyConfiguration(new ProductoColorConfiguracion());
             modelBuilder.ApplyConfiguration(new ColorConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new PermissionConfiguration());
+            modelBuilder.ApplyConfiguration(new RolePermissionConfiguration());
         }
     }
 }

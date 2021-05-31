@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from 'src/app/core/models/user-model';
-import { PathService } from 'src/app/core/services/shared/path.service';
+import { PathService } from '../../../../core/services/shared/path.service';
 import { UserService } from 'src/app/admin/services/api/user.service';
 import swal from 'sweetalert2';
 import { FormControl } from '@angular/forms';
-import { DisplayModalService } from 'src/app/core/services/shared/display-modal.service';
+import { DisplayModalService } from '../../../../core/services/shared/display-modal.service';
 import { Country } from 'src/app/core/enums/country.enum';
 
 @Component({

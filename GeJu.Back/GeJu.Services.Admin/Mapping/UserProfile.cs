@@ -1,4 +1,4 @@
-﻿using Access.Contract.Request;
+﻿using Access.Contract.Admin.Request;
 using Access.Contract.Response;
 using AutoMapper;
 using GeJu.Sql.Entities;

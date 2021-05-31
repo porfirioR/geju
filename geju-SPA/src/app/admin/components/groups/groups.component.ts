@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid-community';
 import { GroupModel } from 'src/app/core/models/group-model';
 import { GroupService } from 'src/app/admin/services/api/group.service';
-import { PathService } from 'src/app/core/services/shared/path.service';
-import { AgGridService } from 'src/app/core/services/shared/ag-grid.service';
-import { DisplayModalService } from 'src/app/core/services/shared/display-modal.service';
+import { PathService } from '../../../core/services/shared/path.service';
+import { AgGridService } from '../../../core/services/shared/ag-grid.service';
+import { DisplayModalService } from '../../../core/services/shared/display-modal.service';
 import { Subscription } from 'rxjs';
 
 @Component({

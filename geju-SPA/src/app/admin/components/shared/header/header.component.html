@@ -1,9 +1,11 @@
 <header>
   <mat-toolbar class="row">
     <div class="col-1 justify-content-center">
-      <a [routerLink]="'/administracion'"><img  mat-card-image src="./../../../../assets/logos/logo-geju.png"></a>
+      <a [routerLink]="'/administracion'">
+        <img mat-card-image src="./../../../../assets/logos/logo-geju.png" class="m-0">
+      </a>
     </div>
-    <app-taps class="col"></app-taps>
-    <app-configuration></app-configuration>
+    <app-taps class="col-lg-10"></app-taps>
+    <app-configuration class="col-lg-1 t-a-c"></app-configuration>
   </mat-toolbar>
 </header>

@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { PathService } from 'src/app/core/services/shared/path.service';
+import { PathService } from '../../../core/services/shared/path.service';
 import { ProductModel } from './../../../core/models/product-model';
 import { ProductService } from '../../services/api/product.service';
 import { GridOptions } from 'ag-grid-community';
 import { Subscription } from 'rxjs';
-import { AgGridService } from 'src/app/core/services/shared/ag-grid.service';
-import { DisplayModalService } from 'src/app/core/services/shared/display-modal.service';
+import { AgGridService } from '../../../core/services/shared/ag-grid.service';
+import { DisplayModalService } from '../../../core/services/shared/display-modal.service';
 
 @Component({
   selector: 'app-products',

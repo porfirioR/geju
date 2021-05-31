@@ -1,5 +1,5 @@
-﻿using Access.Contract.Request;
-using Admin.Interfaces;
+﻿using Access.Contract.Admin.Interfaces;
+using Access.Contract.Admin.Request;
 using AutoMapper;
 using Resources.Contract.Authentication;
 using Resources.Contract.Users;
