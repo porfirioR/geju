@@ -12,7 +12,6 @@ namespace GeJu.Api.Main.Middleware
 {
     public class ExceptionMiddleware
     {
-
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionMiddleware> _logger;
         private readonly IHostEnvironment _env;
