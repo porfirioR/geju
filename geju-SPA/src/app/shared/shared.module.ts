@@ -16,6 +16,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import { UploadFileComponent } from './upload-file/upload-file.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   imports: [
@@ -34,7 +36,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressBarModule,
-    MatMenuModule
+    MatMenuModule,
+    NgxDropzoneModule
   ],
   exports: [
     AgGridModule,
@@ -53,8 +56,12 @@ import { MatMenuModule } from '@angular/material/menu';
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressBarModule,
-    MatMenuModule
+    MatMenuModule,
+    UploadFileComponent
   ],
+  declarations: [
+    UploadFileComponent
+  ]
 })
 export class SharedModule {
 

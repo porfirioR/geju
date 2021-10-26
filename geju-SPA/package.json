@@ -28,6 +28,7 @@
     "bootstrap": "^4.5.3",
     "ngx": "^2.4.0",
     "ngx-bootstrap": "^6.2.0",
+    "ngx-dropzone": "^3.0.0",
     "rxjs": "~6.6.6",
     "sweetalert2": "^9.17.2",
     "tslib": "^2.0.0",

@@ -1,0 +1,29 @@
+.folder {
+    max-width: 200px;
+}
+:host-context(.send-email) .file-preview {
+    align-items: center!important;
+    border-radius: 4px!important;
+    display: flex!important;
+    height: auto!important;
+    justify-content: center!important;
+    margin: 4px 8px!important;
+    max-width: unset!important;
+    min-height: 32px!important;
+    min-width: 64px!important;
+    padding: 0px 40px 0 6px !important;
+    position: relative!important;
+    background: #f1f2f6 !important;
+}
+:host-context(.send-email) .file-label {
+    color: #508eff!important;
+    font-size: 13px!important;
+    line-height: 24px!important;
+    font-weight: 500!important;
+}
+.custom-dropzone {
+    border-color: #e1e1e1!important;
+    height: auto;
+    min-height: 64px;
+    flex-wrap: wrap;
+}
