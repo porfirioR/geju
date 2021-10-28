@@ -12,17 +12,17 @@ export class UploadDocumentService {
 constructor(private http: HttpClient) { }
 
 public saveDocument = (files: Array<File> = null): Observable<any> => {
-  const formDataInput = new Map();
-  formDataInput.set('Amount', '123');
-  formDataInput.set('BankReference', '12334');
+  const formDataInput = {};
+  formDataInput['Amount'] = '123';
+  formDataInput['BankReference'] = '12334';
   const formData = new FormData();
-  formData.append('formData', formDataInput.toString());
+  formData.append('formData', JSON.stringify(formDataInput));
   if (files) {
     for (let i = 0; files.length > i; i++) {
       formData.append(`template`, files[i]);
     }
   }
   // tslint:disable-next-line: max-line-length
-  return this.http.post<any>(`${this.baseUrl}?amount=123`, formData);
+  return this.http.post<any>(`${this.baseUrl}`, formData);
 }
 }
