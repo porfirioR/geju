@@ -17,6 +17,8 @@ GeJu.Back/.vs/GeJu.Back/DesignTimeBuild/.dtbcache.v2
 *.userosscache
 *.sln.docstates
 
+.angular/cache/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

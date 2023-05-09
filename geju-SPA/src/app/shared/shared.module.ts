@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AgGridModule } from 'ag-grid-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,11 +17,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   imports: [
     CommonModule,
-    AgGridModule.withComponents([]),
     MatToolbarModule,
     MatTabsModule,
     MatCardModule,
@@ -37,10 +36,10 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     MatNativeDateModule,
     MatProgressBarModule,
     MatMenuModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    AgGridModule
   ],
   exports: [
-    AgGridModule,
     FormsModule,
     ReactiveFormsModule,
     MatToolbarModule,
@@ -57,7 +56,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     MatNativeDateModule,
     MatProgressBarModule,
     MatMenuModule,
-    UploadFileComponent
+    UploadFileComponent,
+    AgGridModule
   ],
   declarations: [
     UploadFileComponent
