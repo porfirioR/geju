@@ -27,7 +27,7 @@
     "ag-grid-community": "^27.1.0",
     "bootstrap": "^4.5.3",
     "fast-glob": "^3.2.11",
-    "ngx": "^0.0.1",
+    "ngx": "^2.4.0",
     "ngx-bootstrap": "^6.2.0",
     "ngx-dropzone": "^3.0.0",
     "rxjs": "~6.6.6",
