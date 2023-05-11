@@ -39,7 +39,7 @@ export class UserUpsertComponent implements OnInit {
           this.userForm.patchValue({ lastName: this.user.lastName});
           this.userForm.patchValue({ email: this.user.email });
           this.userForm.patchValue({ country: this.user.country});
-          this.userForm.patchValue({ birthdate: this.user.birthdate});
+          this.userForm.patchValue({ birthDate: this.user.birthDate});
           this.userForm.patchValue({ document: this.user.document});
           this.positionName = 'Modificar';
         }, () => {
@@ -76,7 +76,7 @@ export class UserUpsertComponent implements OnInit {
       lastName: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       country: new FormControl('', Validators.required),
-      birthdate: new FormControl('', Validators.required),
+      birthDate: new FormControl('', Validators.required),
       document: new FormControl('', [Validators.required, Validators.maxLength(15)]),
       rol: new FormControl('')
     });

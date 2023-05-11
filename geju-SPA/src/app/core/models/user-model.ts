@@ -7,7 +7,7 @@ export class UserModel {
     email: string;
     document: string;
     country: Country;
-    birthdate: Date;
+    birthDate: Date;
     creationDate: Date;
     lastActive: Date;
     active: boolean;
