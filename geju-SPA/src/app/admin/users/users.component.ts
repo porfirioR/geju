@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community/dist/lib/gridApi';
 import Swal from 'sweetalert2';
 
-import { UserModel } from 'src/app/core/models/user-model';
-import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
+import { UserModel } from '../../core/models/user-model';
+import { SingletonService } from '../../core/services/singleton/singleton.service';
 import { UserService } from '../../core/services/user.service';
 
 @Component({

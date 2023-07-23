@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserModel } from 'src/app/core/models/user-model';
-import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
-import { UserService } from 'src/app/core/services/user.service';
 import swal from 'sweetalert2';
+import { UserModel } from '../../../core/models/user-model';
+import { SingletonService } from '../../../core/services/singleton/singleton.service';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-user-upsert',
