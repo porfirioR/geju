@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GeJu.AccessServicesModel.Brands
+﻿namespace GeJu.AccessServicesModel.Brands
 {
     public class UpdateBrand : CreateBrand
     {

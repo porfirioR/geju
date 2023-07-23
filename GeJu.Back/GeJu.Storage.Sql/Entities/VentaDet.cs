@@ -1,6 +1,6 @@
 ﻿namespace GeJu.Sql.Entities
 {
-    public class VentaDet: BaseEntity
+    public class VentaDet : BaseEntity
     {
         public int ProductoId { get; set; }
         public int VentaCabId { get; set; }

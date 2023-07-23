@@ -1,8 +1,5 @@
-﻿using AccessServicesModel.Users;
+﻿using GeJu.AccessServicesModel.Users;
 using GeJu.Sql.Entities;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GeJu.Services.Admin.Interfaces
 {

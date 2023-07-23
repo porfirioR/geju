@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace GeJu.Sql.Entities
+﻿namespace GeJu.Sql.Entities
 {
-    public class Grupo: BaseEntity
+    public class Grupo : BaseEntity
     {
         public string Descripcion { get; set; }
-        public ICollection<ProductoGrupo> ProductoGrupos { get; set; }
+        public virtual ICollection<ProductoGrupo> ProductoGrupos { get; set; }
 
     }
 }

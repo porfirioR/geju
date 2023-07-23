@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
-using AccessServicesModel.Users;
-using GeJu.Sql.Entities;
-using System;
+using GeJu.AccessServicesModel.Users;
 using GeJu.Common.DTO.Users;
+using GeJu.Sql.Entities;
 
 namespace GeJu.Services.Admin.Mapper
 {
-    public class UserProfiles: Profile
+    public class UserProfiles : Profile
     {
         public UserProfiles()
         {
@@ -66,7 +65,7 @@ namespace GeJu.Services.Admin.Mapper
                     opt => opt.MapFrom(src => src.UltimoInicio))
                 .ForMember(dest => dest.Country,
                     opt => opt.MapFrom(src => src.Pais));
-            
+
         }
     }
 }

@@ -1,14 +1,11 @@
 ﻿using GeJu.Common.DTO.Users;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Test.Admin
 {
-    internal class UserControllerTest : TestBase
+    internal partial class UserControllerTest : TestBase
     {
         private readonly string _uri = "api/users";
         private string _userId;
@@ -17,15 +14,15 @@ namespace GeJu.Api.Main.Test.Admin
         [Order(1)]
         public async Task SaveShouldReturnOk()
         {
-            var user = Mother.NewUser;
+            var user = NewUser;
             var actual = await _sut.PostAsJsonAsync(_uri, user);
             Assert.That(HttpStatusCode.OK, Is.EqualTo(actual.StatusCode));
             var model = await actual.Content.ReadAsStringAsync();
             var response = JsonConvert.DeserializeObject<UserApi>(model);
-            Assert.That(response.Name, Is.EqualTo(Mother.NewUser.Name));
-            Assert.That(response.LastName, Is.EqualTo(Mother.NewUser.LastName));
-            Assert.That(response.Email, Is.EqualTo(Mother.NewUser.Email));
-            Assert.That(response.Country, Is.EqualTo(Mother.NewUser.Country));
+            Assert.That(response.Name, Is.EqualTo(user.Name));
+            Assert.That(response.LastName, Is.EqualTo(user.LastName));
+            Assert.That(response.Email, Is.EqualTo(user.Email));
+            Assert.That(response.Country, Is.EqualTo(user.Country));
             _userId = response.Id.ToString();
         }
 
@@ -44,16 +41,16 @@ namespace GeJu.Api.Main.Test.Admin
         [Order(3)]
         public async Task UpdateUserGroupShouldReturnOk()
         {
-            var brand = Mother.UpdateUser;
+            var brand = UpdateUser;
             brand.Id = _userId;
             var actual = await _sut.PutAsJsonAsync(_uri, brand);
             Assert.That(HttpStatusCode.OK, Is.EqualTo(actual.StatusCode));
             var model = await actual.Content.ReadAsStringAsync();
             var response = JsonConvert.DeserializeObject<UserApi>(model);
-            Assert.That(response.Name, Is.EqualTo(Mother.UpdateUser.Name));
-            Assert.That(response.LastName, Is.EqualTo(Mother.UpdateUser.LastName));
-            Assert.That(response.Email, Is.EqualTo(Mother.UpdateUser.Email));
-            Assert.That(response.Country, Is.EqualTo(Mother.UpdateUser.Country));
+            Assert.That(response.Name, Is.EqualTo(brand.Name));
+            Assert.That(response.LastName, Is.EqualTo(brand.LastName));
+            Assert.That(response.Email, Is.EqualTo(brand.Email));
+            Assert.That(response.Country, Is.EqualTo(brand.Country));
         }
 
         //[Test]

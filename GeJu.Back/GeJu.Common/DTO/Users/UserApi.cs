@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GeJu.Common.DTO.Users
+﻿namespace GeJu.Common.DTO.Users
 {
     public class UserApi
     {

@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace GeJu.Sql.Entities
+﻿namespace GeJu.Sql.Entities
 {
-    public class CompraCab: BaseEntity
+    public class CompraCab : BaseEntity
     {
         public DateTime Fecha { get; set; }
         public int Total { get; set; }

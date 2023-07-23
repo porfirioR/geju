@@ -33,7 +33,7 @@ export class UserUpsertComponent implements OnInit {
           this.userForm.patchValue({ lastName: this.user.lastName});
           this.userForm.patchValue({ email: this.user.email });
           this.userForm.patchValue({ country: this.user.country});
-          this.userForm.patchValue({ birthdate: this.user.birthdate});
+          this.userForm.patchValue({ birthdate: this.user.birthday});
           this.positionName = 'Modificar';
         }, error => {
           swal.fire('Error...', 'Usuario no encontrado.', 'error');

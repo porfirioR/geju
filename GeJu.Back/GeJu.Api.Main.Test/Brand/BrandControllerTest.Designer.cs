@@ -2,7 +2,7 @@
 
 namespace GeJu.Api.Main.Test.Brand
 {
-    internal static class Mother
+    internal partial class BrandControllerTest
     {
         public static CreateBrandDTO NewBrand => new CreateBrandDTO
         {

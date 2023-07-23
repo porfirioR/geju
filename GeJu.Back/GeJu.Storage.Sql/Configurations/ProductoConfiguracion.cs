@@ -2,13 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace GeJu.Storage.Sql.Configurations
+namespace GeJu.Sql.Configurations
 {
     internal class ProductoConfiguracion : IEntityTypeConfiguration<Producto>
     {
         public void Configure(EntityTypeBuilder<Producto> builder)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
     public class ProductoGrupoConfiguracion : IEntityTypeConfiguration<ProductoGrupo>

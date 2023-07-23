@@ -1,4 +1,4 @@
-export class NavegationModel {
+export class NavigationModel {
     name: string;
     route: string;
 }

@@ -3,9 +3,6 @@ using DAL.Interfaces;
 using GeJu.AccessServicesModel.Brands;
 using GeJu.Common.DTO.Brands;
 using GeJu.Services.Admin.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace DAL
 {

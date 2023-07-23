@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace GeJu.Sql.Entities
+﻿namespace GeJu.Sql.Entities
 {
-    public class Imagen: BaseEntity
+    public class Imagen : BaseEntity
     {
         public int ProductoId { get; set; }
         public string Url { get; set; }

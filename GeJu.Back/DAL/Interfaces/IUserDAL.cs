@@ -1,7 +1,4 @@
 ﻿using GeJu.Common.DTO.Users;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {

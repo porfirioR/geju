@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GeJu.Sql.Entities
+﻿namespace GeJu.Sql.Entities
 {
-    public class CompraDet: BaseEntity
+    public class CompraDet : BaseEntity
     {
         public int ProductoId { get; set; }
         public int CompraCabId { get; set; }
