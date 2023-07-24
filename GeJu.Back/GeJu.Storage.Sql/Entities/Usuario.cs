@@ -1,6 +1,4 @@
 ﻿using GeJu.Common;
-using System;
-using System.Collections.Generic;
 
 namespace GeJu.Sql.Entities
 {

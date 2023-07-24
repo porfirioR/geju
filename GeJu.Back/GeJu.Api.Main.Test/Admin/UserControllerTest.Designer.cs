@@ -1,10 +1,9 @@
 ﻿using GeJu.Common;
 using GeJu.Common.DTO.Users;
-using System;
 
 namespace GeJu.Api.Main.Test.Admin
 {
-    internal static class Mother
+    internal partial class UserControllerTest
     {
         public static CreateUserDTO NewUser => new CreateUserDTO
         {

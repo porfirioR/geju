@@ -1,7 +1,6 @@
 ﻿using GeJu.Common;
-using System;
 
-namespace AccessServicesModel.Users
+namespace GeJu.AccessServicesModel.Users
 {
     public class CreateUser
     {

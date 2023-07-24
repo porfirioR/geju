@@ -1,12 +1,9 @@
-﻿using AccessServicesModel.Users;
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using DAL.Interfaces;
+using GeJu.AccessServicesModel.Users;
 using GeJu.Common.DTO.Users;
 using GeJu.Services.Admin.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace DAL
 {

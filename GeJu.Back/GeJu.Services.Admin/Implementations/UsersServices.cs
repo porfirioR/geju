@@ -1,11 +1,8 @@
-﻿using AccessServicesModel.Users;
-using AutoMapper;
+﻿using AutoMapper;
+using GeJu.AccessServicesModel.Users;
 using GeJu.Services.Admin.Interfaces;
 using GeJu.Sql;
 using GeJu.Sql.Entities;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GeJu.Services.Admin.Implementations
 {

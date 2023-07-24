@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NavegationModel } from './../../../core/models/navegation-model';
+import { NavigationModel } from '../../../core/models/navigation-model';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-  @Input() navigation: Array<NavegationModel> = new Array<NavegationModel>();
+  @Input() navigation: Array<NavigationModel> = new Array<NavigationModel>();
   @Input() actualPosition: string;
 
   constructor() { }

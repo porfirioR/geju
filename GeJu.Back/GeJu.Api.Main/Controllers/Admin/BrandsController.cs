@@ -1,8 +1,6 @@
 ﻿using DAL.Interfaces;
 using GeJu.Common.DTO.Brands;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
 
 namespace GeJu.Api.Main.Controllers.Admin
 {

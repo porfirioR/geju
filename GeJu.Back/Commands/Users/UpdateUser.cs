@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AccessServicesModel.Users
+﻿namespace GeJu.AccessServicesModel.Users
 {
     public class UpdateUser : CreateUser
     {

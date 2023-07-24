@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community/dist/lib/gridApi';
-import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
+import { SingletonService } from './../../../core/services/singleton/singleton.service';
 import { ProductModel } from './../../../core/models/product-model';
 import { ProductService } from '../../../core/services/product.service';
 import Swal from 'sweetalert2';

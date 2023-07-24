@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30204.135
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeJu.Api.Main", "GeJu.Api.Main\GeJu.Api.Main.csproj", "{7ACD09DB-8C84-492A-9723-6E926A0A50DC}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -23,7 +23,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{84
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeJu.Services.Admin", "GeJu.Services.Admin\GeJu.Services.Admin.csproj", "{EB818B77-F691-4792-8570-C35A3E092B44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{5D3BF754-355B-418B-B628-EE439086D79E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{5D3BF754-355B-418B-B628-EE439086D79E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F7F3936A-6790-4800-B6A8-7158E218763B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{95B80531-CBDE-476D-BEFF-EC2D230F569B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manager", "Manager", "{991439EF-1BAC-4252-9C69-8C5EB2BB353D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,7 +70,12 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{7ACD09DB-8C84-492A-9723-6E926A0A50DC} = {95B80531-CBDE-476D-BEFF-EC2D230F569B}
+		{7C3FB2D3-C6DA-42BC-885E-AB9454647F13} = {F7F3936A-6790-4800-B6A8-7158E218763B}
+		{581E1B49-F978-49F0-96EE-64A68A48534C} = {842A56BE-7540-48E5-BE58-1760C0321AE2}
+		{1410920B-85FD-43F5-B18C-2EF63236DA93} = {991439EF-1BAC-4252-9C69-8C5EB2BB353D}
 		{EB818B77-F691-4792-8570-C35A3E092B44} = {842A56BE-7540-48E5-BE58-1760C0321AE2}
+		{5D3BF754-355B-418B-B628-EE439086D79E} = {991439EF-1BAC-4252-9C69-8C5EB2BB353D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3A15BF93-4036-422C-9543-5EDCE7A01EE0}

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GeJu.Common.DTO.Brands
+﻿namespace GeJu.Common.DTO.Brands
 {
     public class BrandApi
     {

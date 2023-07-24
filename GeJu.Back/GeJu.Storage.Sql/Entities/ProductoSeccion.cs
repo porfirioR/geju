@@ -3,8 +3,8 @@
     public class ProductoSeccion
     {
         public string ProductoId { get; set; }
-        public Producto Producto { get; set; }
+        public virtual Producto Producto { get; set; }
         public string SeccionId { get; set; }
-        public Seccion Seccion { get; set; }
+        public virtual Seccion Seccion { get; set; }
     }
 }

@@ -1,12 +1,9 @@
 using AutoMapper;
 using GeJu.Services.Admin;
 using GeJu.Sql;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Converters;
+
 namespace GeJu.Api.Main
 {
     public class Startup
@@ -20,7 +17,10 @@ namespace GeJu.Api.Main
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.Converters.Add(new StringEnumConverter());
+            });
 
             ServiceInjection.ConfigureServices(services);
             DAL.ServiceInjection.ConfigureServices(services);

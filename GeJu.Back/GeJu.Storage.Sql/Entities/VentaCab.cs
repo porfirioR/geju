@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace GeJu.Sql.Entities
+﻿namespace GeJu.Sql.Entities
 {
-    public class VentaCab: BaseEntity
+    public class VentaCab : BaseEntity
     {
         public int UsuarioId { get; set; }
         public DateTime Fecha { get; set; }

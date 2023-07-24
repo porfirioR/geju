@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System.Net.Http;
 
 namespace GeJu.Api.Main.Test
 {
@@ -14,6 +13,7 @@ namespace GeJu.Api.Main.Test
             _factory = new MainApiWebApplicationFactory();
             _sut = _factory.CreateClient();
         }
+
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {

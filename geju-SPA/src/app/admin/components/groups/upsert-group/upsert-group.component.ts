@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GroupModel } from 'src/app/core/models/group-model';
-import { GroupService } from 'src/app/core/services/group.service';
-import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
+import { GroupModel } from '../../../../core/models/group-model';
+import { GroupService } from '../../../../core/services/group.service';
+import { SingletonService } from '../../../../core/services/singleton/singleton.service';
 import Swal from 'sweetalert2';
 
 @Component({

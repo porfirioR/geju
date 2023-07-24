@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BrandModel } from 'src/app/core/models/brand-model';
-import { BrandService } from 'src/app/core/services/brand.service';
-import { SingletonService } from 'src/app/core/services/singleton/singleton.service';
+import { BrandModel } from '../../../../core/models/brand-model';
+import { BrandService } from '../../../../core/services/brand.service';
+import { SingletonService } from '../../../../core/services/singleton/singleton.service';
 import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-upsert-brand',
   templateUrl: './upsert-brand.component.html',
-  styleUrls: ['./upsert-brand.component.css'],
+  styleUrls: ['./upsert-brand.component.scss'],
 })
 export class UpsertBrandComponent implements OnInit {
   brandForm: FormGroup;
