@@ -8,27 +8,31 @@ namespace GeJu.Sql.Configurations
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder.HasKey(u => u.Id);
+            builder.HasKey(x => x.Id);
+
             builder
-                .Property(u => u.FechaCreado)
+                .Property(x => x.FechaCreado)
                 .HasDefaultValueSql("GetUtcDate()");
+
             builder
-                .Property(d => d.FechaModificado)
+                .Property(x => x.FechaModificado)
                 .HasDefaultValueSql("GetUtcDate()");
         }
-
     }
+
     internal class UsuarioRolConfiguracion : IEntityTypeConfiguration<UsuarioRol>
     {
         public void Configure(EntityTypeBuilder<UsuarioRol> builder)
         {
             builder.HasKey(pg => new { pg.UsuarioId, pg.RolId });
-            builder.HasOne(pg => pg.Usuario)
-                .WithMany(p => p.UsuariosRoles)
-                .HasForeignKey(pg => pg.UsuarioId);
-            builder.HasOne(pg => pg.Rol)
-                .WithMany(g => g.UsuariosRoles)
-                .HasForeignKey(pg => pg.RolId);
+
+            builder.HasOne(x => x.Usuario)
+                .WithMany(x => x.UsuariosRoles)
+                .HasForeignKey(x => x.UsuarioId);
+
+            builder.HasOne(x => x.Rol)
+                .WithMany(x => x.UsuariosRoles)
+                .HasForeignKey(x => x.RolId);
         }
     }
 }
